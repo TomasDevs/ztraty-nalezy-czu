@@ -102,6 +102,22 @@ function item_url(array $item): string
     return url("/inzerat/{$item['id']}/{$item['slug']}");
 }
 
+/**
+ * Documents (ISIC, ID cards) never show a photo, it would expose personal data
+ * and let anyone claim the item.
+ */
+function is_private_item(array $item): bool
+{
+    return $item['category']['slug'] === 'doklady';
+}
+
+function item_photo_url(array $item): ?string
+{
+    $photo = $item['photo'] ?? null;
+
+    return $photo && !is_private_item($item) ? url("/{$photo}") : null;
+}
+
 function item_code(array $item): string
 {
     return sprintf('#%03d', $item['id']);

@@ -1,11 +1,12 @@
 [
-  { "slug": "pef", "name": "Provozně ekonomická fakulta (PEF)", "short": "PEF", "lat": 50.1296, "lng": 14.3727 },
-  { "slug": "fappz", "name": "Fakulta agrobiologie, potravinových a přírodních zdrojů (FAPPZ)", "short": "FAPPZ", "lat": 50.1310, "lng": 14.3725 },
-  { "slug": "fzp", "name": "Fakulta životního prostředí (FŽP)", "short": "FŽP", "lat": 50.129, "lng": 14.376 },
-  { "slug": "fld", "name": "Fakulta lesnická a dřevařská (FLD)", "short": "FLD", "lat": 50.1318, "lng": 14.3745 },
-  { "slug": "tf", "name": "Technická fakulta (TF)", "short": "TF", "lat": 50.1305, "lng": 14.377 },
-  { "slug": "knihovna", "name": "Studijní a informační centrum (knihovna)", "short": "Knihovna", "lat": 50.1300, "lng": 14.3745 },
-  { "slug": "aula", "name": "Aula a rektorát", "short": "Aula", "lat": 50.1302, "lng": 14.3735 },
-  { "slug": "menza", "name": "Menza", "short": "Menza", "lat": 50.1287, "lng": 14.374 },
-  { "slug": "koleje", "name": "Koleje", "short": "Koleje", "lat": 50.1278, "lng": 14.378 }
+  { "slug": "pef", "name": "Provozně ekonomická fakulta (PEF)", "short": "PEF", "lat": 50.13116, "lng": 14.37322 },
+  { "slug": "fappz", "name": "Fakulta agrobiologie, potravinových a přírodních zdrojů (FAPPZ)", "short": "FAPPZ", "lat": 50.12993, "lng": 14.37204 },
+  { "slug": "fzp", "name": "Fakulta životního prostředí (FŽP)", "short": "FŽP", "lat": 50.12967, "lng": 14.3704 },
+  { "slug": "fld", "name": "Fakulta lesnická a dřevařská (FLD)", "short": "FLD", "lat": 50.13001, "lng": 14.36986 },
+  { "slug": "ftz", "name": "Fakulta tropického zemědělství (FTZ)", "short": "FTZ", "lat": 50.13157, "lng": 14.37186 },
+  { "slug": "tf", "name": "Technická fakulta (TF)", "short": "TF", "lat": 50.12925, "lng": 14.37363 },
+  { "slug": "knihovna", "name": "Studijní a informační centrum (knihovna)", "short": "Knihovna", "lat": 50.12902, "lng": 14.37272 },
+  { "slug": "aula", "name": "Aula a rektorát", "short": "Aula", "lat": 50.13029, "lng": 14.37456 },
+  { "slug": "menza", "name": "Menza", "short": "Menza", "lat": 50.13067, "lng": 14.37547 },
+  { "slug": "koleje", "name": "Koleje", "short": "Koleje", "lat": 50.12996, "lng": 14.37642 }
 ]

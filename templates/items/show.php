@@ -25,6 +25,7 @@ $dateLabel = $item['type'] === 'found' ? 'Nalezeno' : 'Ztraceno';
 
     <div class="detail__body">
         <div class="detail__main">
+            <?= render('partials/item-photo', ['item' => $item, 'large' => true]) ?>
             <h2 class="visually-hidden">Popis</h2>
             <p class="detail__description"><?= e($item['description']) ?></p>
             <div class="detail__map map" data-map data-markers="<?= e(json_encode($marker, JSON_UNESCAPED_UNICODE)) ?>" role="region" aria-label="Místo na mapě"></div>
