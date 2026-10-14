@@ -6,6 +6,7 @@ namespace App\Controllers\Api;
 
 use App\Controllers\Controller;
 use App\Repositories\ItemQuery;
+use App\Seo\ListingMeta;
 
 final class ItemController extends Controller
 {
@@ -24,6 +25,7 @@ final class ItemController extends Controller
             )),
             'total' => $result['total'],
             'totalLabel' => items_count($result['total']),
+            'heading' => ListingMeta::for($query, $this->items())->heading,
             'markers' => $result['markers'],
             'nextPage' => $query->offset() + count($result['items']) < $result['total'] ? $query->page + 1 : null,
         ]);

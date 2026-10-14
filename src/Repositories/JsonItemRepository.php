@@ -44,6 +44,11 @@ final class JsonItemRepository implements ItemRepository
         return null;
     }
 
+    public function all(): array
+    {
+        return $this->items;
+    }
+
     public function latest(int $limit): array
     {
         return array_slice($this->items, 0, $limit);

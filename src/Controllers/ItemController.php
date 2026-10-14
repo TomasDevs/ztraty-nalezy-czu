@@ -6,16 +6,20 @@ namespace App\Controllers;
 
 use App\Forms\ContactForm;
 use App\Repositories\ItemQuery;
+use App\Seo\ListingMeta;
 
 final class ItemController extends Controller
 {
     public function index(): void
     {
         $query = ItemQuery::fromArray($_GET);
+        $meta = ListingMeta::for($query, $this->items());
 
         view('items/index', [
-            'title' => 'Ztracené a nalezené věci',
+            'title' => $meta->heading,
             'description' => 'Přehled ztracených a nalezených věcí na kampusu ČZU. Filtrujte podle budovy, kategorie nebo hledejte.',
+            'canonical' => $meta->canonical,
+            'noindex' => $meta->noindex,
             'query' => $query,
             'result' => $this->items()->search($query),
             'categories' => $this->items()->categories(),
@@ -73,9 +77,19 @@ final class ItemController extends Controller
 
     private function renderDetail(array $item, ContactForm $form, bool $sent = false): void
     {
+        $photo = item_photo_path($item);
+
         view('items/show', [
             'title' => $item['title'],
             'description' => mb_strimwidth($item['description'], 0, 155, '…'),
+            'ogType' => 'article',
+            'image' => $photo ? absolute_url($photo) : null,
+            'imageAlt' => $photo ? "Fotka: {$item['title']}" : null,
+            'breadcrumbs' => [
+                ['Úvod', '/'],
+                [ItemQuery::TYPE_LISTS[$item['type']], '/inzeraty?' . http_build_query(['type' => $item['type']])],
+                [$item['title'], null],
+            ],
             'item' => $item,
             'related' => $this->items()->related($item, 3),
             'form' => $form,

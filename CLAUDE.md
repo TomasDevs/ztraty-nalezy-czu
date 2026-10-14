@@ -24,3 +24,5 @@ School project (ITCS, PEF ČZU): lost & found web for the ČZU campus. Roles: gu
 - Escape all output with `e()`, build links with `url()` (respects `BASE_PATH`).
 - Pages must work without JS; JS only enhances (AJAX filtering, maps).
 - Keep PHP compatible with 8.1 (server version unknown).
+- SEO per page via view data: `title`, `description`, `canonical`, `noindex`, `image`, `breadcrumbs`, `jsonLd` (see `templates/layout.php`). Listing rules live in `App\Seo\ListingMeta`.
+- Search is diacritics-insensitive via `fold()`; the future PDO repository must match it (e.g. a folded search column, `utf8mb4_czech_ci` treats č ≠ c).

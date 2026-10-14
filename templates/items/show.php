@@ -1,9 +1,9 @@
 <?php
 use App\Forms\ContactForm;
-use App\Repositories\ItemQuery;
 
 /**
  * @var array $item
+ * @var array{0: string, 1: string|null}[] $breadcrumbs
  * @var array[] $related
  * @var ContactForm $form
  * @var bool $sent
@@ -25,13 +25,7 @@ $field = fn (string $name, string $label, array $options = []) => render('partia
     ...$options,
 ]);
 ?>
-<nav class="breadcrumbs" aria-label="Drobečková navigace">
-    <ol>
-        <li><a href="<?= e(url('/')) ?>">Úvod</a></li>
-        <li><a href="<?= e(url('/inzeraty', ['type' => $item['type']])) ?>"><?= e(ItemQuery::TYPE_LISTS[$item['type']]) ?></a></li>
-        <li aria-current="page"><?= e($item['title']) ?></li>
-    </ol>
-</nav>
+<?= render('partials/breadcrumbs', ['breadcrumbs' => $breadcrumbs]) ?>
 
 <article class="detail">
     <header class="detail__header">

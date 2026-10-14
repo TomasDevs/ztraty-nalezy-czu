@@ -99,6 +99,36 @@ function slugify(string $text): string
     return trim(preg_replace('/[^a-z0-9]+/', '-', fold($text)), '-');
 }
 
+/**
+ * JSON-LD script tag; JSON_HEX_TAG keeps "</script>" in data from closing the tag.
+ */
+function json_ld(array $data): string
+{
+    $json = json_encode(
+        ['@context' => 'https://schema.org', ...$data],
+        JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG
+    );
+
+    return "<script type=\"application/ld+json\">{$json}</script>";
+}
+
+function breadcrumbs_ld(array $breadcrumbs): array
+{
+    return [
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => array_map(
+            fn (array $crumb, int $i) => [
+                '@type' => 'ListItem',
+                'position' => $i + 1,
+                'name' => $crumb[0],
+                ...($crumb[1] !== null ? ['item' => absolute_url($crumb[1])] : []),
+            ],
+            $breadcrumbs,
+            array_keys($breadcrumbs)
+        ),
+    ];
+}
+
 function format_date(string $date): string
 {
     return date('j. n. Y', strtotime($date));
@@ -126,7 +156,7 @@ function is_private_item(array $item): bool
 /**
  * Photos are stored as WebP in two sizes: {photo}.webp and {photo}-thumb.webp.
  */
-function item_photo_url(array $item, bool $thumb = false): ?string
+function item_photo_path(array $item, bool $thumb = false): ?string
 {
     $photo = $item['photo'] ?? null;
 
@@ -134,7 +164,14 @@ function item_photo_url(array $item, bool $thumb = false): ?string
         return null;
     }
 
-    return url("/{$photo}" . ($thumb ? '-thumb' : '') . '.webp');
+    return "/{$photo}" . ($thumb ? '-thumb' : '') . '.webp';
+}
+
+function item_photo_url(array $item, bool $thumb = false): ?string
+{
+    $path = item_photo_path($item, $thumb);
+
+    return $path ? url($path) : null;
 }
 
 function item_code(array $item): string

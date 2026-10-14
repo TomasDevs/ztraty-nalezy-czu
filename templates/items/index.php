@@ -2,6 +2,7 @@
 use App\Repositories\ItemQuery;
 
 /**
+ * @var string $title
  * @var ItemQuery $query
  * @var array{items: array[], total: int, markers: array[]} $result
  * @var array[] $categories
@@ -13,7 +14,7 @@ $typeOptions = array_map(fn (string $slug) => ['slug' => $slug, 'name' => ItemQu
 $select = fn (string $name, string $label, array $options, ?string $selected) => render('partials/select', compact('name', 'label', 'options', 'selected'));
 ?>
 <div class="page-head">
-    <h1>Ztracené a nalezené věci</h1>
+    <h1 data-items-heading><?= e($title) ?></h1>
     <p class="lead">Všechny inzeráty z kampusu ČZU v Suchdole. Filtrujte podle budovy, kategorie nebo hledejte podle popisu.</p>
 </div>
 

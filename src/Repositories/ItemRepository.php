@@ -13,6 +13,11 @@ interface ItemRepository
 
     public function find(int $id): ?array;
 
+    /**
+     * All items, newest first.
+     */
+    public function all(): array;
+
     public function latest(int $limit): array;
 
     /**

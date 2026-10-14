@@ -27,6 +27,8 @@ export default function initItemsFilter(root) {
   const empty = root.querySelector('[data-items-empty]');
   const more = root.querySelector('[data-load-more]');
   const reset = root.querySelector('[data-filter-reset]');
+  const heading = document.querySelector('[data-items-heading]');
+  const titleSuffix = document.title.slice(document.title.indexOf(' | '));
   const map = root.querySelector('[data-map]');
   let request;
 
@@ -61,6 +63,8 @@ export default function initItemsFilter(root) {
       if (page === 1) {
         list.innerHTML = data.html;
         reset.hidden = !query.toString();
+        heading.textContent = data.heading;
+        document.title = data.heading + titleSuffix;
         history.replaceState(null, '', pageUrl(query));
         syncNav();
         map?.dispatchEvent(new CustomEvent('markers:update', { detail: data.markers }));
