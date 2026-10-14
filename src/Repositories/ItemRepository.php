@@ -16,6 +16,11 @@ interface ItemRepository
     public function latest(int $limit): array;
 
     /**
+     * Active items from the same building first, then from the same category.
+     */
+    public function related(array $item, int $limit): array;
+
+    /**
      * @return array{found: int, lost: int, returned: int}
      */
     public function stats(): array;

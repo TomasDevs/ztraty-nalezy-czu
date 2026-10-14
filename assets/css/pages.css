@@ -281,16 +281,34 @@
   color: var(--ink-soft);
 }
 
-.detail__body {
+.detail__layout {
   display: grid;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 @media (min-width: 56rem) {
-  .detail__body {
-    grid-template-columns: minmax(0, 1fr) 20rem;
-    gap: 3rem;
+  .detail__layout {
+    grid-template-columns: minmax(0, 1fr) 22rem;
+    grid-template-areas:
+      'main aside'
+      'contact aside';
+    align-items: start;
+    gap: 2rem 3rem;
   }
+
+  .detail__main { grid-area: main; }
+  .detail__aside { grid-area: aside; }
+  .contact { grid-area: contact; }
+}
+
+.detail__main .photo--large {
+  max-width: none;
+}
+
+.detail__heading {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: var(--ink-soft);
 }
 
 .detail__description {
@@ -299,22 +317,23 @@
   line-height: 1.65;
 }
 
-.detail__map {
-  height: 20rem;
-  margin-top: 2rem;
+.detail__aside {
+  display: grid;
+  gap: 1rem;
 }
 
-.facts {
-  align-self: start;
-  padding: 1.25rem;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
+.action {
+  display: grid;
+  gap: 0.625rem;
 }
 
-.facts__title {
-  margin-bottom: 0.75rem;
-  font-size: 1rem;
+.action__lead {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.action__returned {
+  color: var(--ink-soft);
 }
 
 .facts dl {
@@ -335,6 +354,54 @@
 
 .facts dd {
   margin: 0.125rem 0 0.75rem;
+}
+
+.detail__map {
+  min-height: 0;
+  height: 13rem;
+  margin-top: 0.5rem;
+}
+
+.facts__map-link {
+  display: inline-block;
+  margin-top: 0.625rem;
+  font-size: 0.875rem;
+}
+
+/* Detail: contact form */
+.contact {
+  scroll-margin-top: 1.5rem;
+}
+
+.contact h2 {
+  margin-bottom: 0.375rem;
+}
+
+.contact__intro {
+  margin-bottom: 1.25rem;
+  color: var(--ink-soft);
+}
+
+.contact__form {
+  display: grid;
+  gap: 1rem;
+  justify-items: start;
+}
+
+.contact__form .field {
+  width: 100%;
+}
+
+.contact__row {
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+}
+
+@media (min-width: 40rem) {
+  .contact__row {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 /* Error page */

@@ -4,6 +4,7 @@ import '../css/main.css';
 const modules = [
   ['[data-map]', () => import('./modules/map.js')],
   ['[data-items-filter]', () => import('./modules/items-filter.js')],
+  ['[data-share]', () => import('./modules/share.js')],
 ];
 
 modules.forEach(([selector, load]) => {

@@ -49,6 +49,22 @@ final class JsonItemRepository implements ItemRepository
         return array_slice($this->items, 0, $limit);
     }
 
+    public function related(array $item, int $limit): array
+    {
+        $score = fn (array $other) => ($other['building']['slug'] === $item['building']['slug'] ? 2 : 0)
+            + ($other['category']['slug'] === $item['category']['slug'] ? 1 : 0);
+
+        $candidates = array_filter(
+            $this->items,
+            fn (array $other) => $other['id'] !== $item['id'] && $other['status'] === 'active' && $score($other) > 0
+        );
+
+        // usort is stable, so items with equal score keep the newest-first order
+        usort($candidates, fn (array $a, array $b) => $score($b) <=> $score($a));
+
+        return array_slice($candidates, 0, $limit);
+    }
+
     public function stats(): array
     {
         $stats = ['found' => 0, 'lost' => 0, 'returned' => 0];

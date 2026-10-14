@@ -22,6 +22,10 @@
   border-color: var(--brand-strong);
 }
 
+.button--block {
+  width: 100%;
+}
+
 .button--secondary {
   color: var(--ink);
   background: var(--surface);
@@ -48,6 +52,9 @@
 }
 
 input[type='search'],
+input[type='text'],
+input[type='email'],
+textarea,
 select {
   width: 100%;
   min-height: 2.75rem;
@@ -59,14 +66,68 @@ select {
 }
 
 input[type='search']:hover,
+input[type='text']:hover,
+input[type='email']:hover,
+textarea:hover,
 select:hover {
   border-color: var(--ink-muted);
 }
 
 input[type='search']:focus-visible,
+input[type='text']:focus-visible,
+input[type='email']:focus-visible,
+textarea:focus-visible,
 select:focus-visible {
   border-color: var(--brand);
   outline-offset: 0;
+}
+
+textarea {
+  resize: vertical;
+}
+
+[aria-invalid='true'] {
+  border-color: var(--lost);
+}
+
+.field__hint {
+  font-size: 0.875rem;
+  color: var(--ink-muted);
+}
+
+.field__error {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--lost);
+}
+
+/* Panel and alert */
+.panel {
+  padding: 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+
+.panel__title {
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+.alert {
+  margin-bottom: 1.25rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+}
+
+.alert--success {
+  color: var(--brand-strong);
+  background: var(--brand-tint);
+}
+
+.alert--error {
+  color: var(--lost);
+  background: var(--lost-tint);
 }
 
 select {

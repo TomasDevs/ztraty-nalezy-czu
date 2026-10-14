@@ -97,9 +97,14 @@ function format_date(string $date): string
     return date('j. n. Y', strtotime($date));
 }
 
+function item_path(array $item): string
+{
+    return "/inzerat/{$item['id']}/{$item['slug']}";
+}
+
 function item_url(array $item): string
 {
-    return url("/inzerat/{$item['id']}/{$item['slug']}");
+    return url(item_path($item));
 }
 
 /**
