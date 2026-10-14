@@ -1,0 +1,8 @@
+[
+  { "slug": "doklady", "name": "Doklady a karty" },
+  { "slug": "klice", "name": "Klíče" },
+  { "slug": "elektronika", "name": "Elektronika" },
+  { "slug": "obleceni", "name": "Oblečení" },
+  { "slug": "doplnky", "name": "Šperky a doplňky" },
+  { "slug": "ostatni", "name": "Ostatní" }
+]
