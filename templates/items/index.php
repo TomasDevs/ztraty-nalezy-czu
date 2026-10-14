@@ -30,13 +30,15 @@ $select = fn (string $name, string $label, array $options, ?string $selected) =>
     </form>
 
     <div class="listing__bar">
-        <p class="listing__count" aria-live="polite" data-items-count><?= e(items_count($result['total'])) ?></p>
+        <div class="listing__status">
+            <p class="listing__count" aria-live="polite" data-items-count><?= e(items_count($result['total'])) ?></p>
+            <span class="spinner" aria-hidden="true"></span>
+        </div>
         <a class="listing__reset" href="<?= e(url('/inzeraty')) ?>" data-filter-reset <?= $hasFilters ? '' : 'hidden' ?>>Zrušit filtry</a>
     </div>
 
-    <div class="listing__map map" data-map data-markers="<?= e(json_encode($result['markers'], JSON_UNESCAPED_UNICODE)) ?>" aria-label="Mapa inzerátů"></div>
-
-    <div class="listing__results">
+    <section class="listing__results" aria-labelledby="results-heading">
+        <h2 id="results-heading" class="visually-hidden">Výsledky</h2>
         <div class="grid grid--compact" data-items-list>
             <?php foreach ($result['items'] as $item): ?>
                 <?= render('partials/item-card', ['item' => $item]) ?>
@@ -49,7 +51,10 @@ $select = fn (string $name, string $label, array $options, ?string $selected) =>
         </div>
 
         <a class="button button--secondary listing__more" href="<?= e(url('/inzeraty', [...$query->toArray(), 'page' => $query->page + 1])) ?>" data-load-more data-page="<?= $query->page + 1 ?>" <?= $hasMore ? '' : 'hidden' ?>>
+            <span class="spinner" aria-hidden="true"></span>
             Načíst další
         </a>
-    </div>
+    </section>
+
+    <div class="listing__map map" data-map data-markers="<?= e(json_encode($result['markers'], JSON_UNESCAPED_UNICODE)) ?>" role="region" aria-label="Mapa inzerátů"></div>
 </div>

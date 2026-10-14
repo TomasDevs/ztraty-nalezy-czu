@@ -47,6 +47,7 @@ export default function initItemsFilter(root) {
     const query = buildQuery(page);
     const previousCount = list.children.length;
     root.setAttribute('aria-busy', 'true');
+    root.dataset.loading = page === 1 ? 'filter' : 'more';
 
     try {
       const response = await fetch(withQuery(form.dataset.api, query), {
@@ -80,6 +81,7 @@ export default function initItemsFilter(root) {
       if (error.name !== 'AbortError') window.location.assign(pageUrl(query));
     } finally {
       root.removeAttribute('aria-busy');
+      delete root.dataset.loading;
     }
   }
 
@@ -95,6 +97,8 @@ export default function initItemsFilter(root) {
     [...form.elements].forEach((field) => {
       if ('value' in field && field.name) field.value = '';
     });
+    // The link hides itself, so keep keyboard focus inside the form.
+    form.elements.q?.focus();
     load();
   });
 

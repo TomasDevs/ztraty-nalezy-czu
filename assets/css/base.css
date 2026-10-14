@@ -136,6 +136,15 @@ button {
   color: var(--ink-soft);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 1.5s !important;
+  }
+}
+
 .code {
   font-family: var(--font-mono);
   font-size: 0.8125rem;

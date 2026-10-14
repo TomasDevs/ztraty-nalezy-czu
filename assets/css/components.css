@@ -177,6 +177,16 @@ select {
   text-decoration: underline;
 }
 
+/* Focus ring around the whole card, not just the title text */
+.card:has(.card__title a:focus-visible) {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+.card__title a:focus-visible {
+  outline: none;
+}
+
 .card__place {
   font-size: 0.9375rem;
   color: var(--ink-soft);
@@ -218,15 +228,65 @@ select {
   font-weight: 500;
 }
 
-.pin {
+/* .leaflet-marker-icon prefix outranks Leaflet's own display: block */
+.leaflet-marker-icon.pin {
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+}
+
+.pin::before {
+  content: '';
+  width: 1.125rem;
+  height: 1.125rem;
   background: var(--brand);
   border: 3px solid var(--surface);
   border-radius: 50%;
   box-shadow: 0 0 0 1px rgb(0 0 0 / 25%), 0 2px 6px rgb(0 0 0 / 25%);
 }
 
-.pin--lost {
+.pin--lost::before {
   background: var(--lost);
+}
+
+.pin:focus-visible {
+  outline-offset: 0;
+}
+
+.leaflet-marker-icon.cluster {
+  display: grid;
+  place-items: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--surface);
+  background: var(--ink);
+  border: 3px solid var(--surface);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 25%), 0 2px 6px rgb(0 0 0 / 25%);
+}
+
+/* Spinner, shown only while the listing is loading */
+.spinner {
+  display: none;
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid var(--line-strong);
+  border-top-color: var(--brand);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite, fade-in 0.2s 0.15s both;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
 }
 
 /* Breadcrumbs */
