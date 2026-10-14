@@ -2,7 +2,8 @@ import { defineConfig, loadEnv } from 'vite';
 import { existsSync, rmSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
-const DEV_ORIGIN = 'http://localhost:5173';
+const DEV_PORT = 5180;
+const DEV_ORIGIN = `http://localhost:${DEV_PORT}`;
 const hotFile = fileURLToPath(new URL('./public/hot', import.meta.url));
 
 // Tells PHP that the dev server is running (see vite() in src/helpers.php).
@@ -26,7 +27,7 @@ export default defineConfig(({ command, mode }) => {
     plugins: [phpHotFile()],
     server: {
       origin: DEV_ORIGIN,
-      port: 5173,
+      port: DEV_PORT,
       strictPort: true,
     },
     build: {
