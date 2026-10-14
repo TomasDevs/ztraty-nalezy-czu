@@ -29,5 +29,6 @@ $activeType = $_GET['type'] ?? null;
                 <?php endforeach ?>
             </ul>
         </nav>
+        <a class="button site-header__cta" href="<?= e(url('/nahlasit')) ?>" <?= current_path() === '/nahlasit' ? 'aria-current="page"' : '' ?>>Nahlásit věc</a>
     </div>
 </header>

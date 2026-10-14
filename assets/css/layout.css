@@ -24,6 +24,25 @@ main.container {
   padding-block: 0.75rem;
 }
 
+/* Mobile: logo and CTA on the first row, nav below */
+.site-header nav {
+  order: 3;
+  width: 100%;
+}
+
+.site-header__cta {
+  min-height: 2.5rem;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 48rem) {
+  .site-header nav {
+    order: 0;
+    width: auto;
+    margin-left: auto;
+  }
+}
+
 .logo {
   display: inline-flex;
   align-items: center;

@@ -23,6 +23,17 @@ final class ItemController extends Controller
         ]);
     }
 
+    public function create(): void
+    {
+        $type = $_GET['type'] ?? null;
+
+        view('items/create', [
+            'title' => 'Nahlásit ztracenou nebo nalezenou věc',
+            'description' => 'Ztratili nebo našli jste věc na kampusu ČZU? Nahlaste ji a pomozte jí najít cestu zpět k majiteli.',
+            'type' => isset(ItemQuery::TYPES[$type]) ? $type : null,
+        ]);
+    }
+
     public function show(string $id, string $slug): void
     {
         $item = $this->findOrFail($id, $slug);

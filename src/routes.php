@@ -10,6 +10,7 @@ use App\Controllers\ItemController;
 
 $router->get('/', [HomeController::class, 'index']);
 $router->get('/inzeraty', [ItemController::class, 'index']);
+$router->get('/nahlasit', [ItemController::class, 'create']);
 $router->get('/inzerat/{id:\d+}/{slug}', [ItemController::class, 'show']);
 $router->post('/inzerat/{id:\d+}/{slug}', [ItemController::class, 'contact']);
 

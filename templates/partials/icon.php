@@ -1,5 +1,5 @@
 <?php
-/** @var string $slug */
+/** @var string $name Category slug or one of the UI icons below */
 $paths = [
     'doklady' => '<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6.5 16c.5-1.3 1.4-2 2.5-2s2 .7 2.5 2M14 10h4M14 13h3"/>',
     'klice' => '<circle cx="8" cy="15" r="4"/><path d="m11 12 8-8M16 7l2 2M14 9l2 2"/>',
@@ -7,6 +7,8 @@ $paths = [
     'obleceni' => '<path d="M8 3 3 6l2 4 2-1v12h10V9l2 1 2-4-5-3c-.5 1.5-2 2.5-4 2.5S8.5 4.5 8 3Z"/>',
     'doplnky' => '<circle cx="12" cy="15" r="6"/><path d="m9 5 3-2 3 2-3 4Z"/>',
     'ostatni' => '<path d="m3 7 9-4 9 4v10l-9 4-9-4Z"/><path d="m3 7 9 4 9-4M12 11v10"/>',
+    'search' => '<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>',
+    'pin' => '<path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/>',
 ];
 ?>
-<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><?= $paths[$slug] ?? $paths['ostatni'] ?></svg>
+<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><?= $paths[$name] ?? $paths['ostatni'] ?></svg>
