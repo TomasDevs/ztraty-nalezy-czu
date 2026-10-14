@@ -81,15 +81,22 @@ function abort(int $status): never
     exit;
 }
 
+/**
+ * Lowercase text without diacritics, so "klice" matches "Klíče".
+ * iconv transliteration differs between platforms, so letters are mapped explicitly.
+ */
+function fold(string $text): string
+{
+    return strtr(mb_strtolower($text), [
+        'á' => 'a', 'ä' => 'a', 'č' => 'c', 'ď' => 'd', 'é' => 'e', 'ě' => 'e', 'í' => 'i', 'ň' => 'n',
+        'ó' => 'o', 'ö' => 'o', 'ř' => 'r', 'š' => 's', 'ť' => 't', 'ú' => 'u', 'ů' => 'u', 'ü' => 'u',
+        'ý' => 'y', 'ž' => 'z',
+    ]);
+}
+
 function slugify(string $text): string
 {
-    // iconv transliteration differs between platforms, so Czech diacritics are mapped explicitly.
-    $text = strtr(mb_strtolower($text), [
-        'á' => 'a', 'č' => 'c', 'ď' => 'd', 'é' => 'e', 'ě' => 'e', 'í' => 'i', 'ň' => 'n',
-        'ó' => 'o', 'ř' => 'r', 'š' => 's', 'ť' => 't', 'ú' => 'u', 'ů' => 'u', 'ý' => 'y', 'ž' => 'z',
-    ]);
-
-    return trim(preg_replace('/[^a-z0-9]+/', '-', $text), '-');
+    return trim(preg_replace('/[^a-z0-9]+/', '-', fold($text)), '-');
 }
 
 function format_date(string $date): string

@@ -101,9 +101,7 @@ final class JsonItemRepository implements ItemRepository
         }
 
         if ($query->q) {
-            $haystack = mb_strtolower("{$item['title']} {$item['description']} {$item['location']}");
-
-            return str_contains($haystack, mb_strtolower($query->q));
+            return str_contains(fold("{$item['title']} {$item['description']} {$item['location']}"), fold($query->q));
         }
 
         return true;
