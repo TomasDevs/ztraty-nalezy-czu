@@ -110,14 +110,10 @@ main.container {
 }
 
 .site-footer__inner {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   gap: 1.5rem 3rem;
-}
-
-@media (min-width: 48rem) {
-  .site-footer__inner {
-    grid-template-columns: 1fr 1fr;
-  }
 }
 
 .site-footer__title {
