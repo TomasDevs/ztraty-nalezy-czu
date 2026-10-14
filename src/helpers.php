@@ -111,11 +111,18 @@ function is_private_item(array $item): bool
     return $item['category']['slug'] === 'doklady';
 }
 
-function item_photo_url(array $item): ?string
+/**
+ * Photos are stored as WebP in two sizes: {photo}.webp and {photo}-thumb.webp.
+ */
+function item_photo_url(array $item, bool $thumb = false): ?string
 {
     $photo = $item['photo'] ?? null;
 
-    return $photo && !is_private_item($item) ? url("/{$photo}") : null;
+    if (!$photo || is_private_item($item)) {
+        return null;
+    }
+
+    return url("/{$photo}" . ($thumb ? '-thumb' : '') . '.webp');
 }
 
 function item_code(array $item): string
