@@ -1,23 +1,28 @@
 <?php
-$nav = [
-    ['label' => 'Všechny inzeráty', 'path' => '/inzeraty', 'query' => []],
-    ['label' => 'Ztráty', 'path' => '/inzeraty', 'query' => ['type' => 'lost']],
-    ['label' => 'Nálezy', 'path' => '/inzeraty', 'query' => ['type' => 'found']],
-];
+use App\Repositories\ItemQuery;
+
+$nav = [['label' => 'Všechny inzeráty', 'query' => []]];
+foreach (ItemQuery::TYPE_LISTS as $type => $label) {
+    $nav[] = ['label' => $label, 'query' => ['type' => $type]];
+}
+$isListing = current_path() === '/inzeraty';
 $activeType = $_GET['type'] ?? null;
 ?>
 <header class="site-header">
     <div class="container site-header__inner">
         <a class="logo" href="<?= e(url('/')) ?>">
-            <span class="logo__mark" aria-hidden="true">?!</span>
-            Ztráty a nálezy <strong>ČZU</strong>
+            <svg class="logo__icon" viewBox="0 0 32 32" aria-hidden="true">
+                <path d="M11 4h10l5 5v17a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9z" transform="rotate(-10 16 16)" />
+                <circle cx="15" cy="10" r="2" />
+            </svg>
+            <span>Ztráty a nálezy <span class="logo__suffix">ČZU</span></span>
         </a>
         <nav aria-label="Hlavní navigace">
             <ul class="nav">
                 <?php foreach ($nav as $link): ?>
-                    <?php $isActive = current_path() === $link['path'] && ($link['query']['type'] ?? null) === $activeType ?>
+                    <?php $isActive = $isListing && ($link['query']['type'] ?? null) === $activeType ?>
                     <li>
-                        <a href="<?= e(url($link['path'], $link['query'])) ?>" <?= $isActive ? 'aria-current="page"' : '' ?>>
+                        <a href="<?= e(url('/inzeraty', $link['query'])) ?>" <?= $isActive ? 'aria-current="page"' : '' ?>>
                             <?= e($link['label']) ?>
                         </a>
                     </li>

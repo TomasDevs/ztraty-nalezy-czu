@@ -23,6 +23,7 @@ final class ItemController extends Controller
                 $result['items']
             )),
             'total' => $result['total'],
+            'totalLabel' => items_count($result['total']),
             'markers' => $result['markers'],
             'nextPage' => $query->offset() + count($result['items']) < $result['total'] ? $query->page + 1 : null,
         ]);

@@ -8,6 +8,14 @@ const debounce = (fn, ms) => {
   };
 };
 
+// Keeps the active main nav link in sync with the AJAX-updated URL.
+const syncNav = () => {
+  document.querySelectorAll('.nav a').forEach((link) => {
+    if (link.href === window.location.href) link.setAttribute('aria-current', 'page');
+    else link.removeAttribute('aria-current');
+  });
+};
+
 /**
  * Progressive enhancement: the form and "load more" link work without JS,
  * this module swaps them for AJAX requests to /api/items.
@@ -18,6 +26,7 @@ export default function initItemsFilter(root) {
   const count = root.querySelector('[data-items-count]');
   const empty = root.querySelector('[data-items-empty]');
   const more = root.querySelector('[data-load-more]');
+  const reset = root.querySelector('[data-filter-reset]');
   const map = root.querySelector('[data-map]');
   let request;
 
@@ -50,14 +59,16 @@ export default function initItemsFilter(root) {
 
       if (page === 1) {
         list.innerHTML = data.html;
+        reset.hidden = !query.toString();
         history.replaceState(null, '', pageUrl(query));
+        syncNav();
         map?.dispatchEvent(new CustomEvent('markers:update', { detail: data.markers }));
       } else {
         list.insertAdjacentHTML('beforeend', data.html);
         list.children[previousCount]?.querySelector('a')?.focus();
       }
 
-      count.textContent = `Nalezeno: ${data.total}`;
+      count.textContent = data.totalLabel;
       empty.hidden = data.total > 0;
       more.hidden = !data.nextPage;
 
@@ -78,6 +89,14 @@ export default function initItemsFilter(root) {
   });
   form.addEventListener('change', () => load());
   form.elements.q?.addEventListener('input', debounce(() => load(), DEBOUNCE_MS));
+
+  reset.addEventListener('click', (event) => {
+    event.preventDefault();
+    [...form.elements].forEach((field) => {
+      if ('value' in field && field.name) field.value = '';
+    });
+    load();
+  });
 
   more.addEventListener('click', (event) => {
     event.preventDefault();

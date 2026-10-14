@@ -1,11 +1,11 @@
 [
-  { "slug": "pef", "name": "Provozně ekonomická fakulta (PEF)", "lat": 50.1296, "lng": 14.3727 },
-  { "slug": "fappz", "name": "Fakulta agrobiologie, potravinových a přírodních zdrojů (FAPPZ)", "lat": 50.1310, "lng": 14.3725 },
-  { "slug": "fzp", "name": "Fakulta životního prostředí (FŽP)", "lat": 50.1290, "lng": 14.3760 },
-  { "slug": "fld", "name": "Fakulta lesnická a dřevařská (FLD)", "lat": 50.1318, "lng": 14.3745 },
-  { "slug": "tf", "name": "Technická fakulta (TF)", "lat": 50.1305, "lng": 14.3770 },
-  { "slug": "knihovna", "name": "Studijní a informační centrum (knihovna)", "lat": 50.1300, "lng": 14.3745 },
-  { "slug": "aula", "name": "Aula a rektorát", "lat": 50.1302, "lng": 14.3735 },
-  { "slug": "menza", "name": "Menza", "lat": 50.1287, "lng": 14.3740 },
-  { "slug": "koleje", "name": "Koleje", "lat": 50.1278, "lng": 14.3780 }
+  { "slug": "pef", "name": "Provozně ekonomická fakulta (PEF)", "short": "PEF", "lat": 50.1296, "lng": 14.3727 },
+  { "slug": "fappz", "name": "Fakulta agrobiologie, potravinových a přírodních zdrojů (FAPPZ)", "short": "FAPPZ", "lat": 50.1310, "lng": 14.3725 },
+  { "slug": "fzp", "name": "Fakulta životního prostředí (FŽP)", "short": "FŽP", "lat": 50.129, "lng": 14.376 },
+  { "slug": "fld", "name": "Fakulta lesnická a dřevařská (FLD)", "short": "FLD", "lat": 50.1318, "lng": 14.3745 },
+  { "slug": "tf", "name": "Technická fakulta (TF)", "short": "TF", "lat": 50.1305, "lng": 14.377 },
+  { "slug": "knihovna", "name": "Studijní a informační centrum (knihovna)", "short": "Knihovna", "lat": 50.1300, "lng": 14.3745 },
+  { "slug": "aula", "name": "Aula a rektorát", "short": "Aula", "lat": 50.1302, "lng": 14.3735 },
+  { "slug": "menza", "name": "Menza", "short": "Menza", "lat": 50.1287, "lng": 14.374 },
+  { "slug": "koleje", "name": "Koleje", "short": "Koleje", "lat": 50.1278, "lng": 14.378 }
 ]

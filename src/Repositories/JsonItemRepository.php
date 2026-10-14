@@ -49,6 +49,17 @@ final class JsonItemRepository implements ItemRepository
         return array_slice($this->items, 0, $limit);
     }
 
+    public function stats(): array
+    {
+        $stats = ['found' => 0, 'lost' => 0, 'returned' => 0];
+
+        foreach ($this->items as $item) {
+            $stats[$item['status'] === 'returned' ? 'returned' : $item['type']]++;
+        }
+
+        return $stats;
+    }
+
     public function categories(): array
     {
         return array_values($this->categories);

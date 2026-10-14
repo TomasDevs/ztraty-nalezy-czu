@@ -11,6 +11,7 @@ final class ItemQuery
 {
     public const PER_PAGE = 9;
     public const TYPES = ['lost' => 'Ztráta', 'found' => 'Nález'];
+    public const TYPE_LISTS = ['lost' => 'Ztráty', 'found' => 'Nálezy'];
 
     public function __construct(
         public readonly ?string $type = null,

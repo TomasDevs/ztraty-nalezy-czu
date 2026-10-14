@@ -1,18 +1,35 @@
 :root {
-  --color-primary: #1f7a3a;
-  --color-primary-dark: #165c2b;
-  --color-lost: #b42318;
-  --color-found: #1f7a3a;
-  --color-muted: #5b6470;
-  --color-text: #1c2128;
-  --color-bg: #f6f7f5;
-  --color-surface: #fff;
-  --color-border: #d9ddd6;
+  /* Palette: warm paper, ink, forest green for found, terracotta for lost */
+  --paper: #f6f4ef;
+  --paper-deep: #eeebe3;
+  --surface: #fff;
+  --ink: #1b1d1f;
+  --ink-soft: #4b5056;
+  --ink-muted: #696e74;
+  --line: #e4e0d6;
+  --line-strong: #cdc6b8;
 
-  --radius: 0.75rem;
-  --space: 1rem;
-  --shadow: 0 1px 2px rgb(0 0 0 / 6%), 0 4px 12px rgb(0 0 0 / 4%);
-  --font: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --brand: #24553a;
+  --brand-strong: #183d29;
+  --brand-tint: #e5eee7;
+  --lost: #a63f1c;
+  --lost-tint: #f7e8e1;
+  --returned-tint: #ebe9e3;
+  --manila: #e6d2a2;
+
+  --font-sans: 'IBM Plex Sans Variable', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --radius-sm: 4px;
+  --radius: 6px;
+  --radius-lg: 10px;
+  --gutter: 1rem;
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --gutter: 1.5rem;
+  }
 }
 
 *,
@@ -26,32 +43,50 @@ body {
   flex-direction: column;
   min-height: 100vh;
   margin: 0;
-  font-family: var(--font);
-  line-height: 1.6;
-  color: var(--color-text);
-  background: var(--color-bg);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
 }
 
 h1,
 h2,
 h3 {
-  line-height: 1.2;
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
 }
 
 h1 {
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-size: clamp(2rem, 4.5vw, 2.75rem);
+  letter-spacing: -0.025em;
+}
+
+h2 {
+  font-size: 1.375rem;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
 }
 
 a {
-  color: var(--color-primary);
+  color: var(--brand);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
 }
 
 a:hover {
-  color: var(--color-primary-dark);
+  color: var(--brand-strong);
 }
 
 :focus-visible {
-  outline: 3px solid var(--color-primary);
+  outline: 2px solid var(--brand);
   outline-offset: 2px;
 }
 
@@ -64,6 +99,7 @@ input,
 select,
 button {
   font: inherit;
+  color: inherit;
 }
 
 [hidden] {
@@ -81,14 +117,27 @@ button {
 
 .skip-link {
   position: absolute;
-  left: var(--space);
-  top: -3rem;
+  top: -4rem;
+  left: var(--gutter);
   z-index: 1000;
   padding: 0.5rem 1rem;
-  background: var(--color-surface);
+  color: var(--surface);
+  background: var(--ink);
   border-radius: var(--radius);
 }
 
 .skip-link:focus {
-  top: var(--space);
+  top: var(--gutter);
+}
+
+.lead {
+  max-width: 36rem;
+  font-size: 1.125rem;
+  color: var(--ink-soft);
+}
+
+.code {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--ink-muted);
 }

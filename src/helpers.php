@@ -102,6 +102,33 @@ function item_url(array $item): string
     return url("/inzerat/{$item['id']}/{$item['slug']}");
 }
 
+function item_code(array $item): string
+{
+    return sprintf('#%03d', $item['id']);
+}
+
+/**
+ * Czech plural forms: 1 inzerát, 2–4 inzeráty, 0 or 5+ inzerátů.
+ */
+function plural_form(int $count, string $one, string $few, string $many): string
+{
+    return match (true) {
+        $count === 1 => $one,
+        $count >= 2 && $count <= 4 => $few,
+        default => $many,
+    };
+}
+
+function plural(int $count, string $one, string $few, string $many): string
+{
+    return $count . ' ' . plural_form($count, $one, $few, $many);
+}
+
+function items_count(int $count): string
+{
+    return plural($count, 'inzerát', 'inzeráty', 'inzerátů');
+}
+
 /**
  * Outputs Vite asset tags: dev server when public/hot exists, built files otherwise.
  */

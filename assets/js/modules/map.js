@@ -1,14 +1,15 @@
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import markerIcon from 'leaflet/dist/images/marker-icon.png';
-import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
-import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
 const CAMPUS_CENTER = [50.13, 14.3745];
 
-// Leaflet resolves icon paths at runtime, which breaks once assets are bundled.
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({ iconUrl: markerIcon, iconRetinaUrl: markerIcon2x, shadowUrl: markerShadow });
+const pinIcon = (type) =>
+  L.divIcon({
+    className: `pin pin--${type}`,
+    iconSize: [18, 18],
+    iconAnchor: [9, 9],
+    popupAnchor: [0, -10],
+  });
 
 const popupLink = ({ title, url }) => {
   const link = document.createElement('a');
@@ -30,12 +31,18 @@ export default function initMap(el) {
     layer.clearLayers();
 
     markers.forEach((marker) => {
-      const pin = L.marker([marker.lat, marker.lng], { title: marker.title, alt: marker.title }).addTo(layer);
+      const pin = L.marker([marker.lat, marker.lng], {
+        icon: pinIcon(marker.type),
+        title: marker.title,
+        alt: marker.title,
+        keyboard: Boolean(marker.url),
+      }).addTo(layer);
+
       if (marker.url) pin.bindPopup(popupLink(marker));
     });
 
     if (markers.length) {
-      map.fitBounds(markers.map(({ lat, lng }) => [lat, lng]), { maxZoom: 17, padding: [24, 24] });
+      map.fitBounds(markers.map(({ lat, lng }) => [lat, lng]), { maxZoom: 17, padding: [32, 32] });
     }
   };
 

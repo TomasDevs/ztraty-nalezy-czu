@@ -15,6 +15,11 @@ interface ItemRepository
 
     public function latest(int $limit): array;
 
+    /**
+     * @return array{found: int, lost: int, returned: int}
+     */
+    public function stats(): array;
+
     public function categories(): array;
 
     public function buildings(): array;

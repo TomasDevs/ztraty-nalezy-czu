@@ -30,7 +30,8 @@ $canonical = absolute_url(current_path());
     <?php if (!empty($description)): ?>
         <meta property="og:description" content="<?= e($description) ?>">
     <?php endif ?>
-    <meta name="theme-color" content="#1f7a3a">
+    <meta name="theme-color" content="#f6f4ef">
+    <script>document.documentElement.classList.add('js')</script>
     <?= vite() ?>
 </head>
 <body>
