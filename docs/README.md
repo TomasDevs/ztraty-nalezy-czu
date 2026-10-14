@@ -1,28 +1,32 @@
 # Dokumentace
 
+Hlavní dokument: [dokumentace-tym-07.docx](dokumentace-tym-07.docx). Místa k doplnění jsou ve Wordu zvýrazněná žlutě (DOPLNIT).
+
 ## 1. Úvodní studie (analýza), do 9. 11.
-- [ ] Analýza současného stavu (knihovna ČZU, Správa učeben PEF, FB skupina)
-- [ ] Idea, cílová skupina, role a oprávnění
-- [ ] Informační architektura (sitemap, navigace, datový model)
+- [x] Analýza současného stavu (knihovna ČZU, Správa učeben PEF, FB skupina)
+- [x] Idea, cílová skupina, role a oprávnění
+- [x] Informační architektura (mapa stránek, navigace, datový model)
 - [ ] Wireframy (desktop + mobil) → `docs/wireframes/`
-- [ ] Klíčová slova
-- [ ] SEO strategie
+- [x] Klíčová slova (chybí ověření hledanosti)
+- [x] SEO strategie
 
 ## 2. Realizace, do 20. 11.
-- [ ] Plně responzivní design (screenshoty mobil / tablet / desktop)
-- [ ] Serverová část v PHP
-- [ ] AJAX (filtrování, načítání dalších inzerátů)
-- [ ] API třetích stran (mapa Leaflet + OpenStreetMap)
+- [x] Plně responzivní design (screenshoty v `docs/img/`)
+- [x] Serverová část v PHP (výpis, detail, kontaktní formulář, sitemap)
+- [x] AJAX (filtrování, načítání dalších inzerátů)
+- [x] API třetích stran (Leaflet + OpenStreetMap, Web Share API)
+- [ ] Přihlášení, role, přidání inzerátu, administrace
+- [ ] MariaDB místo testovacích dat
 - [ ] Nasazení na školní server
 
 ## 3. Testování a analýzy, do 20. 11.
-- [ ] Použitelnost (test s uživateli, scénáře, zjištění)
-- [ ] Přístupnost (Lighthouse, WAVE / axe, klávesnice)
-- [ ] Rychlost (PageSpeed Insights)
-- [ ] Validita kódu (W3C HTML a CSS validátor)
+- [ ] Použitelnost (úkoly připravené, test se spolužáky)
+- [x] Přístupnost: Lighthouse 100 (chybí WAVE / axe)
+- [ ] Rychlost: PageSpeed Insights na serveru
+- [ ] Validita kódu: W3C HTML a CSS validátor
 
 Screenshoty výsledků → `docs/testing/`
 
 ## 4. Zadávací dokumentace a prezentace, do 20. 11.
-- [ ] Doplnit úvodní studii o realizaci a testování
+- [ ] Doplnit žlutá místa v dokumentu
 - [ ] Prezentace + živé demo
