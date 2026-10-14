@@ -30,6 +30,12 @@ $canonical = absolute_url(current_path());
     <?php if (!empty($description)): ?>
         <meta property="og:description" content="<?= e($description) ?>">
     <?php endif ?>
+    <link rel="icon" type="image/png" href="<?= e(url('/favicon-96x96.png')) ?>" sizes="96x96">
+    <link rel="icon" type="image/svg+xml" href="<?= e(url('/favicon.svg')) ?>">
+    <link rel="shortcut icon" href="<?= e(url('/favicon.ico')) ?>">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?= e(url('/apple-touch-icon.png')) ?>">
+    <meta name="apple-mobile-web-app-title" content="Ztráty ČZU">
+    <link rel="manifest" href="<?= e(url('/site.webmanifest')) ?>">
     <meta name="theme-color" content="#f6f4ef">
     <script>document.documentElement.classList.add('js')</script>
     <?= vite() ?>

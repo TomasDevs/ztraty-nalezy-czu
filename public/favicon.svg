@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .tag { fill: #e6d2a2; stroke: #1b1d1f; }
+    .hole { fill: #fff; stroke: #1b1d1f; }
+    @media (prefers-color-scheme: dark) {
+      .tag, .hole { stroke: #f6f4ef; }
+      .hole { fill: #1b1d1f; }
+    }
+  </style>
+  <g stroke-width="2" stroke-linejoin="round" transform="translate(16 16) rotate(-10) scale(.9) translate(-16 -16)">
+    <path class="tag" d="M11 2.5h10l5.5 5.5v19a2.5 2.5 0 0 1-2.5 2.5H8a2.5 2.5 0 0 1-2.5-2.5V8z" />
+    <circle class="hole" cx="16" cy="8.5" r="2.25" />
+  </g>
+</svg>
