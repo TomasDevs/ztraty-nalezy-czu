@@ -529,6 +529,20 @@ select {
   border-bottom: 0;
 }
 
+.table input {
+  min-width: 7rem;
+  min-height: 2.25rem;
+}
+
+.table input[name='name'] {
+  min-width: 18rem;
+}
+
+.admin-add {
+  max-width: 32rem;
+  margin-top: 2rem;
+}
+
 .table__actions {
   display: flex;
   gap: 1rem;

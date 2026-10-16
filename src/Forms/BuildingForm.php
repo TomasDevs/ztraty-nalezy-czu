@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Forms;
 
-final class BuildingForm extends Form
+final class BuildingForm extends CatalogForm
 {
     public function __construct(
         public readonly string $name = '',

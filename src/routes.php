@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 use App\Controllers\AccountController;
+use App\Controllers\Admin\BuildingController as AdminBuildingController;
+use App\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Controllers\Admin\ItemController as AdminItemController;
 use App\Controllers\Admin\UserController as AdminUserController;
 use App\Controllers\Api\ItemController as ApiItemController;
@@ -38,6 +40,14 @@ $router->post('/admin/inzeraty/{id:\d+}/smazat', [AdminItemController::class, 'd
 $router->get('/admin/uzivatele', [AdminUserController::class, 'index']);
 $router->post('/admin/uzivatele/{id:\d+}/blokace', [AdminUserController::class, 'block']);
 $router->post('/admin/uzivatele/{id:\d+}/role', [AdminUserController::class, 'changeRole']);
+$router->get('/admin/kategorie', [AdminCategoryController::class, 'index']);
+$router->post('/admin/kategorie', [AdminCategoryController::class, 'store']);
+$router->post('/admin/kategorie/{id:\d+}', [AdminCategoryController::class, 'update']);
+$router->post('/admin/kategorie/{id:\d+}/smazat', [AdminCategoryController::class, 'destroy']);
+$router->get('/admin/budovy', [AdminBuildingController::class, 'index']);
+$router->post('/admin/budovy', [AdminBuildingController::class, 'store']);
+$router->post('/admin/budovy/{id:\d+}', [AdminBuildingController::class, 'update']);
+$router->post('/admin/budovy/{id:\d+}/smazat', [AdminBuildingController::class, 'destroy']);
 
 $router->get('/api/items', [ApiItemController::class, 'index']);
 

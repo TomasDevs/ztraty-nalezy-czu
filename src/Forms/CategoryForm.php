@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Forms;
 
-final class CategoryForm extends Form
+final class CategoryForm extends CatalogForm
 {
     public function __construct(public readonly string $name = '', public readonly string $slug = '')
     {

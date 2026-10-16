@@ -19,6 +19,14 @@ final class AdminAccessTest extends FeatureTestCase
             'users' => ['GET', '/admin/uzivatele'],
             'user block' => ['POST', '/admin/uzivatele/1/blokace'],
             'user role' => ['POST', '/admin/uzivatele/1/role'],
+            'categories' => ['GET', '/admin/kategorie'],
+            'category create' => ['POST', '/admin/kategorie'],
+            'category update' => ['POST', '/admin/kategorie/1'],
+            'category delete' => ['POST', '/admin/kategorie/1/smazat'],
+            'buildings' => ['GET', '/admin/budovy'],
+            'building create' => ['POST', '/admin/budovy'],
+            'building update' => ['POST', '/admin/budovy/1'],
+            'building delete' => ['POST', '/admin/budovy/1/smazat'],
         ];
     }
 
