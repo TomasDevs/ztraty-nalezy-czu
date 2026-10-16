@@ -37,6 +37,18 @@ composer test
 
 Testovací databáze se při každém běhu maže. Bez ní se integrační a feature testy přeskočí.
 
+## První administrátor
+
+Zaregistruj se přes web a pak v databázi nastav roli:
+
+```bash
+mariadb ztraty_nalezy -e "UPDATE users SET role = 'admin' WHERE email = 'tvuj@email.cz'"
+```
+
+## E-maily
+
+Zprávy z kontaktního formuláře jdou autorovi inzerátu e-mailem. `MAIL_DRIVER=log` (výchozí) je jen zapisuje do `storage/logs/mail.log`, na serveru nastav `MAIL_DRIVER=mail` a `MAIL_FROM`.
+
 ## Produkční build
 
 ```bash
@@ -50,7 +62,9 @@ Na server se nahraje celý projekt kromě `node_modules/`. Document root má mí
 ```
 docs/        dokumentace projektu (úvodní studie, wireframy, testy)
 public/      document root (index.php, build, uploads)
-src/         PHP: router, controllery, repozitáře, helpery
+src/         PHP: router, controllery, formuláře, repozitáře, helpery
+tests/       PHPUnit testy
+storage/     logy (storage/logs)
 templates/   PHP šablony
 assets/      zdrojové JS a CSS pro Vite
 database/    schema.sql a testovací data

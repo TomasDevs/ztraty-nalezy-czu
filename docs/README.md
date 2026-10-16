@@ -15,8 +15,8 @@ Hlavní dokument: [dokumentace-tym-07.docx](dokumentace-tym-07.docx). Místa k d
 - [x] Serverová část v PHP (výpis, detail, kontaktní formulář, sitemap)
 - [x] AJAX (filtrování, načítání dalších inzerátů)
 - [x] API třetích stran (Leaflet + OpenStreetMap, Web Share API)
-- [ ] Přihlášení, role, přidání inzerátu, administrace
-- [ ] MariaDB místo testovacích dat
+- [x] Přihlášení, role, přidání inzerátu, administrace
+- [x] MariaDB místo testovacích dat
 - [ ] Nasazení na školní server
 
 ## 3. Testování a analýzy, do 20. 11.

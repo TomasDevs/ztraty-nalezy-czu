@@ -1,5 +1,7 @@
 # Plán implementace
 
+**Stav:** fáze 0 až 7.2 jsou hotové, zbývá ruční nasazení (7.3), validátory a Lighthouse na serveru a doplnění Wordu.
+
 Pracovní plán pro dokončení realizační části (viz „Co zbývá dokončit“ v `dokumentace-tym-07.docx` a checklist v [README.md](README.md)). Je psaný pro postupné zpracování krok za krokem, klidně jiným modelem nebo dalším členem týmu.
 
 Pokrývá: testy, MariaDB, registraci a přihlášení, role, přidání a úpravu inzerátu s fotkou a místem na mapě, kontakt autora e-mailem, CSRF, můj účet, administraci a přípravu nasazení. Wireframy, testy použitelnosti, validátory a Word dokument se dělají ručně a tady nejsou.
