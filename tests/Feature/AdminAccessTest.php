@@ -16,6 +16,9 @@ final class AdminAccessTest extends FeatureTestCase
             'items' => ['GET', '/admin/inzeraty'],
             'item status' => ['POST', '/admin/inzeraty/1/stav'],
             'item delete' => ['POST', '/admin/inzeraty/1/smazat'],
+            'users' => ['GET', '/admin/uzivatele'],
+            'user block' => ['POST', '/admin/uzivatele/1/blokace'],
+            'user role' => ['POST', '/admin/uzivatele/1/role'],
         ];
     }
 

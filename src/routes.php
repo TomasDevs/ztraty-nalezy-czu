@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Controllers\AccountController;
 use App\Controllers\Admin\ItemController as AdminItemController;
+use App\Controllers\Admin\UserController as AdminUserController;
 use App\Controllers\Api\ItemController as ApiItemController;
 use App\Controllers\AuthController;
 use App\Controllers\HomeController;
@@ -34,6 +35,9 @@ $router->get('/admin', [AdminItemController::class, 'index']);
 $router->get('/admin/inzeraty', [AdminItemController::class, 'index']);
 $router->post('/admin/inzeraty/{id:\d+}/stav', [AdminItemController::class, 'setStatus']);
 $router->post('/admin/inzeraty/{id:\d+}/smazat', [AdminItemController::class, 'destroy']);
+$router->get('/admin/uzivatele', [AdminUserController::class, 'index']);
+$router->post('/admin/uzivatele/{id:\d+}/blokace', [AdminUserController::class, 'block']);
+$router->post('/admin/uzivatele/{id:\d+}/role', [AdminUserController::class, 'changeRole']);
 
 $router->get('/api/items', [ApiItemController::class, 'index']);
 
