@@ -1,7 +1,12 @@
 <?php
 use App\Repositories\ItemQuery;
 
-/** @var string|null $type */
+/**
+ * @var string|null $type
+ * @var App\Forms\ItemForm|null $form
+ * @var array[] $categories
+ * @var array[] $buildings
+ */
 $options = [
     'found' => ['Něco jsem našel', 'Věc, kterou jste našli na kampusu. Majitel se vám ozve přes formulář u inzerátu.', 'pin'],
     'lost' => ['Něco jsem ztratil', 'Popište věc a místo, kde jste ji mohli ztratit. Nálezce vám napíše.', 'search'],
@@ -27,8 +32,17 @@ $options = [
 <?php if ($type): ?>
     <section class="panel create-step" aria-labelledby="step-heading">
         <h2 id="step-heading"><?= e(ItemQuery::TYPES[$type]) ?>: údaje o věci</h2>
-        <?php /* TODO: item form (title, category, building, map location, date, description, photo), logged-in users only */ ?>
-        <p>Formulář pro přidání inzerátu bude dostupný po přihlášení. Připravujeme ho.</p>
+        <?php if ($form): ?>
+            <?= render('partials/item-form', [
+                'form' => $form,
+                'action' => url('/nahlasit'),
+                'submit' => 'Zveřejnit inzerát',
+                'categories' => $categories,
+                'buildings' => $buildings,
+            ]) ?>
+        <?php else: ?>
+            <?= render('partials/login-prompt', ['message' => 'Inzerát mohou přidávat jen přihlášení uživatelé.']) ?>
+        <?php endif ?>
         <?php if ($type === 'found'): ?>
             <p class="create-step__tip">
                 Nalezenou věc můžete mezitím odevzdat na

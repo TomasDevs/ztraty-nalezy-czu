@@ -7,6 +7,7 @@ use App\Forms\ContactForm;
  * @var array[] $related
  * @var ContactForm $form
  * @var bool $sent
+ * @var bool $canManage
  */
 $isFound = $item['type'] === 'found';
 $isReturned = $item['status'] === 'returned';
@@ -18,6 +19,10 @@ $largeMapUrl = sprintf('https://www.openstreetmap.org/?mlat=%1$s&mlon=%2$s#map=1
 $field = fn (string $name, string $label, array $options = []) => form_field($form, $name, $label, $options);
 ?>
 <?= render('partials/breadcrumbs', ['breadcrumbs' => $breadcrumbs]) ?>
+
+<?php if ($item['status'] === 'hidden'): ?>
+    <p class="alert alert--error" role="status">Inzerát je skrytý administrátorem. Návštěvníkům se nezobrazuje.</p>
+<?php endif ?>
 
 <article class="detail">
     <header class="detail__header">
@@ -49,6 +54,23 @@ $field = fn (string $name, string $label, array $options = []) => form_field($fo
                 </button>
                 <span class="visually-hidden" aria-live="polite" data-share-status></span>
             </div>
+
+            <?php if ($canManage): ?>
+                <section class="panel manage" aria-labelledby="manage-heading">
+                    <h2 id="manage-heading" class="panel__title">Správa inzerátu</h2>
+                    <a class="button button--secondary button--block" href="<?= e(url("/ucet/inzeraty/{$item['id']}/upravit")) ?>">Upravit</a>
+                    <?php if ($item['status'] === 'active'): ?>
+                        <form action="<?= e(url("/ucet/inzeraty/{$item['id']}/vraceno")) ?>" method="post">
+                            <?= csrf_field() ?>
+                            <button class="button button--secondary button--block" type="submit">Označit jako vrácené</button>
+                        </form>
+                    <?php endif ?>
+                    <form action="<?= e(url("/ucet/inzeraty/{$item['id']}/smazat")) ?>" method="post" data-confirm="Opravdu chcete inzerát smazat? Nejde to vrátit.">
+                        <?= csrf_field() ?>
+                        <button class="button button--danger button--block" type="submit">Smazat</button>
+                    </form>
+                </section>
+            <?php endif ?>
 
             <section class="panel facts" aria-labelledby="facts-heading">
                 <h2 id="facts-heading" class="panel__title">Údaje o inzerátu</h2>

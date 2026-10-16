@@ -14,6 +14,11 @@ $router->get('/', [HomeController::class, 'index']);
 $router->get('/inzeraty', [ItemController::class, 'index']);
 $router->get('/nahlasit', [ItemController::class, 'create']);
 $router->get('/inzerat/{id:\d+}/{slug}', [ItemController::class, 'show']);
+$router->post('/nahlasit', [ItemController::class, 'store']);
+$router->get('/ucet/inzeraty/{id:\d+}/upravit', [ItemController::class, 'edit']);
+$router->post('/ucet/inzeraty/{id:\d+}/upravit', [ItemController::class, 'update']);
+$router->post('/ucet/inzeraty/{id:\d+}/vraceno', [ItemController::class, 'markReturned']);
+$router->post('/ucet/inzeraty/{id:\d+}/smazat', [ItemController::class, 'destroy']);
 $router->post('/inzerat/{id:\d+}/{slug}', [ItemController::class, 'contact']);
 
 $router->get('/registrace', [AuthController::class, 'registerForm']);

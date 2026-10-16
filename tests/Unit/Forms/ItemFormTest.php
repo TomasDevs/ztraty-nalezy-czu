@@ -198,6 +198,12 @@ final class ItemFormTest extends TestCase
         $this->assertArrayHasKey('photo', $this->errors([], ['error' => UPLOAD_ERR_INI_SIZE, 'tmp_name' => '', 'size' => 0]));
     }
 
+    public function testDocumentsDoNotAllowPhotos(): void
+    {
+        $this->assertTrue(ItemForm::fromArray($this->input())->allowsPhoto());
+        $this->assertFalse(ItemForm::fromArray($this->input(['category' => 'doklady']))->allowsPhoto());
+    }
+
     public function testDocumentsNeverHavePhotos(): void
     {
         $form = ItemForm::fromArray($this->input(['category' => 'doklady']), $this->upload($this->png()));

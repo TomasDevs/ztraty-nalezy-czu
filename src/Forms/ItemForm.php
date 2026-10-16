@@ -67,12 +67,12 @@ final class ItemForm extends Form
 
         return $this->check([
             'type' => isset(ItemQuery::TYPES[$this->type]) ? null : 'Vyberte, jestli jde o ztrátu, nebo nález.',
-            'title' => $this->length($this->title, 3, 150, 'Název'),
+            'title' => $this->length($this->title, 3, 150, 'název'),
             'category' => $this->categoryRow ? null : 'Vyberte kategorii.',
             'building' => $this->buildingRow ? null : 'Vyberte budovu.',
-            'location' => $this->length($this->location, 1, 150, 'Místo'),
+            'location' => $this->length($this->location, 1, 150, 'místo'),
             'date' => $this->dateError(),
-            'description' => $this->length($this->description, 20, 5000, 'Popis'),
+            'description' => $this->length($this->description, 20, 5000, 'popis'),
             'lat' => $this->coordinatesError(),
             'photo' => $this->photoError(),
         ]);
@@ -95,11 +95,14 @@ final class ItemForm extends Form
         ];
     }
 
+    public function allowsPhoto(): bool
+    {
+        return $this->category !== self::PRIVATE_CATEGORY;
+    }
+
     public function hasPhoto(): bool
     {
-        return $this->photo !== null
-            && $this->photo['error'] === UPLOAD_ERR_OK
-            && $this->category !== self::PRIVATE_CATEGORY;
+        return $this->photo !== null && $this->photo['error'] === UPLOAD_ERR_OK && $this->allowsPhoto();
     }
 
     private function length(string $value, int $min, int $max, string $label): ?string
@@ -107,8 +110,9 @@ final class ItemForm extends Form
         $length = mb_strlen($value);
 
         return match (true) {
-            $length < $min => $min === 1 ? "{$label} je povinné." : sprintf('%s musí mít aspoň %d znaků.', $label, $min),
-            $length > $max => sprintf('%s může mít nejvýš %d znaků.', $label, $max),
+            $length === 0 => "Vyplňte {$label}.",
+            $length < $min => sprintf('%s musí mít aspoň %d znaků.', ucfirst($label), $min),
+            $length > $max => sprintf('%s může mít nejvýš %d znaků.', ucfirst($label), $max),
             default => null,
         };
     }
@@ -139,7 +143,7 @@ final class ItemForm extends Form
 
     private function photoError(): ?string
     {
-        if ($this->photo === null || $this->photo['error'] === UPLOAD_ERR_NO_FILE || $this->category === self::PRIVATE_CATEGORY) {
+        if ($this->photo === null || $this->photo['error'] === UPLOAD_ERR_NO_FILE || !$this->allowsPhoto()) {
             return null;
         }
 
