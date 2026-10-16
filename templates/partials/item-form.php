@@ -36,6 +36,7 @@ $photoPreview = isset($item) ? item_photo_url($item, thumb: true) : null;
              data-buildings="<?= e(json_encode($buildingPoints)) ?>"
              data-type="<?= e($form->type) ?>"
              role="region" aria-label="Vyberte místo na mapě" aria-describedby="location-picker-hint"></div>
+        <button class="button button--secondary" type="button" data-location-reset hidden>Použít místo budovy</button>
         <input type="hidden" name="lat" value="<?= e($form->lat) ?>">
         <input type="hidden" name="lng" value="<?= e($form->lng) ?>">
         <?php if (isset($form->errors['lat'])): ?>

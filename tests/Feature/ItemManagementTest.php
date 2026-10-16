@@ -89,7 +89,8 @@ final class ItemManagementTest extends FeatureTestCase
             ->assertOk()
             ->assertSee('name="title"')
             ->assertSee('enctype="multipart/form-data"')
-            ->assertSee('name="_token"');
+            ->assertSee('name="_token"')
+            ->assertSee('value="' . date('Y-m-d') . '"');
     }
 
     public function testValidPostCreatesItemOwnedByUser(): void

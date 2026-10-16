@@ -26,6 +26,18 @@
   width: 100%;
 }
 
+.button--danger {
+  color: var(--lost);
+  background: var(--surface);
+  border-color: var(--lost);
+}
+
+.button--danger:hover {
+  color: var(--surface);
+  background: var(--lost);
+  border-color: var(--lost);
+}
+
 .button--secondary {
   color: var(--ink);
   background: var(--surface);
@@ -55,6 +67,8 @@ input[type='search'],
 input[type='text'],
 input[type='email'],
 input[type='password'],
+input[type='date'],
+input[type='file'],
 textarea,
 select {
   width: 100%;
@@ -70,6 +84,8 @@ input[type='search']:hover,
 input[type='text']:hover,
 input[type='email']:hover,
 input[type='password']:hover,
+input[type='date']:hover,
+input[type='file']:hover,
 textarea:hover,
 select:hover {
   border-color: var(--ink-muted);
@@ -79,6 +95,8 @@ input[type='search']:focus-visible,
 input[type='text']:focus-visible,
 input[type='email']:focus-visible,
 input[type='password']:focus-visible,
+input[type='date']:focus-visible,
+input[type='file']:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
   border-color: var(--brand);

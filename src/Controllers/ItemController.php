@@ -36,7 +36,7 @@ final class ItemController extends Controller
         $type = $_GET['type'] ?? null;
         $type = is_string($type) && isset(ItemQuery::TYPES[$type]) ? $type : null;
 
-        $this->renderCreate($type !== null && auth()->check() ? new ItemForm(type: $type) : null, $type);
+        $this->renderCreate($type !== null && auth()->check() ? new ItemForm(type: $type, date: date('Y-m-d')) : null, $type);
     }
 
     public function store(): void
