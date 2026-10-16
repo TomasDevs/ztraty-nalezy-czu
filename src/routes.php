@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Controllers\AccountController;
 use App\Controllers\Api\ItemController as ApiItemController;
 use App\Controllers\AuthController;
 use App\Controllers\HomeController;
@@ -15,6 +16,7 @@ $router->get('/inzeraty', [ItemController::class, 'index']);
 $router->get('/nahlasit', [ItemController::class, 'create']);
 $router->get('/inzerat/{id:\d+}/{slug}', [ItemController::class, 'show']);
 $router->post('/nahlasit', [ItemController::class, 'store']);
+$router->get('/ucet', [AccountController::class, 'index']);
 $router->get('/ucet/inzeraty/{id:\d+}/upravit', [ItemController::class, 'edit']);
 $router->post('/ucet/inzeraty/{id:\d+}/upravit', [ItemController::class, 'update']);
 $router->post('/ucet/inzeraty/{id:\d+}/vraceno', [ItemController::class, 'markReturned']);
