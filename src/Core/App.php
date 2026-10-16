@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace App\Core;
 
 use App\Auth\Auth;
+use App\Mail\LogMailer;
+use App\Mail\Mailer;
+use App\Mail\NativeMailer;
 use App\Repositories\BuildingRepository;
 use App\Repositories\CategoryRepository;
 use App\Repositories\ItemRepository;
@@ -58,6 +61,13 @@ final class App
     public static function photos(): PhotoProcessor
     {
         return self::$services['photos'] ??= new PhotoProcessor();
+    }
+
+    public static function mailer(): Mailer
+    {
+        return self::$services['mailer'] ??= env('MAIL_DRIVER', 'log') === 'mail'
+            ? new NativeMailer((string) env('MAIL_FROM', 'noreply@localhost'))
+            : new LogMailer(ROOT_PATH . '/storage/logs/mail.log');
     }
 
     public static function items(): ItemRepository
