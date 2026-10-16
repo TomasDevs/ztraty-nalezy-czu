@@ -6,7 +6,7 @@ namespace App\Repositories;
 
 use PDO;
 
-final class CategoryRepository
+final class CategoryRepository implements CatalogRepository
 {
     public function __construct(private readonly PDO $db)
     {
@@ -27,24 +27,24 @@ final class CategoryRepository
         return $this->fetchOne('slug', $slug);
     }
 
-    public function create(string $name, string $slug): int
+    public function create(array $data): int
     {
-        $this->db->prepare('INSERT INTO categories (slug, name) VALUES (?, ?)')->execute([$slug, $name]);
+        $this->db->prepare('INSERT INTO categories (slug, name) VALUES (?, ?)')->execute([$data['slug'], $data['name']]);
 
         return (int) $this->db->lastInsertId();
     }
 
-    public function update(int $id, string $name, string $slug): void
+    public function update(int $id, array $data): void
     {
-        $this->db->prepare('UPDATE categories SET slug = ?, name = ? WHERE id = ?')->execute([$slug, $name, $id]);
+        $this->db->prepare('UPDATE categories SET slug = ?, name = ? WHERE id = ?')->execute([$data['slug'], $data['name'], $id]);
     }
 
-    public function isUsed(int $id): bool
+    public function itemCount(int $id): int
     {
         $statement = $this->db->prepare('SELECT COUNT(*) FROM items WHERE category_id = ?');
         $statement->execute([$id]);
 
-        return (int) $statement->fetchColumn() > 0;
+        return (int) $statement->fetchColumn();
     }
 
     public function delete(int $id): void

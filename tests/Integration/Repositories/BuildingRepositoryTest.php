@@ -55,13 +55,14 @@ final class BuildingRepositoryTest extends DatabaseTestCase
         $this->assertNull($this->buildings->find($id));
     }
 
-    public function testIsUsedWhenItemReferencesBuilding(): void
+    public function testItemCountCountsReferencingItems(): void
     {
         $building = $this->createBuilding();
-        $this->assertFalse($this->buildings->isUsed($building['id']));
+        $this->assertSame(0, $this->buildings->itemCount($building['id']));
 
         $this->createItem(['building_id' => $building['id']]);
+        $this->createItem(['building_id' => $building['id'], 'status' => 'hidden']);
 
-        $this->assertTrue($this->buildings->isUsed($building['id']));
+        $this->assertSame(2, $this->buildings->itemCount($building['id']));
     }
 }

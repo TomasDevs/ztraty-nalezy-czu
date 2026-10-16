@@ -42,23 +42,24 @@ final class CategoryRepositoryTest extends DatabaseTestCase
 
     public function testCreateUpdateDelete(): void
     {
-        $id = $this->categories->create('Doplňky', 'doplnky');
+        $id = $this->categories->create(['name' => 'Doplňky', 'slug' => 'doplnky']);
         $this->assertSame('doplnky', $this->categories->find($id)['slug']);
 
-        $this->categories->update($id, 'Šperky', 'sperky');
+        $this->categories->update($id, ['name' => 'Šperky', 'slug' => 'sperky']);
         $this->assertSame(['Šperky', 'sperky'], [$this->categories->find($id)['name'], $this->categories->find($id)['slug']]);
 
         $this->categories->delete($id);
         $this->assertNull($this->categories->find($id));
     }
 
-    public function testIsUsedWhenItemReferencesCategory(): void
+    public function testItemCountCountsReferencingItems(): void
     {
         $category = $this->createCategory();
-        $this->assertFalse($this->categories->isUsed($category['id']));
+        $this->assertSame(0, $this->categories->itemCount($category['id']));
 
         $this->createItem(['category_id' => $category['id']]);
+        $this->createItem(['category_id' => $category['id'], 'status' => 'hidden']);
 
-        $this->assertTrue($this->categories->isUsed($category['id']));
+        $this->assertSame(2, $this->categories->itemCount($category['id']));
     }
 }

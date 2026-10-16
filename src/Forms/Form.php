@@ -31,6 +31,23 @@ abstract class Form
         return $this->errors === [];
     }
 
+    protected static function resolveSlug(string $slug, string $name): string
+    {
+        return $slug !== '' ? $slug : slugify($name);
+    }
+
+    /**
+     * @param string[] $takenSlugs
+     */
+    protected static function slugError(string $slug, array $takenSlugs): ?string
+    {
+        return match (true) {
+            strlen($slug) > 50 || !preg_match('/^[a-z0-9]+(-[a-z0-9]+)*$/', $slug) => 'Adresa smí obsahovat jen malá písmena bez diakritiky, čísla a pomlčky (nejvýš 50 znaků).',
+            in_array($slug, $takenSlugs, true) => 'Tato adresa už se používá.',
+            default => null,
+        };
+    }
+
     protected static function inCampus(float $lat, float $lng): bool
     {
         return $lat >= 50.125 && $lat <= 50.135 && $lng >= 14.365 && $lng <= 14.380;

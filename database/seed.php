@@ -21,7 +21,7 @@ $items = new PdoItemRepository($db);
 
 $categoryIds = [];
 foreach ($load('categories') as $category) {
-    $categoryIds[$category['slug']] = $categories->create($category['name'], $category['slug']);
+    $categoryIds[$category['slug']] = $categories->create($category);
 }
 
 $buildingIds = [];

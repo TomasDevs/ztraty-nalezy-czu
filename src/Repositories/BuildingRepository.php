@@ -6,7 +6,7 @@ namespace App\Repositories;
 
 use PDO;
 
-final class BuildingRepository
+final class BuildingRepository implements CatalogRepository
 {
     private const COLUMNS = 'id, slug, name, short, lat, lng';
 
@@ -51,12 +51,12 @@ final class BuildingRepository
             ->execute([$data['slug'], $data['name'], $data['short'], $data['lat'], $data['lng'], $id]);
     }
 
-    public function isUsed(int $id): bool
+    public function itemCount(int $id): int
     {
         $statement = $this->db->prepare('SELECT COUNT(*) FROM items WHERE building_id = ?');
         $statement->execute([$id]);
 
-        return (int) $statement->fetchColumn() > 0;
+        return (int) $statement->fetchColumn();
     }
 
     public function delete(int $id): void
