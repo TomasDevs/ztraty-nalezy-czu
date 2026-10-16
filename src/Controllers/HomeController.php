@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+use App\Core\App;
+
 final class HomeController extends Controller
 {
     public function index(): void
@@ -11,8 +13,8 @@ final class HomeController extends Controller
         view('pages/home', [
             'title' => 'Ztráty a nálezy na kampusu ČZU',
             'description' => 'Ztratili jste na ČZU ISIC, klíče nebo bundu? Prohlédněte si nalezené věci z celého kampusu v Suchdole, nebo nahlaste ztrátu.',
-            'latest' => $this->items()->latest(6),
-            'stats' => $this->items()->stats(),
+            'latest' => App::items()->latest(6),
+            'stats' => App::items()->stats(),
             'jsonLd' => [[
                 '@type' => 'WebSite',
                 'name' => 'Ztráty a nálezy ČZU',

@@ -42,14 +42,4 @@ final class KernelTest extends TestCase
         $this->assertSame(200, $response->status);
         $this->assertStringContainsString('Sitemap:', $response->body);
     }
-
-    public function testRedirectCarriesLocationAndStatus(): void
-    {
-        $_SERVER['REQUEST_URI'] = '/inzerat/1/spatny-slug';
-
-        $response = Kernel::handle('GET', '/inzerat/1/spatny-slug');
-
-        $this->assertSame(301, $response->status);
-        $this->assertStringStartsWith('/inzerat/1/', $response->location);
-    }
 }

@@ -12,17 +12,30 @@ PHP 8.1+, MariaDB, Vite (JS a CSS), Leaflet + OpenStreetMap. Bez frameworku a CM
 
 ## Spuštění lokálně
 
-Potřebuješ PHP 8.1+ a Node.js 20+.
+Potřebuješ PHP 8.1+ (s rozšířeními `pdo_mysql`, `gd` s WebP, `mbstring`, `fileinfo`), MariaDB, Composer a Node.js 20+.
 
 ```bash
-cp .env.example .env
+cp .env.example .env    # doplň DB_USER a DB_PASS
 npm install
+composer install        # jen kvůli testům
+mariadb -e "CREATE DATABASE ztraty_nalezy CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci"
+php database/seed.php   # vytvoří tabulky a nahraje testovací data z database/mock/
 
 npm run dev     # terminál 1: Vite dev server (assety, hot reload)
 npm run serve   # terminál 2: PHP server
 ```
 
-Web běží na http://localhost:8000. Zatím používá testovací data z `database/mock/`.
+Web běží na http://localhost:8000. Seed smaže všechny tabulky a vytvoří je znovu.
+
+## Testy
+
+```bash
+mariadb -e "CREATE DATABASE ztraty_nalezy_test CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci"
+cp .env.testing.example .env.testing    # doplň DB_USER a DB_PASS
+composer test
+```
+
+Testovací databáze se při každém běhu maže. Bez ní se integrační a feature testy přeskočí.
 
 ## Produkční build
 

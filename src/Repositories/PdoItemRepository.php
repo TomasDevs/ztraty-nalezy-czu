@@ -6,7 +6,7 @@ namespace App\Repositories;
 
 use PDO;
 
-final class PdoItemRepository
+final class PdoItemRepository implements ItemRepository
 {
     private const WRITABLE = ['category_id', 'building_id', 'type', 'title', 'description', 'location', 'lat', 'lng', 'date'];
 

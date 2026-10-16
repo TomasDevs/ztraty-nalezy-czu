@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Seo;
 
 use App\Repositories\ItemQuery;
-use App\Repositories\ItemRepository;
 
 /**
  * Pages filtered by exactly one type, category or building are indexable landing pages
@@ -23,7 +22,7 @@ final class ListingMeta
     ) {
     }
 
-    public static function for(ItemQuery $query, ItemRepository $items): self
+    public static function for(ItemQuery $query, array $categories, array $buildings): self
     {
         $filters = array_filter($query->toArray());
         $noindex = isset($filters['q']);
@@ -38,8 +37,8 @@ final class ListingMeta
 
         $heading = match ($key) {
             'type' => isset(ItemQuery::TYPE_LISTS[$value]) ? ItemQuery::TYPE_LISTS[$value] . ' na kampusu ČZU' : null,
-            'category' => ($name = $lookup($items->categories())) ? "{$name}: ztráty a nálezy na ČZU" : null,
-            'building' => ($name = $lookup($items->buildings())) ? "Ztráty a nálezy: {$name}" : null,
+            'category' => ($name = $lookup($categories)) ? "{$name}: ztráty a nálezy na ČZU" : null,
+            'building' => ($name = $lookup($buildings)) ? "Ztráty a nálezy: {$name}" : null,
         };
 
         return $heading

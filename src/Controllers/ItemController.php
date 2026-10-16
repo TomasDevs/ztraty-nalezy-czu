@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+use App\Core\App;
 use App\Forms\ContactForm;
 use App\Repositories\ItemQuery;
 use App\Seo\ListingMeta;
@@ -13,7 +14,7 @@ final class ItemController extends Controller
     public function index(): void
     {
         $query = ItemQuery::fromArray($_GET);
-        $meta = ListingMeta::for($query, $this->items());
+        $meta = ListingMeta::for($query, App::categories()->all(), App::buildings()->all());
 
         view('items/index', [
             'title' => $meta->heading,
@@ -21,9 +22,9 @@ final class ItemController extends Controller
             'canonical' => $meta->canonical,
             'noindex' => $meta->noindex,
             'query' => $query,
-            'result' => $this->items()->search($query),
-            'categories' => $this->items()->categories(),
-            'buildings' => $this->items()->buildings(),
+            'result' => App::items()->search($query),
+            'categories' => App::categories()->all(),
+            'buildings' => App::buildings()->all(),
         ]);
     }
 
@@ -66,7 +67,7 @@ final class ItemController extends Controller
 
     private function findOrFail(string $id, string $slug): array
     {
-        $item = $this->items()->find((int) $id) ?? abort(404);
+        $item = App::items()->find((int) $id) ?? abort(404);
 
         if ($slug !== $item['slug']) {
             redirect(item_path($item), 301);
@@ -91,7 +92,7 @@ final class ItemController extends Controller
                 [$item['title'], null],
             ],
             'item' => $item,
-            'related' => $this->items()->related($item, 3),
+            'related' => App::items()->related($item, 3),
             'form' => $form,
             'sent' => $sent,
         ]);

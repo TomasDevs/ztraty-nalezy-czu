@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+use App\Core\App;
 use App\Repositories\ItemQuery;
 
 final class SeoController extends Controller
@@ -16,7 +17,7 @@ final class SeoController extends Controller
 
     public function sitemap(): void
     {
-        $items = $this->items()->all();
+        $items = App::items()->all();
         $latest = $items[0]['date'] ?? null;
 
         $urls = [
@@ -29,7 +30,7 @@ final class SeoController extends Controller
             $urls[] = ['/inzeraty?' . http_build_query(['type' => $type]), $latest];
         }
 
-        foreach (['category' => $this->items()->categories(), 'building' => $this->items()->buildings()] as $key => $rows) {
+        foreach (['category' => App::categories()->all(), 'building' => App::buildings()->all()] as $key => $rows) {
             foreach ($rows as $row) {
                 $urls[] = ['/inzeraty?' . http_build_query([$key => $row['slug']]), null];
             }
