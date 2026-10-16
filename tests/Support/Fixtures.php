@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Support;
 
+use App\Repositories\PdoItemRepository;
+
 trait Fixtures
 {
     private static int $fixtureCounter = 0;
@@ -14,7 +16,7 @@ trait Fixtures
         $user = [
             'name' => "User {$n}",
             'email' => "user{$n}-" . uniqid() . '@example.com',
-            'password_hash' => password_hash('password123', PASSWORD_DEFAULT),
+            'password_hash' => self::passwordHash(),
             'role' => 'user',
             'is_blocked' => 0,
             ...$overrides,
@@ -65,13 +67,25 @@ trait Fixtures
             'lat' => 50.130000,
             'lng' => 14.373000,
             'date' => '2026-10-01',
+            'photo' => null,
             ...$overrides,
         ];
-        $item['slug'] = slugify($item['title']);
-        $item['search_text'] = fold("{$item['title']} {$item['description']} {$item['location']}");
-        $item['id'] = $this->insert('items', $item);
 
-        return $item;
+        $items = new PdoItemRepository(self::$db);
+        $item['id'] = $items->create($item);
+
+        if ($item['photo'] !== null) {
+            $items->setPhoto($item['id'], $item['photo']);
+        }
+
+        return $items->find($item['id']);
+    }
+
+    private static function passwordHash(): string
+    {
+        static $hash = null;
+
+        return $hash ??= password_hash('password123', PASSWORD_DEFAULT);
     }
 
     private function insert(string $table, array $row): int

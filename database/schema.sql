@@ -37,7 +37,7 @@ CREATE TABLE items (
     title VARCHAR(150) NOT NULL,
     slug VARCHAR(160) NOT NULL,
     description TEXT NOT NULL,
-    search_text TEXT NOT NULL,
+    search_text TEXT COLLATE utf8mb4_unicode_ci NOT NULL,
     location VARCHAR(150) NOT NULL,
     lat DECIMAL(9, 6) NOT NULL,
     lng DECIMAL(9, 6) NOT NULL,
