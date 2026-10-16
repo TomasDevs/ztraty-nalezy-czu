@@ -7,27 +7,27 @@ namespace App\Forms;
 final class ContactForm extends Form
 {
     public const MIN_MESSAGE_LENGTH = 20;
+    public const MAX_MESSAGE_LENGTH = 2000;
 
-    public function __construct(
-        public readonly string $name = '',
-        public readonly string $email = '',
-        public readonly string $message = '',
-    ) {
+    public function __construct(public readonly string $message = '')
+    {
     }
 
     public static function fromArray(array $input): self
     {
-        return new self(self::string($input, 'name'), self::string($input, 'email'), self::string($input, 'message'));
+        return new self(self::string($input, 'message'));
     }
 
     public function validate(): bool
     {
+        $length = mb_strlen($this->message);
+
         return $this->check([
-            'name' => $this->name === '' ? 'Vyplňte své jméno.' : null,
-            'email' => filter_var($this->email, FILTER_VALIDATE_EMAIL) ? null : 'Zadejte platný e-mail, např. jan.novak@studenti.czu.cz.',
-            'message' => mb_strlen($this->message) < self::MIN_MESSAGE_LENGTH
-                ? sprintf('Zpráva musí mít aspoň %d znaků.', self::MIN_MESSAGE_LENGTH)
-                : null,
+            'message' => match (true) {
+                $length < self::MIN_MESSAGE_LENGTH => sprintf('Zpráva musí mít aspoň %d znaků.', self::MIN_MESSAGE_LENGTH),
+                $length > self::MAX_MESSAGE_LENGTH => sprintf('Zpráva může mít nejvýš %d znaků.', self::MAX_MESSAGE_LENGTH),
+                default => null,
+            },
         ]);
     }
 }

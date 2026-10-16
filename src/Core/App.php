@@ -11,6 +11,7 @@ use App\Mail\NativeMailer;
 use App\Repositories\BuildingRepository;
 use App\Repositories\CategoryRepository;
 use App\Repositories\ItemRepository;
+use App\Repositories\MessageRepository;
 use App\Repositories\PdoItemRepository;
 use App\Repositories\UserRepository;
 use App\Uploads\PhotoProcessor;
@@ -61,6 +62,11 @@ final class App
     public static function photos(): PhotoProcessor
     {
         return self::$services['photos'] ??= new PhotoProcessor();
+    }
+
+    public static function messages(): MessageRepository
+    {
+        return self::$services['messages'] ??= new MessageRepository(self::db());
     }
 
     public static function mailer(): Mailer

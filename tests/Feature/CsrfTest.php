@@ -34,6 +34,7 @@ final class CsrfTest extends FeatureTestCase
     public function testFormsContainTheToken(): void
     {
         $item = $this->createItem(['title' => 'Klíče']);
+        $this->actingAs($this->createUser());
 
         $this->get("/inzerat/{$item['id']}/klice")->assertSee('name="_token"');
     }

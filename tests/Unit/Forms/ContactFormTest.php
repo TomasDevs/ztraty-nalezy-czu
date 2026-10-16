@@ -9,22 +9,30 @@ use PHPUnit\Framework\TestCase;
 
 final class ContactFormTest extends TestCase
 {
-    public function testValidInputPasses(): void
+    public function testValidMessagePasses(): void
     {
-        $form = ContactForm::fromArray([
-            'name' => 'Jan',
-            'email' => 'jan@studenti.czu.cz',
-            'message' => str_repeat('a', ContactForm::MIN_MESSAGE_LENGTH),
-        ]);
+        $form = ContactForm::fromArray(['message' => str_repeat('a', ContactForm::MIN_MESSAGE_LENGTH)]);
 
         $this->assertTrue($form->validate());
     }
 
-    public function testReportsEveryInvalidField(): void
+    public function testShortMessageIsRejected(): void
     {
-        $form = ContactForm::fromArray(['email' => 'nope', 'message' => 'short']);
+        $form = ContactForm::fromArray(['message' => 'short']);
 
         $this->assertFalse($form->validate());
-        $this->assertSame(['name', 'email', 'message'], array_keys($form->errors));
+        $this->assertSame(['message'], array_keys($form->errors));
+    }
+
+    public function testTooLongMessageIsRejected(): void
+    {
+        $form = ContactForm::fromArray(['message' => str_repeat('a', ContactForm::MAX_MESSAGE_LENGTH + 1)]);
+
+        $this->assertFalse($form->validate());
+    }
+
+    public function testMessageIsTrimmed(): void
+    {
+        $this->assertSame('hello', ContactForm::fromArray(['message' => "  hello \n"])->message);
     }
 }

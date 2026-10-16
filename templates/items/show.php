@@ -8,6 +8,8 @@ use App\Forms\ContactForm;
  * @var ContactForm $form
  * @var bool $sent
  * @var bool $canManage
+ * @var bool $canContact
+ * @var bool $isGuest
  */
 $isFound = $item['type'] === 'found';
 $isReturned = $item['status'] === 'returned';
@@ -45,7 +47,7 @@ $field = fn (string $name, string $label, array $options = []) => form_field($fo
             <div class="panel action">
                 <?php if ($isReturned): ?>
                     <p class="action__returned">Věc už je zpátky u majitele. Děkujeme všem, kdo pomohli.</p>
-                <?php else: ?>
+                <?php elseif ($canContact || $isGuest): ?>
                     <p class="action__lead"><?= e($copy['lead']) ?></p>
                     <a class="button button--block" href="#kontakt"><?= e($copy['action']) ?></a>
                 <?php endif ?>
@@ -91,26 +93,26 @@ $field = fn (string $name, string $label, array $options = []) => form_field($fo
             </section>
         </aside>
 
-        <?php if (!$isReturned): ?>
+        <?php if (!$isReturned && ($canContact || $isGuest)): ?>
             <section id="kontakt" class="panel contact" aria-labelledby="contact-heading">
                 <h2 id="contact-heading"><?= e($copy['action']) ?></h2>
-                <p class="contact__intro">Zprávu přepošleme e-mailem. Vaše adresa se v inzerátu nezveřejní.</p>
+                <?php if ($isGuest): ?>
+                    <?= render('partials/login-prompt', ['message' => 'Pro kontaktování autora se musíte přihlásit.']) ?>
+                <?php else: ?>
+                    <p class="contact__intro">Zprávu přepošleme autorovi e-mailem. Odpověď vám přijde na adresu vašeho účtu, autorovi ji nezobrazujeme v inzerátu.</p>
 
-                <?php if ($sent): ?>
-                    <p class="alert alert--success" role="status">Zpráva je odeslaná. Jakmile vám autor inzerátu odpoví, přijde vám e-mail.</p>
-                <?php elseif ($form->errors): ?>
-                    <p class="alert alert--error" role="alert">Zprávu se nepodařilo odeslat. Opravte prosím zvýrazněná pole.</p>
+                    <?php if ($sent): ?>
+                        <p class="alert alert--success" role="status">Zpráva je odeslaná. Autor vám odpoví e-mailem.</p>
+                    <?php elseif ($form->errors): ?>
+                        <p class="alert alert--error" role="alert">Zprávu se nepodařilo odeslat. Opravte prosím zvýrazněné pole.</p>
+                    <?php endif ?>
+
+                    <form class="contact__form" action="<?= e(item_url($item)) ?>#kontakt" method="post" novalidate>
+                        <?= csrf_field() ?>
+                        <?= $field('message', 'Zpráva', ['type' => 'textarea', 'hint' => $copy['hint']]) ?>
+                        <button class="button" type="submit">Odeslat zprávu</button>
+                    </form>
                 <?php endif ?>
-
-                <form class="contact__form" action="<?= e(item_url($item)) ?>#kontakt" method="post" novalidate>
-                    <?= csrf_field() ?>
-                    <div class="contact__row">
-                        <?= $field('name', 'Jméno', ['autocomplete' => 'name']) ?>
-                        <?= $field('email', 'E-mail', ['type' => 'email', 'autocomplete' => 'email']) ?>
-                    </div>
-                    <?= $field('message', 'Zpráva', ['type' => 'textarea', 'hint' => $copy['hint']]) ?>
-                    <button class="button" type="submit">Odeslat zprávu</button>
-                </form>
             </section>
         <?php endif ?>
     </div>

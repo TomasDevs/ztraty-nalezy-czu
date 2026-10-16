@@ -8,6 +8,7 @@ use App\Auth\ItemPolicy;
 use App\Core\App;
 use App\Forms\ContactForm;
 use App\Forms\ItemForm;
+use App\Mail\ContactMail;
 use App\Repositories\ItemQuery;
 use App\Seo\ListingMeta;
 use App\Uploads\PhotoProcessor;
@@ -116,11 +117,13 @@ final class ItemController extends Controller
     public function contact(string $id, string $slug): void
     {
         $item = $this->findOrFail($id, $slug);
-        $form = ContactForm::fromArray($_POST);
+        $user = $this->requireUser();
 
-        if ($item['status'] === 'returned') {
+        if (!ItemPolicy::canContact($user, $item)) {
             redirect(item_path($item), 303);
         }
+
+        $form = ContactForm::fromArray($_POST);
 
         if (!$form->validate()) {
             http_response_code(422);
@@ -128,7 +131,15 @@ final class ItemController extends Controller
             return;
         }
 
-        // TODO: send the message by e-mail once users and the DB exist (CSRF token with sessions)
+        App::messages()->create($item['id'], $user['id'], $form->message);
+
+        $mail = ContactMail::create($item, App::users()->find($item['user_id']), $user, $form->message);
+
+        if (!App::mailer()->send($mail)) {
+            App::session()->flash('error', 'Zprávu se nepodařilo odeslat e-mailem, zkuste to později.');
+            redirect(item_path($item) . '#kontakt', 303);
+        }
+
         redirect(item_path($item) . '?odeslano=1#kontakt', 303);
     }
 
@@ -225,6 +236,8 @@ final class ItemController extends Controller
             'form' => $form,
             'sent' => $sent,
             'canManage' => ItemPolicy::canManage(auth()->user(), $item),
+            'canContact' => ItemPolicy::canContact(auth()->user(), $item),
+            'isGuest' => !auth()->check(),
         ]);
     }
 }

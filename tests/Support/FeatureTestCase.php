@@ -15,11 +15,13 @@ abstract class FeatureTestCase extends DatabaseTestCase
 
     protected array $session = [];
     protected string $publicDir;
+    protected FakeMailer $mailer;
 
     protected function setUp(): void
     {
         parent::setUp();
         $this->session = [];
+        $this->mailer = new FakeMailer();
         $this->publicDir = sys_get_temp_dir() . '/feature-' . uniqid();
         mkdir($this->publicDir, 0777, true);
         $this->registerServices();
@@ -59,6 +61,7 @@ abstract class FeatureTestCase extends DatabaseTestCase
         App::set('db', self::$db);
         App::set('session', new Session($this->session));
         App::set('photos', new PhotoProcessor($this->publicDir));
+        App::set('mailer', $this->mailer);
     }
 
     private function request(string $method, string $path, array $query = [], array $data = [], array $files = []): TestResponse
