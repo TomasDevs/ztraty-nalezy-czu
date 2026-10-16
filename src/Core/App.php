@@ -30,6 +30,18 @@ final class App
         return self::$services['db'] ??= Database::connect();
     }
 
+    public static function session(): Session
+    {
+        $_SESSION ??= [];
+
+        return self::$services['session'] ??= new Session($_SESSION);
+    }
+
+    public static function csrf(): Csrf
+    {
+        return self::$services['csrf'] ??= new Csrf(self::session());
+    }
+
     public static function items(): ItemRepository
     {
         return self::$services['items'] ??= new PdoItemRepository(self::db());

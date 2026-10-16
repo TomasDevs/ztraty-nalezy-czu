@@ -89,6 +89,7 @@ $field = fn (string $name, string $label, array $options = []) => render('partia
                 <?php endif ?>
 
                 <form class="contact__form" action="<?= e(item_url($item)) ?>#kontakt" method="post" novalidate>
+                    <?= csrf_field() ?>
                     <div class="contact__row">
                         <?= $field('name', 'Jméno', ['autocomplete' => 'name']) ?>
                         <?= $field('email', 'E-mail', ['type' => 'email', 'autocomplete' => 'email']) ?>

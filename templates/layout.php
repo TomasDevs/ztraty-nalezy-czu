@@ -60,6 +60,7 @@ $structuredData = [...($jsonLd ?? []), ...(!empty($breadcrumbs) ? [breadcrumbs_l
     <a class="skip-link" href="#main">Přeskočit na obsah</a>
     <?= render('partials/header') ?>
     <main id="main" class="container">
+        <?= render('partials/flash') ?>
         <?= $content ?>
     </main>
     <?= render('partials/footer') ?>

@@ -15,6 +15,14 @@ final class Kernel
         ob_start();
 
         try {
+            if ($method === 'POST') {
+                $token = $_POST['_token'] ?? null;
+
+                if (!App::csrf()->check(is_string($token) ? $token : null)) {
+                    throw new HttpError(419);
+                }
+            }
+
             $router->dispatch($method, $path);
 
             return new Response(http_response_code() ?: 200, (string) ob_get_clean());

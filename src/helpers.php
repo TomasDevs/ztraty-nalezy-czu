@@ -41,6 +41,11 @@ function current_path(): string
     return '/' . trim($path, '/');
 }
 
+function csrf_field(): string
+{
+    return '<input type="hidden" name="_token" value="' . e(App\Core\App::csrf()->token()) . '">';
+}
+
 function render(string $template, array $data = []): string
 {
     extract($data, EXTR_SKIP);
