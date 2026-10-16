@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\Core;
 
+use App\Auth\Auth;
 use App\Repositories\BuildingRepository;
 use App\Repositories\CategoryRepository;
 use App\Repositories\ItemRepository;
 use App\Repositories\PdoItemRepository;
+use App\Repositories\UserRepository;
 use PDO;
 
 final class App
@@ -40,6 +42,16 @@ final class App
     public static function csrf(): Csrf
     {
         return self::$services['csrf'] ??= new Csrf(self::session());
+    }
+
+    public static function users(): UserRepository
+    {
+        return self::$services['users'] ??= new UserRepository(self::db());
+    }
+
+    public static function auth(): Auth
+    {
+        return self::$services['auth'] ??= new Auth(self::session(), self::users());
     }
 
     public static function items(): ItemRepository

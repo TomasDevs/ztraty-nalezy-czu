@@ -46,6 +46,30 @@ function csrf_field(): string
     return '<input type="hidden" name="_token" value="' . e(App\Core\App::csrf()->token()) . '">';
 }
 
+function auth(): App\Auth\Auth
+{
+    return App\Core\App::auth();
+}
+
+function current_uri(): string
+{
+    $query = parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_QUERY);
+
+    return current_path() . ($query ? "?{$query}" : '');
+}
+
+/**
+ * Only internal paths are allowed as a redirect target, anything else falls back to the homepage.
+ */
+function safe_redirect_path(?string $path): string
+{
+    if ($path === null || !str_starts_with($path, '/') || str_starts_with($path, '//') || str_starts_with($path, '/\\')) {
+        return '/';
+    }
+
+    return $path;
+}
+
 function render(string $template, array $data = []): string
 {
     extract($data, EXTR_SKIP);

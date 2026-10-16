@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 final class HelpersTest extends TestCase
@@ -60,5 +61,23 @@ final class HelpersTest extends TestCase
     public function testItemCodeIsPadded(): void
     {
         $this->assertSame('#007', item_code(['id' => 7]));
+    }
+
+    #[DataProvider('redirectPaths')]
+    public function testSafeRedirectPath(?string $input, string $expected): void
+    {
+        $this->assertSame($expected, safe_redirect_path($input));
+    }
+
+    public static function redirectPaths(): array
+    {
+        return [
+            'null' => [null, '/'],
+            'protocol relative' => ['//evil.com', '/'],
+            'absolute' => ['https://evil.com', '/'],
+            'backslash trick' => ['/\\evil.com', '/'],
+            'relative without slash' => ['evil', '/'],
+            'internal path with query' => ['/nahlasit?type=lost', '/nahlasit?type=lost'],
+        ];
     }
 }
