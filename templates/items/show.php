@@ -14,8 +14,8 @@ use App\Forms\ContactForm;
 $isFound = $item['type'] === 'found';
 $isReturned = $item['status'] === 'returned';
 $copy = $isFound
-    ? ['date' => 'Nalezeno', 'lead' => 'Je to vaše?', 'action' => 'Kontaktovat nálezce', 'hint' => 'Popište věc tak, aby nálezce poznal, že je opravdu vaše: barva, obsah, poškození, gravírování…']
-    : ['date' => 'Ztraceno', 'lead' => 'Našli jste tuto věc?', 'action' => 'Napsat majiteli', 'hint' => 'Napište, kde a kdy jste věc našli a kde si ji majitel může vyzvednout.'];
+    ? ['date' => 'Nalezeno', 'lead' => 'Je to vaše?', 'action' => 'Kontaktovat nálezce', 'guestAction' => 'Přihlásit se a kontaktovat nálezce', 'hint' => 'Popište věc tak, aby nálezce poznal, že je opravdu vaše: barva, obsah, poškození, gravírování…']
+    : ['date' => 'Ztraceno', 'lead' => 'Našli jste tuto věc?', 'action' => 'Napsat majiteli', 'guestAction' => 'Přihlásit se a napsat majiteli', 'hint' => 'Napište, kde a kdy jste věc našli a kde si ji majitel může vyzvednout.'];
 $marker = [['lat' => $item['lat'], 'lng' => $item['lng'], 'title' => $item['title'], 'type' => $item['type']]];
 $largeMapUrl = sprintf('https://www.openstreetmap.org/?mlat=%1$s&mlon=%2$s#map=18/%1$s/%2$s', $item['lat'], $item['lng']);
 $field = fn (string $name, string $label, array $options = []) => form_field($form, $name, $label, $options);
@@ -49,7 +49,11 @@ $field = fn (string $name, string $label, array $options = []) => form_field($fo
                     <p class="action__returned">Věc už je zpátky u majitele. Děkujeme všem, kdo pomohli.</p>
                 <?php elseif ($canContact || $isGuest): ?>
                     <p class="action__lead"><?= e($copy['lead']) ?></p>
-                    <a class="button button--block" href="#kontakt"><?= e($copy['action']) ?></a>
+                    <?php if ($isGuest): ?>
+                        <a class="button button--block" href="<?= e(url('/prihlaseni', ['zpet' => item_path($item)])) ?>"><?= e($copy['guestAction']) ?></a>
+                    <?php else: ?>
+                        <a class="button button--block" href="#kontakt"><?= e($copy['action']) ?></a>
+                    <?php endif ?>
                 <?php endif ?>
                 <button class="button button--secondary button--block" type="button" data-share data-url="<?= e(absolute_url(item_path($item))) ?>" data-title="<?= e($item['title']) ?>" hidden>
                     Sdílet inzerát

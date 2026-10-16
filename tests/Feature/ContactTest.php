@@ -34,6 +34,20 @@ final class ContactTest extends FeatureTestCase
             ->assertSee('/prihlaseni?zpet=');
     }
 
+    public function testGuestActionButtonLeadsToLoginAndBack(): void
+    {
+        $this->get($this->path)
+            ->assertSee('Přihlásit se a napsat majiteli')
+            ->assertDontSee('href="#kontakt"');
+    }
+
+    public function testLoggedInActionButtonJumpsToForm(): void
+    {
+        $this->actingAs($this->createUser());
+
+        $this->get($this->path)->assertSee('href="#kontakt"')->assertSee('Napsat majiteli');
+    }
+
     public function testGuestPostIsRedirectedToLogin(): void
     {
         $this->post($this->path, ['message' => str_repeat('a', 30)])
