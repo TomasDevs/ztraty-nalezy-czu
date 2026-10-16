@@ -64,21 +64,30 @@ function json(mixed $data, int $status = 200): void
 
 function redirect(string $path, int $status = 302): never
 {
-    header('Location: ' . url($path), true, $status);
-    exit;
+    throw new App\Core\Redirect(url($path), $status);
 }
 
 function abort(int $status): never
 {
-    http_response_code($status);
+    throw new App\Core\HttpError($status);
+}
 
+function render_error(int $status): string
+{
     if (str_starts_with(current_path(), '/api/')) {
-        json(['error' => $status], $status);
-    } else {
-        view("errors/{$status}", ['title' => 'Stránka nenalezena', 'noindex' => true]);
+        header('Content-Type: application/json; charset=utf-8');
+
+        return json_encode(['error' => $status]);
     }
 
-    exit;
+    $titles = [403 => 'Přístup odepřen', 404 => 'Stránka nenalezena', 419 => 'Platnost formuláře vypršela'];
+    $title = $titles[$status] ?? 'Něco se pokazilo';
+
+    return render('layout', [
+        'title' => $title,
+        'noindex' => true,
+        'content' => render("errors/{$status}"),
+    ]);
 }
 
 /**
