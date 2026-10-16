@@ -10,6 +10,7 @@ use App\Repositories\CategoryRepository;
 use App\Repositories\ItemRepository;
 use App\Repositories\PdoItemRepository;
 use App\Repositories\UserRepository;
+use App\Uploads\PhotoProcessor;
 use PDO;
 
 final class App
@@ -52,6 +53,11 @@ final class App
     public static function auth(): Auth
     {
         return self::$services['auth'] ??= new Auth(self::session(), self::users());
+    }
+
+    public static function photos(): PhotoProcessor
+    {
+        return self::$services['photos'] ??= new PhotoProcessor();
     }
 
     public static function items(): ItemRepository
