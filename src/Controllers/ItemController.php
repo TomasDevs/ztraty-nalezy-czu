@@ -34,7 +34,7 @@ final class ItemController extends Controller
         view('items/create', [
             'title' => 'Nahlásit ztracenou nebo nalezenou věc',
             'description' => 'Ztratili nebo našli jste věc na kampusu ČZU? Nahlaste ji a pomozte jí najít cestu zpět k majiteli.',
-            'type' => isset(ItemQuery::TYPES[$type]) ? $type : null,
+            'type' => is_string($type) && isset(ItemQuery::TYPES[$type]) ? $type : null,
         ]);
     }
 
