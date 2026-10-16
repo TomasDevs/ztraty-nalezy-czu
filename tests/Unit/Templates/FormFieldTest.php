@@ -36,4 +36,49 @@ final class FormFieldTest extends TestCase
         $this->assertStringContainsString('type="password"', $html);
         $this->assertStringNotContainsString('secret', $html);
     }
+
+    public function testSelectMarksSelectedOption(): void
+    {
+        $html = $this->field([
+            'type' => 'select',
+            'value' => 'pef',
+            'options' => [['slug' => 'pef', 'name' => 'PEF'], ['slug' => 'fzp', 'name' => 'FŽP <b>']],
+        ]);
+
+        $this->assertStringContainsString('<select', $html);
+        $this->assertStringContainsString('<option value="">Vyberte…</option>', $html);
+        $this->assertMatchesRegularExpression('/<option value="pef"\s+selected>/', $html);
+        $this->assertStringContainsString('FŽP &lt;b&gt;', $html);
+    }
+
+    public function testDateFieldDefaultsMaxToToday(): void
+    {
+        $html = $this->field(['type' => 'date', 'value' => '2026-10-01']);
+
+        $this->assertStringContainsString('type="date"', $html);
+        $this->assertStringContainsString('max="' . date('Y-m-d') . '"', $html);
+    }
+
+    public function testFileFieldHasAcceptAndNoValue(): void
+    {
+        $html = $this->field(['type' => 'file', 'value' => 'leak', 'attributes' => ['accept' => 'image/jpeg,image/png']]);
+
+        $this->assertStringContainsString('type="file"', $html);
+        $this->assertStringContainsString('accept="image/jpeg,image/png"', $html);
+        $this->assertStringNotContainsString('leak', $html);
+    }
+
+    public function testOptionalFieldIsNotRequired(): void
+    {
+        $this->assertStringContainsString(' required', $this->field([]));
+        $this->assertStringNotContainsString(' required', $this->field(['required' => false]));
+    }
+
+    public function testTextareaKeepsEscapedValue(): void
+    {
+        $html = $this->field(['type' => 'textarea', 'value' => 'a <i>b</i>']);
+
+        $this->assertStringContainsString('<textarea', $html);
+        $this->assertStringContainsString('a &lt;i&gt;b&lt;/i&gt;', $html);
+    }
 }
