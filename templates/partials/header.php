@@ -7,6 +7,10 @@ foreach (ItemQuery::TYPE_LISTS as $type => $label) {
 }
 $isListing = current_path() === '/inzeraty';
 $activeType = $_GET['type'] ?? null;
+$user = auth()->user();
+$account = $user
+    ? [['label' => 'Můj účet', 'path' => '/ucet'], ...($user['role'] === 'admin' ? [['label' => 'Administrace', 'path' => '/admin']] : [])]
+    : [['label' => 'Přihlásit se', 'path' => '/prihlaseni']];
 ?>
 <header class="site-header">
     <div class="container site-header__inner">
@@ -27,6 +31,21 @@ $activeType = $_GET['type'] ?? null;
                         </a>
                     </li>
                 <?php endforeach ?>
+                <?php foreach ($account as $link): ?>
+                    <li>
+                        <a href="<?= e(url($link['path'])) ?>" <?= str_starts_with(current_path(), $link['path']) ? 'aria-current="page"' : '' ?>>
+                            <?= e($link['label']) ?>
+                        </a>
+                    </li>
+                <?php endforeach ?>
+                <?php if ($user): ?>
+                    <li>
+                        <form action="<?= e(url('/odhlaseni')) ?>" method="post">
+                            <?= csrf_field() ?>
+                            <button class="nav__button" type="submit">Odhlásit</button>
+                        </form>
+                    </li>
+                <?php endif ?>
             </ul>
         </nav>
         <a class="button site-header__cta" href="<?= e(url('/nahlasit')) ?>" <?= current_path() === '/nahlasit' ? 'aria-current="page"' : '' ?>>Nahlásit věc</a>

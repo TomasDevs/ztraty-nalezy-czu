@@ -12,7 +12,7 @@ final class SeoController extends Controller
     public function robots(): void
     {
         header('Content-Type: text/plain; charset=utf-8');
-        echo "User-agent: *\nDisallow: /api/\n\nSitemap: " . absolute_url('/sitemap.xml') . "\n";
+        echo "User-agent: *\nDisallow: /api/\nDisallow: /admin/\nDisallow: /ucet\n\nSitemap: " . absolute_url('/sitemap.xml') . "\n";
     }
 
     public function sitemap(): void

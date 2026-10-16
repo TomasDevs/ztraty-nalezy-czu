@@ -15,15 +15,7 @@ $copy = $isFound
     : ['date' => 'Ztraceno', 'lead' => 'Našli jste tuto věc?', 'action' => 'Napsat majiteli', 'hint' => 'Napište, kde a kdy jste věc našli a kde si ji majitel může vyzvednout.'];
 $marker = [['lat' => $item['lat'], 'lng' => $item['lng'], 'title' => $item['title'], 'type' => $item['type']]];
 $largeMapUrl = sprintf('https://www.openstreetmap.org/?mlat=%1$s&mlon=%2$s#map=18/%1$s/%2$s', $item['lat'], $item['lng']);
-$firstError = array_key_first($form->errors);
-$field = fn (string $name, string $label, array $options = []) => render('partials/form-field', [
-    'name' => $name,
-    'label' => $label,
-    'value' => $form->$name,
-    'error' => $form->errors[$name] ?? null,
-    'autofocus' => $name === $firstError,
-    ...$options,
-]);
+$field = fn (string $name, string $label, array $options = []) => form_field($form, $name, $label, $options);
 ?>
 <?= render('partials/breadcrumbs', ['breadcrumbs' => $breadcrumbs]) ?>
 

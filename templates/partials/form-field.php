@@ -5,7 +5,7 @@
  * @var string $value
  * @var string|null $error
  * @var string|null $hint
- * @var string|null $type text|email|textarea
+ * @var string|null $type text|email|password|textarea
  * @var string|null $autocomplete
  * @var bool|null $autofocus
  */
@@ -33,7 +33,7 @@ $attributes = sprintf(
     <?php if ($type === 'textarea'): ?>
         <textarea <?= $attributes ?> rows="5"><?= e($value) ?></textarea>
     <?php else: ?>
-        <input type="<?= e($type) ?>" value="<?= e($value) ?>" <?= $attributes ?>>
+        <input type="<?= e($type) ?>"<?= $type === 'password' ? '' : ' value="' . e($value) . '"' ?> <?= $attributes ?>>
     <?php endif ?>
     <?php if (!empty($error)): ?>
         <p class="field__error" id="<?= e($id) ?>-error"><?= e($error) ?></p>

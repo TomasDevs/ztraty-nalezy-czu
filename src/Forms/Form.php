@@ -9,6 +9,13 @@ abstract class Form
     /** @var array<string, string> */
     public array $errors = [];
 
+    public function value(string $field): string
+    {
+        $property = lcfirst(str_replace('_', '', ucwords($field, '_')));
+
+        return (string) ($this->$property ?? '');
+    }
+
     protected static function string(array $input, string $key): string
     {
         return is_string($input[$key] ?? null) ? trim($input[$key]) : '';

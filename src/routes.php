@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Controllers\Api\ItemController as ApiItemController;
+use App\Controllers\AuthController;
 use App\Controllers\HomeController;
 use App\Controllers\ItemController;
 use App\Controllers\SeoController;
@@ -14,6 +15,12 @@ $router->get('/inzeraty', [ItemController::class, 'index']);
 $router->get('/nahlasit', [ItemController::class, 'create']);
 $router->get('/inzerat/{id:\d+}/{slug}', [ItemController::class, 'show']);
 $router->post('/inzerat/{id:\d+}/{slug}', [ItemController::class, 'contact']);
+
+$router->get('/registrace', [AuthController::class, 'registerForm']);
+$router->post('/registrace', [AuthController::class, 'register']);
+$router->get('/prihlaseni', [AuthController::class, 'loginForm']);
+$router->post('/prihlaseni', [AuthController::class, 'login']);
+$router->post('/odhlaseni', [AuthController::class, 'logout']);
 
 $router->get('/api/items', [ApiItemController::class, 'index']);
 

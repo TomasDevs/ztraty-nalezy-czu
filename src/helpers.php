@@ -70,6 +70,18 @@ function safe_redirect_path(?string $path): string
     return $path;
 }
 
+function form_field(App\Forms\Form $form, string $name, string $label, array $options = []): string
+{
+    return render('partials/form-field', [
+        'name' => $name,
+        'label' => $label,
+        'value' => $form->value($name),
+        'error' => $form->errors[$name] ?? null,
+        'autofocus' => $name === array_key_first($form->errors),
+        ...$options,
+    ]);
+}
+
 function render(string $template, array $data = []): string
 {
     extract($data, EXTR_SKIP);

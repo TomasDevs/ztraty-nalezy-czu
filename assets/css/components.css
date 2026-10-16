@@ -54,6 +54,7 @@
 input[type='search'],
 input[type='text'],
 input[type='email'],
+input[type='password'],
 textarea,
 select {
   width: 100%;
@@ -68,6 +69,7 @@ select {
 input[type='search']:hover,
 input[type='text']:hover,
 input[type='email']:hover,
+input[type='password']:hover,
 textarea:hover,
 select:hover {
   border-color: var(--ink-muted);
@@ -76,6 +78,7 @@ select:hover {
 input[type='search']:focus-visible,
 input[type='text']:focus-visible,
 input[type='email']:focus-visible,
+input[type='password']:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
   border-color: var(--brand);
@@ -84,6 +87,16 @@ select:focus-visible {
 
 textarea {
   resize: vertical;
+}
+
+.form {
+  display: grid;
+  gap: 1rem;
+  justify-items: start;
+}
+
+.form .field {
+  width: 100%;
 }
 
 [aria-invalid='true'] {

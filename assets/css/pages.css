@@ -484,3 +484,14 @@
   gap: 1rem;
   padding-block: 3rem;
 }
+
+/* Login and registration */
+.auth {
+  max-width: 28rem;
+  margin-inline: auto;
+}
+
+.auth__switch {
+  margin-top: 1rem;
+  color: var(--ink-soft);
+}
