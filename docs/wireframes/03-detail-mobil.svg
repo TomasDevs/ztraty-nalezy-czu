@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="415" height="2003.25" viewBox="0 0 415 2003.25">
+<rect width="100%" height="100%" fill="#e9e9e9"/>
+<text x="20" y="30" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#333">Wireframe: Detail inzerátu (mobil)</text>
+<g transform="translate(20 44)">
+<rect width="375" height="1919.25" fill="#fafafa" stroke="#b5b5b5"/>
+<rect x="0" y="0" width="375" height="64" rx="0" fill="#fff" stroke="none" stroke-width="1.5"/>
+<line x1="0" y1="64" x2="375" y2="64" stroke="#9a9a9a" stroke-width="1.5"/>
+<g transform="translate(14 16)"><path d="M11 4h10l5 5v17a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9z" fill="#efefef" stroke="#5a5a5a" stroke-width="1.5" transform="rotate(-10 16 16)"/><circle cx="15" cy="10" r="2" fill="#fff" stroke="#5a5a5a" stroke-width="1.5"/></g>
+<text x="50" y="37" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#4a4a4a" text-anchor="start">Ztráty a nálezy ČZU</text>
+<rect x="319" y="12" width="40" height="40" rx="6" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<line x1="329" y1="24" x2="349" y2="24" stroke="#4a4a4a" stroke-width="2"/>
+<line x1="329" y1="32" x2="349" y2="32" stroke="#4a4a4a" stroke-width="2"/>
+<line x1="329" y1="40" x2="349" y2="40" stroke="#4a4a4a" stroke-width="2"/>
+<rect x="199" y="12" width="112" height="40" rx="6" fill="#5a5a5a" stroke="#5a5a5a" stroke-width="1.5"/>
+<text x="255.0" y="37.0" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#fff" text-anchor="middle">Nahlásit věc</text>
+<text x="16" y="104" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#8a8a8a" text-anchor="start">Úvod  /  Nálezy  /  Název věci</text>
+<rect x="16" y="128" width="57" height="20" rx="4" fill="#efefef" stroke="none" stroke-width="1.5"/>
+<circle cx="25" cy="138" r="3" fill="#5a5a5a"/>
+<text x="32" y="142" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#4a4a4a" text-anchor="start">Nález</text>
+<text x="16" y="188" font-family="Helvetica, Arial, sans-serif" font-size="26" font-weight="700" fill="#4a4a4a" text-anchor="start">Bezdrátová sluchátka</text>
+<text x="16" y="216" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#8a8a8a" text-anchor="start">Nalezeno 13. 10. 2026 · Malá studovna, Knihovna</text>
+<rect x="16" y="244" width="343" height="257.25" rx="6" fill="#efefef" stroke="#9a9a9a" stroke-width="1.5"/>
+<line x1="16" y1="244" x2="359" y2="501.25" stroke="#c4c4c4" stroke-width="1"/>
+<line x1="359" y1="244" x2="16" y2="501.25" stroke="#c4c4c4" stroke-width="1"/>
+<rect x="156.5" y="359.625" width="62.0" height="26" rx="4" fill="#fff" stroke="none" stroke-width="1.5"/>
+<text x="187.5" y="377.625" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#8a8a8a" text-anchor="middle">Fotka</text>
+<text x="16" y="525.25" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#8a8a8a" text-anchor="start">Popis</text>
+<rect x="16" y="537.25" width="343" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<rect x="16" y="551.25" width="343" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<rect x="16" y="565.25" width="212.66" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<rect x="16" y="597.25" width="343" height="150" rx="10" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<text x="34" y="631.25" font-family="Helvetica, Arial, sans-serif" font-size="17" font-weight="700" fill="#4a4a4a" text-anchor="start">Je to vaše?</text>
+<rect x="34" y="647.25" width="307" height="40" rx="6" fill="#5a5a5a" stroke="#5a5a5a" stroke-width="1.5"/>
+<text x="187.5" y="672.25" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#fff" text-anchor="middle">Kontaktovat nálezce</text>
+<rect x="34" y="695.25" width="307" height="40" rx="6" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<text x="187.5" y="720.25" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#4a4a4a" text-anchor="middle">Sdílet inzerát</text>
+<rect x="16" y="763.25" width="343" height="420" rx="10" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<text x="34" y="795.25" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#4a4a4a" text-anchor="start">Údaje o inzerátu</text>
+<text x="34" y="823.25" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#8a8a8a" text-anchor="start">Číslo</text>
+<rect x="34" y="831.25" width="120" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<line x1="34" y1="853.25" x2="341" y2="853.25" stroke="#9a9a9a" stroke-width="1" stroke-dasharray="4 4"/>
+<text x="34" y="869.25" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#8a8a8a" text-anchor="start">Kategorie</text>
+<rect x="34" y="877.25" width="120" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<line x1="34" y1="899.25" x2="341" y2="899.25" stroke="#9a9a9a" stroke-width="1" stroke-dasharray="4 4"/>
+<text x="34" y="915.25" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#8a8a8a" text-anchor="start">Budova</text>
+<rect x="34" y="923.25" width="120" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<line x1="34" y1="945.25" x2="341" y2="945.25" stroke="#9a9a9a" stroke-width="1" stroke-dasharray="4 4"/>
+<text x="34" y="961.25" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#8a8a8a" text-anchor="start">Místo</text>
+<rect x="34" y="969.25" width="120" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<line x1="34" y1="991.25" x2="341" y2="991.25" stroke="#9a9a9a" stroke-width="1" stroke-dasharray="4 4"/>
+<text x="34" y="1007.25" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#8a8a8a" text-anchor="start">Nalezeno</text>
+<rect x="34" y="1015.25" width="120" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<line x1="34" y1="1037.25" x2="341" y2="1037.25" stroke="#9a9a9a" stroke-width="1" stroke-dasharray="4 4"/>
+<rect x="34" y="1043.25" width="307" height="120" rx="6" fill="#efefef" stroke="#9a9a9a" stroke-width="1.5"/>
+<line x1="34" y1="1043.25" x2="341" y2="1163.25" stroke="#c4c4c4" stroke-width="1"/>
+<line x1="341" y1="1043.25" x2="34" y2="1163.25" stroke="#c4c4c4" stroke-width="1"/>
+<rect x="118.69999999999999" y="1090.25" width="137.60000000000002" height="26" rx="4" fill="#fff" stroke="none" stroke-width="1.5"/>
+<text x="187.5" y="1108.25" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#8a8a8a" text-anchor="middle">Mapa (Leaflet)</text>
+<circle cx="95" cy="1079" r="7" fill="#5a5a5a" stroke="#fff" stroke-width="2"/>
+<rect x="44" y="1053.25" width="26" height="52" rx="4" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<text x="57" y="1074.25" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#4a4a4a" text-anchor="middle">+</text>
+<text x="57" y="1099.25" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#4a4a4a" text-anchor="middle">−</text>
+<rect x="16" y="1199.25" width="343" height="290" rx="10" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<text x="36" y="1235.25" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#4a4a4a" text-anchor="start">Kontaktovat nálezce</text>
+<rect x="36" y="1251.25" width="88.66" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<text x="36" y="1287.25" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#4a4a4a" text-anchor="start">Zpráva</text>
+<text x="36" y="1307.25" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#8a8a8a" text-anchor="start">Popište věc tak, aby nálezce poznal, že je vaše</text>
+<rect x="36" y="1315.25" width="303" height="88" rx="6" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<rect x="36" y="1419.25" width="150" height="40" rx="6" fill="#5a5a5a" stroke="#5a5a5a" stroke-width="1.5"/>
+<text x="111.0" y="1444.25" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#fff" text-anchor="middle">Odeslat zprávu</text>
+<text x="16" y="1529.25" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#4a4a4a" text-anchor="start">Podobné inzeráty</text>
+<rect x="16" y="1549.25" width="343" height="150" rx="10" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<rect x="32" y="1563.25" width="57" height="20" rx="4" fill="#efefef" stroke="none" stroke-width="1.5"/>
+<circle cx="41" cy="1573.25" r="3" fill="#5a5a5a"/>
+<text x="48" y="1577.25" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#4a4a4a" text-anchor="start">Nález</text>
+<text x="343" y="1577.25" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#8a8a8a" text-anchor="end">#012</text>
+<rect x="32" y="1595.25" width="56" height="56" rx="6" fill="#efefef" stroke="#9a9a9a" stroke-width="1.5"/>
+<line x1="32" y1="1595.25" x2="88" y2="1651.25" stroke="#c4c4c4" stroke-width="1"/>
+<line x1="88" y1="1595.25" x2="32" y2="1651.25" stroke="#c4c4c4" stroke-width="1"/>
+<text x="100" y="1611.25" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#4a4a4a" text-anchor="start">Název věci</text>
+<rect x="100" y="1623.25" width="93.0" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<line x1="32" y1="1667.25" x2="343" y2="1667.25" stroke="#9a9a9a" stroke-width="1" stroke-dasharray="4 4"/>
+<rect x="32" y="1677.25" width="70" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<rect x="273" y="1677.25" width="70" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<rect x="0" y="1729.25" width="375" height="170" rx="0" fill="#f6f6f6" stroke="none" stroke-width="1.5"/>
+<line x1="0" y1="1729.25" x2="375" y2="1729.25" stroke="#9a9a9a" stroke-width="1.5"/>
+<text x="16" y="1763.25" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#4a4a4a" text-anchor="start">Ztráty a nálezy ČZU</text>
+<rect x="16" y="1775.25" width="136.4" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<text x="16" y="1823.25" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#4a4a4a" text-anchor="start">Oficiální místa pro odevzdání</text>
+<rect x="16" y="1835.25" width="200" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<rect x="16" y="1849.25" width="124.0" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+</g></svg>

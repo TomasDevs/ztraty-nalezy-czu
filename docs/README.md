@@ -6,7 +6,7 @@ Hlavní dokument: [dokumentace-tym-07.docx](dokumentace-tym-07.docx). Místa k d
 - [x] Analýza současného stavu (knihovna ČZU, Správa učeben PEF, FB skupina)
 - [x] Idea, cílová skupina, role a oprávnění
 - [x] Informační architektura (mapa stránek, navigace, datový model)
-- [ ] Wireframy (desktop + mobil) → `docs/wireframes/`
+- [x] Wireframy (desktop + mobil, komponenty) → `docs/wireframes/`
 - [x] Klíčová slova (chybí ověření hledanosti)
 - [x] SEO strategie
 

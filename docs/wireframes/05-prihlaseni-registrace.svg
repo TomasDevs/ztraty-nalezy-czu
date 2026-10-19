@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="908" viewBox="0 0 1320 908">
+<rect width="100%" height="100%" fill="#e9e9e9"/>
+<text x="20" y="30" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#333">Wireframe: Přihlášení a registrace (počítač)</text>
+<g transform="translate(20 44)">
+<rect width="1280" height="824" fill="#fafafa" stroke="#b5b5b5"/>
+<rect x="0" y="0" width="1280" height="64" rx="0" fill="#fff" stroke="none" stroke-width="1.5"/>
+<line x1="0" y1="64" x2="1280" y2="64" stroke="#9a9a9a" stroke-width="1.5"/>
+<g transform="translate(46 16)"><path d="M11 4h10l5 5v17a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9z" fill="#efefef" stroke="#5a5a5a" stroke-width="1.5" transform="rotate(-10 16 16)"/><circle cx="15" cy="10" r="2" fill="#fff" stroke="#5a5a5a" stroke-width="1.5"/></g>
+<text x="82" y="37" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#4a4a4a" text-anchor="start">Ztráty a nálezy ČZU</text>
+<text x="1076" y="38" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a4a4a" text-anchor="end">Přihlásit se</text>
+<text x="964.8" y="38" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a4a4a" text-anchor="end">Nálezy</text>
+<text x="896.1999999999999" y="38" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a4a4a" text-anchor="end">Ztráty</text>
+<text x="827.5999999999999" y="38" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="400" fill="#4a4a4a" text-anchor="end">Všechny inzeráty</text>
+<rect x="1104" y="12" width="128" height="40" rx="6" fill="#5a5a5a" stroke="#5a5a5a" stroke-width="1.5"/>
+<text x="1168.0" y="37.0" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#fff" text-anchor="middle">Nahlásit věc</text>
+<text x="168" y="134" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="700" fill="#4a4a4a" text-anchor="start">Přihlášení</text>
+<rect x="168" y="154" width="235.6" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<rect x="168" y="184" width="440" height="282" rx="10" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<text x="188" y="212" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#4a4a4a" text-anchor="start">E-mail</text>
+<rect x="188" y="222" width="400" height="40" rx="6" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<text x="188" y="288" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#4a4a4a" text-anchor="start">Heslo</text>
+<rect x="188" y="298" width="400" height="40" rx="6" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<rect x="188" y="358" width="400" height="40" rx="6" fill="#5a5a5a" stroke="#5a5a5a" stroke-width="1.5"/>
+<text x="388.0" y="383.0" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#fff" text-anchor="middle">Přihlásit se</text>
+<text x="168" y="462" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4a4a4a" text-anchor="start">Nemáte účet? Zaregistrujte se.</text>
+<text x="728" y="134" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="700" fill="#4a4a4a" text-anchor="start">Registrace</text>
+<rect x="728" y="154" width="235.6" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<rect x="728" y="184" width="440" height="434" rx="10" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<text x="748" y="212" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#4a4a4a" text-anchor="start">Jméno</text>
+<rect x="748" y="222" width="400" height="40" rx="6" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<text x="748" y="288" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#4a4a4a" text-anchor="start">E-mail</text>
+<rect x="748" y="298" width="400" height="40" rx="6" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<text x="748" y="364" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#4a4a4a" text-anchor="start">Heslo</text>
+<rect x="748" y="374" width="400" height="40" rx="6" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<text x="748" y="440" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#4a4a4a" text-anchor="start">Heslo znovu</text>
+<rect x="748" y="450" width="400" height="40" rx="6" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<rect x="748" y="510" width="400" height="40" rx="6" fill="#5a5a5a" stroke="#5a5a5a" stroke-width="1.5"/>
+<text x="948.0" y="535.0" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#fff" text-anchor="middle">Vytvořit účet</text>
+<text x="728" y="614" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#4a4a4a" text-anchor="start">Už máte účet? Přihlaste se.</text>
+<rect x="168" y="624" width="378.40000000000003" height="24" rx="12" fill="#fff7d6" stroke="#d9c26a" stroke-width="1.5"/>
+<text x="178" y="640" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#7a6417" text-anchor="start">Po přihlášení se uživatel vrátí na stránku, odkud přišel</text>
+<rect x="0" y="684" width="1280" height="120" rx="0" fill="#f6f6f6" stroke="none" stroke-width="1.5"/>
+<line x1="0" y1="684" x2="1280" y2="684" stroke="#9a9a9a" stroke-width="1.5"/>
+<text x="48" y="718" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#4a4a4a" text-anchor="start">Ztráty a nálezy ČZU</text>
+<rect x="48" y="730" width="136.4" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<text x="992" y="718" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#4a4a4a" text-anchor="start">Oficiální místa pro odevzdání</text>
+<rect x="992" y="730" width="240" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<rect x="992" y="744" width="148.8" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+</g></svg>

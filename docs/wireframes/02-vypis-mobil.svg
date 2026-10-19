@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="415" height="1576" viewBox="0 0 415 1576">
+<rect width="100%" height="100%" fill="#e9e9e9"/>
+<text x="20" y="30" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#333">Wireframe: Výpis inzerátů (mobil)</text>
+<g transform="translate(20 44)">
+<rect width="375" height="1492" fill="#fafafa" stroke="#b5b5b5"/>
+<rect x="0" y="0" width="375" height="64" rx="0" fill="#fff" stroke="none" stroke-width="1.5"/>
+<line x1="0" y1="64" x2="375" y2="64" stroke="#9a9a9a" stroke-width="1.5"/>
+<g transform="translate(14 16)"><path d="M11 4h10l5 5v17a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9z" fill="#efefef" stroke="#5a5a5a" stroke-width="1.5" transform="rotate(-10 16 16)"/><circle cx="15" cy="10" r="2" fill="#fff" stroke="#5a5a5a" stroke-width="1.5"/></g>
+<text x="50" y="37" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#4a4a4a" text-anchor="start">Ztráty a nálezy ČZU</text>
+<rect x="319" y="12" width="40" height="40" rx="6" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<line x1="329" y1="24" x2="349" y2="24" stroke="#4a4a4a" stroke-width="2"/>
+<line x1="329" y1="32" x2="349" y2="32" stroke="#4a4a4a" stroke-width="2"/>
+<line x1="329" y1="40" x2="349" y2="40" stroke="#4a4a4a" stroke-width="2"/>
+<rect x="199" y="12" width="112" height="40" rx="6" fill="#5a5a5a" stroke="#5a5a5a" stroke-width="1.5"/>
+<text x="255.0" y="37.0" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#fff" text-anchor="middle">Nahlásit věc</text>
+<text x="16" y="120" font-family="Helvetica, Arial, sans-serif" font-size="26" font-weight="700" fill="#4a4a4a" text-anchor="start">Ztracené a nalezené věci</text>
+<rect x="16" y="140" width="343" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<rect x="16" y="154" width="212.66" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<rect x="16" y="190" width="343" height="220" rx="10" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<text x="30" y="214" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#4a4a4a" text-anchor="start">Hledat</text>
+<rect x="30" y="224" width="315" height="40" rx="6" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<text x="42" y="249" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#8a8a8a" text-anchor="start">Např. ISIC, klíče…</text>
+<text x="30" y="286" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#4a4a4a" text-anchor="start">Typ</text>
+<rect x="30" y="296" width="151.5" height="40" rx="6" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<text x="42" y="321" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#8a8a8a" text-anchor="start">Vše</text>
+<path d="M159.5 313 l6 6 l6 -6" fill="none" stroke="#4a4a4a" stroke-width="1.5"/>
+<text x="193.5" y="286" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#4a4a4a" text-anchor="start">Kategorie</text>
+<rect x="193.5" y="296" width="151.5" height="40" rx="6" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<text x="205.5" y="321" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#8a8a8a" text-anchor="start">Vše</text>
+<path d="M323.0 313 l6 6 l6 -6" fill="none" stroke="#4a4a4a" stroke-width="1.5"/>
+<text x="16" y="444" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#4a4a4a" text-anchor="start">12 inzerátů</text>
+<rect x="16" y="460" width="343" height="150" rx="10" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<rect x="32" y="474" width="57" height="20" rx="4" fill="#efefef" stroke="none" stroke-width="1.5"/>
+<circle cx="41" cy="484" r="3" fill="#5a5a5a"/>
+<text x="48" y="488" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#4a4a4a" text-anchor="start">Nález</text>
+<text x="343" y="488" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#8a8a8a" text-anchor="end">#012</text>
+<rect x="32" y="506" width="56" height="56" rx="6" fill="#efefef" stroke="#9a9a9a" stroke-width="1.5"/>
+<line x1="32" y1="506" x2="88" y2="562" stroke="#c4c4c4" stroke-width="1"/>
+<line x1="88" y1="506" x2="32" y2="562" stroke="#c4c4c4" stroke-width="1"/>
+<text x="100" y="522" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#4a4a4a" text-anchor="start">Název věci</text>
+<rect x="100" y="534" width="93.0" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<line x1="32" y1="578" x2="343" y2="578" stroke="#9a9a9a" stroke-width="1" stroke-dasharray="4 4"/>
+<rect x="32" y="588" width="70" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<rect x="273" y="588" width="70" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<rect x="16" y="624" width="343" height="150" rx="10" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<rect x="32" y="638" width="64" height="20" rx="4" fill="#efefef" stroke="none" stroke-width="1.5"/>
+<circle cx="41" cy="648" r="3" fill="#5a5a5a"/>
+<text x="48" y="652" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#4a4a4a" text-anchor="start">Ztráta</text>
+<text x="343" y="652" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#8a8a8a" text-anchor="end">#012</text>
+<rect x="32" y="670" width="56" height="56" rx="6" fill="#efefef" stroke="#9a9a9a" stroke-width="1.5"/>
+<line x1="32" y1="670" x2="88" y2="726" stroke="#c4c4c4" stroke-width="1"/>
+<line x1="88" y1="670" x2="32" y2="726" stroke="#c4c4c4" stroke-width="1"/>
+<text x="100" y="686" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#4a4a4a" text-anchor="start">Název věci</text>
+<rect x="100" y="698" width="93.0" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<line x1="32" y1="742" x2="343" y2="742" stroke="#9a9a9a" stroke-width="1" stroke-dasharray="4 4"/>
+<rect x="32" y="752" width="70" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<rect x="273" y="752" width="70" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<rect x="16" y="788" width="343" height="150" rx="10" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<rect x="32" y="802" width="57" height="20" rx="4" fill="#efefef" stroke="none" stroke-width="1.5"/>
+<circle cx="41" cy="812" r="3" fill="#5a5a5a"/>
+<text x="48" y="816" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#4a4a4a" text-anchor="start">Nález</text>
+<text x="343" y="816" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#8a8a8a" text-anchor="end">#012</text>
+<rect x="32" y="834" width="56" height="56" rx="6" fill="#efefef" stroke="#9a9a9a" stroke-width="1.5"/>
+<line x1="32" y1="834" x2="88" y2="890" stroke="#c4c4c4" stroke-width="1"/>
+<line x1="88" y1="834" x2="32" y2="890" stroke="#c4c4c4" stroke-width="1"/>
+<text x="100" y="850" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#4a4a4a" text-anchor="start">Název věci</text>
+<rect x="100" y="862" width="93.0" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<line x1="32" y1="906" x2="343" y2="906" stroke="#9a9a9a" stroke-width="1" stroke-dasharray="4 4"/>
+<rect x="32" y="916" width="70" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<rect x="273" y="916" width="70" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<rect x="117.5" y="958" width="140" height="40" rx="6" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<text x="187.5" y="983.0" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#4a4a4a" text-anchor="middle">Načíst další</text>
+<rect x="16" y="1022" width="343" height="220" rx="6" fill="#efefef" stroke="#9a9a9a" stroke-width="1.5"/>
+<line x1="16" y1="1022" x2="359" y2="1242" stroke="#c4c4c4" stroke-width="1"/>
+<line x1="359" y1="1022" x2="16" y2="1242" stroke="#c4c4c4" stroke-width="1"/>
+<rect x="118.69999999999999" y="1119.0" width="137.60000000000002" height="26" rx="4" fill="#fff" stroke="none" stroke-width="1.5"/>
+<text x="187.5" y="1137.0" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#8a8a8a" text-anchor="middle">Mapa (Leaflet)</text>
+<circle cx="85" cy="1088" r="7" fill="#5a5a5a" stroke="#fff" stroke-width="2"/>
+<circle cx="129" cy="1154" r="7" fill="#5a5a5a" stroke="#fff" stroke-width="2"/>
+<circle cx="174" cy="1110" r="7" fill="#5a5a5a" stroke="#fff" stroke-width="2"/>
+<circle cx="218" cy="1176" r="7" fill="#5a5a5a" stroke="#fff" stroke-width="2"/>
+<rect x="26" y="1032" width="26" height="52" rx="4" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<text x="39" y="1053" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#4a4a4a" text-anchor="middle">+</text>
+<text x="39" y="1078" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#4a4a4a" text-anchor="middle">−</text>
+<rect x="16" y="1252" width="212.0" height="24" rx="12" fill="#fff7d6" stroke="#d9c26a" stroke-width="1.5"/>
+<text x="26" y="1268" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#7a6417" text-anchor="start">Na mobilu je mapa pod výsledky</text>
+<rect x="0" y="1302" width="375" height="170" rx="0" fill="#f6f6f6" stroke="none" stroke-width="1.5"/>
+<line x1="0" y1="1302" x2="375" y2="1302" stroke="#9a9a9a" stroke-width="1.5"/>
+<text x="16" y="1336" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#4a4a4a" text-anchor="start">Ztráty a nálezy ČZU</text>
+<rect x="16" y="1348" width="136.4" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<text x="16" y="1396" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#4a4a4a" text-anchor="start">Oficiální místa pro odevzdání</text>
+<rect x="16" y="1408" width="200" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<rect x="16" y="1422" width="124.0" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+</g></svg>
