@@ -31,7 +31,7 @@ final class ItemQuery
         $type = $string('type');
 
         return new self(
-            type: isset(self::TYPES[$type]) ? $type : null,
+            type: $type !== null && isset(self::TYPES[$type]) ? $type : null,
             category: $string('category'),
             building: $string('building'),
             q: $string('q'),

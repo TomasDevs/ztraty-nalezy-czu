@@ -7,25 +7,24 @@ use App\Forms\ContactForm;
  * @var array[] $related
  * @var ContactForm $form
  * @var bool $sent
+ * @var bool $canManage
+ * @var bool $canContact
+ * @var bool $isGuest
  */
 $isFound = $item['type'] === 'found';
 $isReturned = $item['status'] === 'returned';
 $copy = $isFound
-    ? ['date' => 'Nalezeno', 'lead' => 'Je to vaše?', 'action' => 'Kontaktovat nálezce', 'hint' => 'Popište věc tak, aby nálezce poznal, že je opravdu vaše: barva, obsah, poškození, gravírování…']
-    : ['date' => 'Ztraceno', 'lead' => 'Našli jste tuto věc?', 'action' => 'Napsat majiteli', 'hint' => 'Napište, kde a kdy jste věc našli a kde si ji majitel může vyzvednout.'];
+    ? ['date' => 'Nalezeno', 'lead' => 'Je to vaše?', 'action' => 'Kontaktovat nálezce', 'guestAction' => 'Přihlásit se a kontaktovat nálezce', 'hint' => 'Popište věc tak, aby nálezce poznal, že je opravdu vaše: barva, obsah, poškození, gravírování…']
+    : ['date' => 'Ztraceno', 'lead' => 'Našli jste tuto věc?', 'action' => 'Napsat majiteli', 'guestAction' => 'Přihlásit se a napsat majiteli', 'hint' => 'Napište, kde a kdy jste věc našli a kde si ji majitel může vyzvednout.'];
 $marker = [['lat' => $item['lat'], 'lng' => $item['lng'], 'title' => $item['title'], 'type' => $item['type']]];
 $largeMapUrl = sprintf('https://www.openstreetmap.org/?mlat=%1$s&mlon=%2$s#map=18/%1$s/%2$s', $item['lat'], $item['lng']);
-$firstError = array_key_first($form->errors);
-$field = fn (string $name, string $label, array $options = []) => render('partials/form-field', [
-    'name' => $name,
-    'label' => $label,
-    'value' => $form->$name,
-    'error' => $form->errors[$name] ?? null,
-    'autofocus' => $name === $firstError,
-    ...$options,
-]);
+$field = fn (string $name, string $label, array $options = []) => form_field($form, $name, $label, $options);
 ?>
 <?= render('partials/breadcrumbs', ['breadcrumbs' => $breadcrumbs]) ?>
+
+<?php if ($item['status'] === 'hidden'): ?>
+    <p class="alert alert--error" role="status">Inzerát je skrytý administrátorem. Návštěvníkům se nezobrazuje.</p>
+<?php endif ?>
 
 <article class="detail">
     <header class="detail__header">
@@ -48,15 +47,36 @@ $field = fn (string $name, string $label, array $options = []) => render('partia
             <div class="panel action">
                 <?php if ($isReturned): ?>
                     <p class="action__returned">Věc už je zpátky u majitele. Děkujeme všem, kdo pomohli.</p>
-                <?php else: ?>
+                <?php elseif ($canContact || $isGuest): ?>
                     <p class="action__lead"><?= e($copy['lead']) ?></p>
-                    <a class="button button--block" href="#kontakt"><?= e($copy['action']) ?></a>
+                    <?php if ($isGuest): ?>
+                        <a class="button button--block" href="<?= e(url('/prihlaseni', ['zpet' => item_path($item)])) ?>"><?= e($copy['guestAction']) ?></a>
+                    <?php else: ?>
+                        <a class="button button--block" href="#kontakt"><?= e($copy['action']) ?></a>
+                    <?php endif ?>
                 <?php endif ?>
                 <button class="button button--secondary button--block" type="button" data-share data-url="<?= e(absolute_url(item_path($item))) ?>" data-title="<?= e($item['title']) ?>" hidden>
                     Sdílet inzerát
                 </button>
                 <span class="visually-hidden" aria-live="polite" data-share-status></span>
             </div>
+
+            <?php if ($canManage): ?>
+                <section class="panel manage" aria-labelledby="manage-heading">
+                    <h2 id="manage-heading" class="panel__title">Správa inzerátu</h2>
+                    <a class="button button--secondary button--block" href="<?= e(url("/ucet/inzeraty/{$item['id']}/upravit")) ?>">Upravit</a>
+                    <?php if ($item['status'] === 'active'): ?>
+                        <form action="<?= e(url("/ucet/inzeraty/{$item['id']}/vraceno")) ?>" method="post">
+                            <?= csrf_field() ?>
+                            <button class="button button--secondary button--block" type="submit">Označit jako vrácené</button>
+                        </form>
+                    <?php endif ?>
+                    <form action="<?= e(url("/ucet/inzeraty/{$item['id']}/smazat")) ?>" method="post" data-confirm="Opravdu chcete inzerát smazat? Nejde to vrátit.">
+                        <?= csrf_field() ?>
+                        <button class="button button--danger button--block" type="submit">Smazat</button>
+                    </form>
+                </section>
+            <?php endif ?>
 
             <section class="panel facts" aria-labelledby="facts-heading">
                 <h2 id="facts-heading" class="panel__title">Údaje o inzerátu</h2>
@@ -77,25 +97,26 @@ $field = fn (string $name, string $label, array $options = []) => render('partia
             </section>
         </aside>
 
-        <?php if (!$isReturned): ?>
+        <?php if (!$isReturned && ($canContact || $isGuest)): ?>
             <section id="kontakt" class="panel contact" aria-labelledby="contact-heading">
                 <h2 id="contact-heading"><?= e($copy['action']) ?></h2>
-                <p class="contact__intro">Zprávu přepošleme e-mailem. Vaše adresa se v inzerátu nezveřejní.</p>
+                <?php if ($isGuest): ?>
+                    <?= render('partials/login-prompt', ['message' => 'Pro kontaktování autora se musíte přihlásit.']) ?>
+                <?php else: ?>
+                    <p class="contact__intro">Zprávu přepošleme autorovi e-mailem. Odpověď vám přijde na adresu vašeho účtu, autorovi ji nezobrazujeme v inzerátu.</p>
 
-                <?php if ($sent): ?>
-                    <p class="alert alert--success" role="status">Zpráva je odeslaná. Jakmile vám autor inzerátu odpoví, přijde vám e-mail.</p>
-                <?php elseif ($form->errors): ?>
-                    <p class="alert alert--error" role="alert">Zprávu se nepodařilo odeslat. Opravte prosím zvýrazněná pole.</p>
+                    <?php if ($sent): ?>
+                        <p class="alert alert--success" role="status">Zpráva je odeslaná. Autor vám odpoví e-mailem.</p>
+                    <?php elseif ($form->errors): ?>
+                        <p class="alert alert--error" role="alert">Zprávu se nepodařilo odeslat. Opravte prosím zvýrazněné pole.</p>
+                    <?php endif ?>
+
+                    <form class="contact__form" action="<?= e(item_url($item)) ?>#kontakt" method="post" novalidate>
+                        <?= csrf_field() ?>
+                        <?= $field('message', 'Zpráva', ['type' => 'textarea', 'hint' => $copy['hint']]) ?>
+                        <button class="button" type="submit">Odeslat zprávu</button>
+                    </form>
                 <?php endif ?>
-
-                <form class="contact__form" action="<?= e(item_url($item)) ?>#kontakt" method="post" novalidate>
-                    <div class="contact__row">
-                        <?= $field('name', 'Jméno', ['autocomplete' => 'name']) ?>
-                        <?= $field('email', 'E-mail', ['type' => 'email', 'autocomplete' => 'email']) ?>
-                    </div>
-                    <?= $field('message', 'Zpráva', ['type' => 'textarea', 'hint' => $copy['hint']]) ?>
-                    <button class="button" type="submit">Odeslat zprávu</button>
-                </form>
             </section>
         <?php endif ?>
     </div>

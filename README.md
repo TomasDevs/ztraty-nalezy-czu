@@ -12,17 +12,42 @@ PHP 8.1+, MariaDB, Vite (JS a CSS), Leaflet + OpenStreetMap. Bez frameworku a CM
 
 ## Spuštění lokálně
 
-Potřebuješ PHP 8.1+ a Node.js 20+.
+Potřebuješ PHP 8.1+ (s rozšířeními `pdo_mysql`, `gd` s WebP, `mbstring`, `fileinfo`), MariaDB, Composer a Node.js 20+.
 
 ```bash
-cp .env.example .env
+cp .env.example .env    # doplň DB_USER a DB_PASS
 npm install
+composer install        # jen kvůli testům
+mariadb -e "CREATE DATABASE ztraty_nalezy CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci"
+php database/seed.php   # vytvoří tabulky a nahraje testovací data z database/mock/
 
 npm run dev     # terminál 1: Vite dev server (assety, hot reload)
 npm run serve   # terminál 2: PHP server
 ```
 
-Web běží na http://localhost:8000. Zatím používá testovací data z `database/mock/`.
+Web běží na http://localhost:8000. Seed smaže všechny tabulky a vytvoří je znovu.
+
+## Testy
+
+```bash
+mariadb -e "CREATE DATABASE ztraty_nalezy_test CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci"
+cp .env.testing.example .env.testing    # doplň DB_USER a DB_PASS
+composer test
+```
+
+Testovací databáze se při každém běhu maže. Bez ní se integrační a feature testy přeskočí.
+
+## První administrátor
+
+Zaregistruj se přes web a pak v databázi nastav roli:
+
+```bash
+mariadb ztraty_nalezy -e "UPDATE users SET role = 'admin' WHERE email = 'tvuj@email.cz'"
+```
+
+## E-maily
+
+Zprávy z kontaktního formuláře jdou autorovi inzerátu e-mailem. `MAIL_DRIVER=log` (výchozí) je jen zapisuje do `storage/logs/mail.log`, na serveru nastav `MAIL_DRIVER=mail` a `MAIL_FROM`.
 
 ## Produkční build
 
@@ -37,7 +62,9 @@ Na server se nahraje celý projekt kromě `node_modules/`. Document root má mí
 ```
 docs/        dokumentace projektu (úvodní studie, wireframy, testy)
 public/      document root (index.php, build, uploads)
-src/         PHP: router, controllery, repozitáře, helpery
+src/         PHP: router, controllery, formuláře, repozitáře, helpery
+tests/       PHPUnit testy
+storage/     logy (storage/logs)
 templates/   PHP šablony
 assets/      zdrojové JS a CSS pro Vite
 database/    schema.sql a testovací data

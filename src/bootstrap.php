@@ -23,6 +23,8 @@ require __DIR__ . '/helpers.php';
 
 App\Core\Env::load(ROOT_PATH . '/.env');
 
+date_default_timezone_set((string) env('APP_TIMEZONE', 'Europe/Prague'));
+
 $debug = (bool) env('APP_DEBUG', false);
 error_reporting(E_ALL);
 ini_set('display_errors', $debug ? '1' : '0');

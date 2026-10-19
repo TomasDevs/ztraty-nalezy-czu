@@ -6,7 +6,7 @@ Hlavní dokument: [dokumentace-tym-07.docx](dokumentace-tym-07.docx). Místa k d
 - [x] Analýza současného stavu (knihovna ČZU, Správa učeben PEF, FB skupina)
 - [x] Idea, cílová skupina, role a oprávnění
 - [x] Informační architektura (mapa stránek, navigace, datový model)
-- [ ] Wireframy (desktop + mobil) → `docs/wireframes/`
+- [x] Wireframy (desktop + mobil, komponenty) → `docs/wireframes/`
 - [x] Klíčová slova (chybí ověření hledanosti)
 - [x] SEO strategie
 
@@ -15,15 +15,15 @@ Hlavní dokument: [dokumentace-tym-07.docx](dokumentace-tym-07.docx). Místa k d
 - [x] Serverová část v PHP (výpis, detail, kontaktní formulář, sitemap)
 - [x] AJAX (filtrování, načítání dalších inzerátů)
 - [x] API třetích stran (Leaflet + OpenStreetMap, Web Share API)
-- [ ] Přihlášení, role, přidání inzerátu, administrace
-- [ ] MariaDB místo testovacích dat
+- [x] Přihlášení, role, přidání inzerátu, administrace
+- [x] MariaDB místo testovacích dat
 - [ ] Nasazení na školní server
 
 ## 3. Testování a analýzy, do 20. 11.
 - [ ] Použitelnost (úkoly připravené, test se spolužáky)
-- [x] Přístupnost: Lighthouse 100 (chybí WAVE / axe)
+- [x] Přístupnost: Lighthouse 100, axe-core 0 chyb, ukázky kódu
 - [ ] Rychlost: PageSpeed Insights na serveru
-- [ ] Validita kódu: W3C HTML a CSS validátor
+- [x] Validita kódu: W3C HTML a CSS validátor (0 chyb)
 
 Screenshoty výsledků → `docs/testing/`
 

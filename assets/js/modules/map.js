@@ -1,18 +1,7 @@
 import L from 'leaflet';
 import 'leaflet.markercluster';
-import 'leaflet/dist/leaflet.css';
 import 'leaflet.markercluster/dist/MarkerCluster.css';
-
-const CAMPUS_CENTER = [50.13, 14.3745];
-
-// 24px hit area meets the WCAG 2.2 target size, the visible dot is smaller.
-const pinIcon = (type) =>
-  L.divIcon({
-    className: `pin pin--${type}`,
-    iconSize: [24, 24],
-    iconAnchor: [12, 12],
-    popupAnchor: [0, -12],
-  });
+import { createMap, pinIcon } from './map-core.js';
 
 // Nearby pins merge into one, so overlapping markers stay clickable.
 const clusterIcon = (cluster) =>
@@ -30,17 +19,11 @@ const popupLink = ({ title, url }) => {
 };
 
 export default function initMap(el) {
-  const map = L.map(el, { maxZoom: 19, scrollWheelZoom: false, zoomControl: false }).setView(CAMPUS_CENTER, 16);
-  L.control.zoom({ zoomInTitle: 'Přiblížit', zoomOutTitle: 'Oddálit' }).addTo(map);
+  const map = createMap(el);
   const layer = L.markerClusterGroup({
     iconCreateFunction: clusterIcon,
     maxClusterRadius: 36,
     showCoverageOnHover: false,
-  }).addTo(map);
-
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    detectRetina: true,
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   }).addTo(map);
 
   const render = (markers) => {

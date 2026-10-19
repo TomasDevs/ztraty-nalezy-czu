@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="415" height="1726" viewBox="0 0 415 1726">
+<rect width="100%" height="100%" fill="#e9e9e9"/>
+<text x="20" y="30" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#333">Wireframe: Nahlásit věc (mobil)</text>
+<g transform="translate(20 44)">
+<rect width="375" height="1642" fill="#fafafa" stroke="#b5b5b5"/>
+<rect x="0" y="0" width="375" height="64" rx="0" fill="#fff" stroke="none" stroke-width="1.5"/>
+<line x1="0" y1="64" x2="375" y2="64" stroke="#9a9a9a" stroke-width="1.5"/>
+<g transform="translate(14 16)"><path d="M11 4h10l5 5v17a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9z" fill="#efefef" stroke="#5a5a5a" stroke-width="1.5" transform="rotate(-10 16 16)"/><circle cx="15" cy="10" r="2" fill="#fff" stroke="#5a5a5a" stroke-width="1.5"/></g>
+<text x="50" y="37" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#4a4a4a" text-anchor="start">Ztráty a nálezy ČZU</text>
+<rect x="319" y="12" width="40" height="40" rx="6" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<line x1="329" y1="24" x2="349" y2="24" stroke="#4a4a4a" stroke-width="2"/>
+<line x1="329" y1="32" x2="349" y2="32" stroke="#4a4a4a" stroke-width="2"/>
+<line x1="329" y1="40" x2="349" y2="40" stroke="#4a4a4a" stroke-width="2"/>
+<rect x="199" y="12" width="112" height="40" rx="6" fill="#5a5a5a" stroke="#5a5a5a" stroke-width="1.5"/>
+<text x="255.0" y="37.0" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#fff" text-anchor="middle">Nahlásit věc</text>
+<text x="16" y="120" font-family="Helvetica, Arial, sans-serif" font-size="26" font-weight="700" fill="#4a4a4a" text-anchor="start">Nahlásit věc</text>
+<rect x="16" y="140" width="212.66" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<rect x="16" y="174" width="343" height="116" rx="10" fill="#fff" stroke="#5a5a5a" stroke-width="2.5"/>
+<rect x="36" y="192" width="40" height="40" rx="6" fill="#efefef" stroke="#9a9a9a" stroke-width="1.5"/>
+<line x1="36" y1="192" x2="76" y2="232" stroke="#c4c4c4" stroke-width="1"/>
+<line x1="76" y1="192" x2="36" y2="232" stroke="#c4c4c4" stroke-width="1"/>
+<text x="36" y="258" font-family="Helvetica, Arial, sans-serif" font-size="17" font-weight="700" fill="#4a4a4a" text-anchor="start">Něco jsem našel</text>
+<rect x="36" y="270" width="175.46" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<rect x="16" y="304" width="343" height="116" rx="10" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<rect x="36" y="322" width="40" height="40" rx="6" fill="#efefef" stroke="#9a9a9a" stroke-width="1.5"/>
+<line x1="36" y1="322" x2="76" y2="362" stroke="#c4c4c4" stroke-width="1"/>
+<line x1="76" y1="322" x2="36" y2="362" stroke="#c4c4c4" stroke-width="1"/>
+<text x="36" y="388" font-family="Helvetica, Arial, sans-serif" font-size="17" font-weight="700" fill="#4a4a4a" text-anchor="start">Něco jsem ztratil</text>
+<rect x="36" y="400" width="175.46" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<rect x="16" y="434" width="343" height="0" rx="6" fill="#fff" stroke="none" stroke-width="1.5"/>
+<text x="36" y="470" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#4a4a4a" text-anchor="start">Nález: údaje o věci</text>
+<text x="36" y="498" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#4a4a4a" text-anchor="start">Název</text>
+<rect x="36" y="508" width="303" height="40" rx="6" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<text x="48" y="533" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#8a8a8a" text-anchor="start">Např. Černá peněženka</text>
+<text x="36" y="572" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#4a4a4a" text-anchor="start">Kategorie</text>
+<rect x="36" y="582" width="303" height="40" rx="6" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<text x="48" y="607" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#8a8a8a" text-anchor="start">Vyberte…</text>
+<path d="M317 599 l6 6 l6 -6" fill="none" stroke="#4a4a4a" stroke-width="1.5"/>
+<text x="36" y="646" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#4a4a4a" text-anchor="start">Budova</text>
+<rect x="36" y="656" width="303" height="40" rx="6" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<text x="48" y="681" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#8a8a8a" text-anchor="start">Vyberte…</text>
+<path d="M317 673 l6 6 l6 -6" fill="none" stroke="#4a4a4a" stroke-width="1.5"/>
+<text x="36" y="720" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#4a4a4a" text-anchor="start">Přesné místo</text>
+<rect x="36" y="730" width="303" height="40" rx="6" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<text x="48" y="755" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#8a8a8a" text-anchor="start">Např. učebna E127</text>
+<text x="36" y="794" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#4a4a4a" text-anchor="start">Datum nálezu</text>
+<rect x="36" y="804" width="303" height="40" rx="6" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<text x="48" y="829" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#8a8a8a" text-anchor="start">19. 10. 2026</text>
+<text x="36" y="868" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#4a4a4a" text-anchor="start">Popis</text>
+<text x="36" y="888" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#8a8a8a" text-anchor="start">Barva, značka, poškození, obsah</text>
+<rect x="36" y="896" width="303" height="88" rx="6" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<text x="36" y="1012" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#4a4a4a" text-anchor="start">Místo na mapě</text>
+<rect x="36" y="1022" width="303" height="200" rx="6" fill="#efefef" stroke="#9a9a9a" stroke-width="1.5"/>
+<line x1="36" y1="1022" x2="339" y2="1222" stroke="#c4c4c4" stroke-width="1"/>
+<line x1="339" y1="1022" x2="36" y2="1222" stroke="#c4c4c4" stroke-width="1"/>
+<rect x="118.69999999999999" y="1109.0" width="137.60000000000002" height="26" rx="4" fill="#fff" stroke="none" stroke-width="1.5"/>
+<text x="187.5" y="1127.0" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#8a8a8a" text-anchor="middle">Mapa (Leaflet)</text>
+<circle cx="97" cy="1082" r="7" fill="#5a5a5a" stroke="#fff" stroke-width="2"/>
+<rect x="46" y="1032" width="26" height="52" rx="4" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<text x="59" y="1053" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#4a4a4a" text-anchor="middle">+</text>
+<text x="59" y="1078" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#4a4a4a" text-anchor="middle">−</text>
+<rect x="36" y="1230" width="231.20000000000002" height="24" rx="12" fill="#fff7d6" stroke="#d9c26a" stroke-width="1.5"/>
+<text x="46" y="1246" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#7a6417" text-anchor="start">Kliknutím do mapy se vybere místo</text>
+<text x="36" y="1274" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#4a4a4a" text-anchor="start">Fotka</text>
+<text x="36" y="1294" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#8a8a8a" text-anchor="start">JPEG, PNG nebo WebP do 5 MB</text>
+<rect x="36" y="1302" width="303" height="40" rx="6" fill="#fff" stroke="#9a9a9a" stroke-width="1.5"/>
+<text x="48" y="1327" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#8a8a8a" text-anchor="start">Vybrat soubor</text>
+<rect x="36" y="1358" width="170" height="40" rx="6" fill="#5a5a5a" stroke="#5a5a5a" stroke-width="1.5"/>
+<text x="121.0" y="1383.0" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#fff" text-anchor="middle">Zveřejnit inzerát</text>
+<rect x="16" y="434" width="343" height="988" rx="10" fill="none" stroke="#9a9a9a" stroke-width="1.5"/>
+<rect x="0" y="1452" width="375" height="170" rx="0" fill="#f6f6f6" stroke="none" stroke-width="1.5"/>
+<line x1="0" y1="1452" x2="375" y2="1452" stroke="#9a9a9a" stroke-width="1.5"/>
+<text x="16" y="1486" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#4a4a4a" text-anchor="start">Ztráty a nálezy ČZU</text>
+<rect x="16" y="1498" width="136.4" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<text x="16" y="1546" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#4a4a4a" text-anchor="start">Oficiální místa pro odevzdání</text>
+<rect x="16" y="1558" width="200" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+<rect x="16" y="1572" width="124.0" height="8" rx="3" fill="#dcdcdc" stroke="none" stroke-width="1.5"/>
+</g></svg>

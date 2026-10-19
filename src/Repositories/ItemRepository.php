@@ -7,14 +7,19 @@ namespace App\Repositories;
 interface ItemRepository
 {
     /**
+     * Hidden items are never returned by the public listing methods.
+     *
      * @return array{items: array[], total: int, markers: array[]}
      */
     public function search(ItemQuery $query): array;
 
+    /**
+     * Finds an item in any status, visibility is decided by the caller.
+     */
     public function find(int $id): ?array;
 
     /**
-     * All items, newest first.
+     * All visible items, newest first.
      */
     public function all(): array;
 
@@ -30,7 +35,23 @@ interface ItemRepository
      */
     public function stats(): array;
 
-    public function categories(): array;
+    /**
+     * Own items in every status.
+     */
+    public function forUser(int $userId): array;
 
-    public function buildings(): array;
+    /**
+     * Items in every status with the author's e-mail.
+     */
+    public function forAdmin(?string $status = null): array;
+
+    public function create(array $data): int;
+
+    public function update(int $id, array $data): void;
+
+    public function setStatus(int $id, string $status): void;
+
+    public function setPhoto(int $id, ?string $path): void;
+
+    public function delete(int $id): void;
 }

@@ -41,6 +41,47 @@ function current_path(): string
     return '/' . trim($path, '/');
 }
 
+function csrf_field(): string
+{
+    return '<input type="hidden" name="_token" value="' . e(App\Core\App::csrf()->token()) . '">';
+}
+
+function auth(): App\Auth\Auth
+{
+    return App\Core\App::auth();
+}
+
+function current_uri(): string
+{
+    $query = parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_QUERY);
+
+    return current_path() . ($query ? "?{$query}" : '');
+}
+
+/**
+ * Only internal paths are allowed as a redirect target, anything else falls back to the homepage.
+ */
+function safe_redirect_path(?string $path): string
+{
+    if ($path === null || !str_starts_with($path, '/') || str_starts_with($path, '//') || str_starts_with($path, '/\\')) {
+        return '/';
+    }
+
+    return $path;
+}
+
+function form_field(App\Forms\Form $form, string $name, string $label, array $options = []): string
+{
+    return render('partials/form-field', [
+        'name' => $name,
+        'label' => $label,
+        'value' => $form->value($name),
+        'error' => $form->errors[$name] ?? null,
+        'autofocus' => $name === array_key_first($form->errors),
+        ...$options,
+    ]);
+}
+
 function render(string $template, array $data = []): string
 {
     extract($data, EXTR_SKIP);
@@ -64,21 +105,30 @@ function json(mixed $data, int $status = 200): void
 
 function redirect(string $path, int $status = 302): never
 {
-    header('Location: ' . url($path), true, $status);
-    exit;
+    throw new App\Core\Redirect(url($path), $status);
 }
 
 function abort(int $status): never
 {
-    http_response_code($status);
+    throw new App\Core\HttpError($status);
+}
 
+function render_error(int $status): string
+{
     if (str_starts_with(current_path(), '/api/')) {
-        json(['error' => $status], $status);
-    } else {
-        view("errors/{$status}", ['title' => 'Stránka nenalezena', 'noindex' => true]);
+        header('Content-Type: application/json; charset=utf-8');
+
+        return json_encode(['error' => $status]);
     }
 
-    exit;
+    $titles = [403 => 'Přístup odepřen', 404 => 'Stránka nenalezena', 419 => 'Platnost formuláře vypršela'];
+    $title = $titles[$status] ?? 'Něco se pokazilo';
+
+    return render('layout', [
+        'title' => $title,
+        'noindex' => true,
+        'content' => render("errors/{$status}"),
+    ]);
 }
 
 /**

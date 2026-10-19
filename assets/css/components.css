@@ -26,6 +26,18 @@
   width: 100%;
 }
 
+.button--danger {
+  color: var(--lost);
+  background: var(--surface);
+  border-color: var(--lost);
+}
+
+.button--danger:hover {
+  color: var(--surface);
+  background: var(--lost);
+  border-color: var(--lost);
+}
+
 .button--secondary {
   color: var(--ink);
   background: var(--surface);
@@ -54,6 +66,9 @@
 input[type='search'],
 input[type='text'],
 input[type='email'],
+input[type='password'],
+input[type='date'],
+input[type='file'],
 textarea,
 select {
   width: 100%;
@@ -68,6 +83,9 @@ select {
 input[type='search']:hover,
 input[type='text']:hover,
 input[type='email']:hover,
+input[type='password']:hover,
+input[type='date']:hover,
+input[type='file']:hover,
 textarea:hover,
 select:hover {
   border-color: var(--ink-muted);
@@ -76,6 +94,9 @@ select:hover {
 input[type='search']:focus-visible,
 input[type='text']:focus-visible,
 input[type='email']:focus-visible,
+input[type='password']:focus-visible,
+input[type='date']:focus-visible,
+input[type='file']:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
   border-color: var(--brand);
@@ -84,6 +105,16 @@ select:focus-visible {
 
 textarea {
   resize: vertical;
+}
+
+.form {
+  display: grid;
+  gap: 1rem;
+  justify-items: start;
+}
+
+.form .field {
+  width: 100%;
 }
 
 [aria-invalid='true'] {
@@ -464,4 +495,73 @@ select {
 
 .breadcrumbs a {
   color: var(--ink-soft);
+}
+
+/* Tables */
+.table-wrap {
+  overflow-x: auto;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.table th,
+.table td {
+  padding: 0.625rem 0.875rem;
+  text-align: left;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--line);
+}
+
+.table th {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.table input {
+  min-width: 7rem;
+  min-height: 2.25rem;
+}
+
+.table input[name='name'] {
+  min-width: 18rem;
+}
+
+.admin-add {
+  max-width: 32rem;
+  margin-top: 2rem;
+}
+
+.table__actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.link-button {
+  padding: 0;
+  font: inherit;
+  color: var(--brand);
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: 0;
+}
+
+.link-button--danger {
+  color: var(--lost);
+}
+
+.muted {
+  color: var(--ink-muted);
 }

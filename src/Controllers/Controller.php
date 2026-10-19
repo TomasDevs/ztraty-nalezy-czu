@@ -4,16 +4,25 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
-use App\Repositories\ItemRepository;
-use App\Repositories\JsonItemRepository;
+use App\Core\App;
 
 abstract class Controller
 {
-    protected function items(): ItemRepository
+    protected function requireUser(): array
     {
-        static $repository = null;
+        return auth()->user() ?? redirect('/prihlaseni?zpet=' . rawurlencode(current_uri()));
+    }
 
-        // TODO: switch to a PDO repository when DATA_SOURCE=db
-        return $repository ??= new JsonItemRepository();
+    protected function deleteItem(array $item): void
+    {
+        App::photos()->delete($item['photo']);
+        App::items()->delete($item['id']);
+    }
+
+    protected function requireAdmin(): array
+    {
+        $user = $this->requireUser();
+
+        return $user['role'] === 'admin' ? $user : abort(403);
     }
 }
