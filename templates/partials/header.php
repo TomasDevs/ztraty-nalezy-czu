@@ -23,7 +23,7 @@ $account = $user
         </a>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-menu-toggle>
             <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-            Menu
+            <span class="visually-hidden">Menu</span>
         </button>
         <nav id="main-nav" class="site-nav" aria-label="Hlavní navigace">
             <ul class="nav">
@@ -52,6 +52,6 @@ $account = $user
                 <?php endif ?>
             </ul>
         </nav>
-        <a class="button site-header__cta" href="<?= e(url('/nahlasit')) ?>" <?= current_path() === '/nahlasit' ? 'aria-current="page"' : '' ?>>Nahlásit věc</a>
+        <a class="button site-header__cta" href="<?= e(url('/nahlasit')) ?>" <?= current_path() === '/nahlasit' ? 'aria-current="page"' : '' ?>>Nahlásit<span class="site-header__cta-extra">&nbsp;věc</span></a>
     </div>
 </header>
