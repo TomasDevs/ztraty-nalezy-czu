@@ -21,7 +21,7 @@ Hlavní dokument: [dokumentace-tym-07.docx](dokumentace-tym-07.docx). Místa k d
 
 ## 3. Testování a analýzy, do 20. 11.
 - [ ] Použitelnost (úkoly připravené, test se spolužáky)
-- [x] Přístupnost: Lighthouse 100 (chybí WAVE / axe)
+- [x] Přístupnost: Lighthouse 100, axe-core 0 chyb, ukázky kódu
 - [ ] Rychlost: PageSpeed Insights na serveru
 - [x] Validita kódu: W3C HTML a CSS validátor (0 chyb)
 

@@ -24,7 +24,7 @@ $statuses = ['active' => 'Aktivní', 'returned' => 'Vráceno', 'hidden' => 'Skry
     <?php if (!$items): ?>
         <p class="panel">Zatím nemáte žádný inzerát.</p>
     <?php else: ?>
-        <div class="table-wrap" role="region" aria-label="Moje inzeráty" tabindex="0">
+        <div class="table-wrap" role="region" aria-label="Tabulka mých inzerátů" tabindex="0">
             <table class="table">
                 <thead>
                     <tr>
