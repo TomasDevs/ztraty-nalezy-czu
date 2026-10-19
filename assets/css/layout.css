@@ -24,22 +24,87 @@ main.container {
   padding-block: 0.75rem;
 }
 
-/* Mobile: logo and CTA on the first row, nav below */
-.site-header nav {
+/* Mobile: logo, CTA and menu toggle on the first row, nav below */
+.site-nav {
   order: 3;
   width: 100%;
 }
 
 .site-header__cta {
+  order: 1;
   min-height: 2.5rem;
+  margin-left: auto;
   padding-inline: 1rem;
 }
 
+.menu-toggle {
+  display: none;
+  order: 2;
+  align-items: center;
+  gap: 0.375rem;
+  min-height: 2.5rem;
+  padding: 0.5rem 0.75rem;
+  font: inherit;
+  font-weight: 500;
+  color: var(--ink);
+  cursor: pointer;
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+}
+
+.menu-toggle .icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* With JS the mobile nav collapses behind the toggle; without JS it stays visible */
+@media (max-width: 47.99rem) {
+  .js .menu-toggle {
+    display: inline-flex;
+  }
+
+  .js .site-nav:not(.is-open) {
+    display: none;
+  }
+
+  .site-nav .nav {
+    flex-direction: column;
+    gap: 0;
+    padding-block: 0.25rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .site-nav .nav a,
+  .site-nav .nav__button {
+    width: 100%;
+    padding-block: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .site-nav .nav li:last-child :is(a, .nav__button) {
+    border-bottom: 0;
+  }
+
+  .site-nav .nav a[aria-current='page'] {
+    font-weight: 600;
+    border-bottom-color: var(--line);
+    box-shadow: inset 3px 0 0 var(--brand);
+    padding-left: 0.75rem;
+  }
+}
+
 @media (min-width: 48rem) {
-  .site-header nav {
+  .site-nav {
     order: 0;
     width: auto;
     margin-left: auto;
+  }
+
+  .site-header__cta {
+    order: 0;
+    margin-left: 0;
   }
 }
 

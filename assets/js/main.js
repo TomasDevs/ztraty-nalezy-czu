@@ -7,6 +7,7 @@ const modules = [
   ['[data-share]', () => import('./modules/share.js')],
   ['[data-location-picker]', () => import('./modules/location-picker.js')],
   ['form[data-confirm]', () => import('./modules/confirm.js')],
+  ['[data-menu-toggle]', () => import('./modules/menu.js')],
 ];
 
 modules.forEach(([selector, load]) => {

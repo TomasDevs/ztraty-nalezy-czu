@@ -21,7 +21,11 @@ $account = $user
             </svg>
             <span>Ztráty a nálezy <span class="logo__suffix">ČZU</span></span>
         </a>
-        <nav aria-label="Hlavní navigace">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-menu-toggle>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+            Menu
+        </button>
+        <nav id="main-nav" class="site-nav" aria-label="Hlavní navigace">
             <ul class="nav">
                 <?php foreach ($nav as $link): ?>
                     <?php $isActive = $isListing && ($link['query']['type'] ?? null) === $activeType ?>
