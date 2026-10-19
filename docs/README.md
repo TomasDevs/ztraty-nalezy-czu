@@ -23,7 +23,7 @@ Hlavní dokument: [dokumentace-tym-07.docx](dokumentace-tym-07.docx). Místa k d
 - [ ] Použitelnost (úkoly připravené, test se spolužáky)
 - [x] Přístupnost: Lighthouse 100 (chybí WAVE / axe)
 - [ ] Rychlost: PageSpeed Insights na serveru
-- [ ] Validita kódu: W3C HTML a CSS validátor
+- [x] Validita kódu: W3C HTML a CSS validátor (0 chyb)
 
 Screenshoty výsledků → `docs/testing/`
 
