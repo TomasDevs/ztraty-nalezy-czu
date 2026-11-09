@@ -2,6 +2,8 @@
 
 Hlavní dokument: [dokumentace-tym-07.docx](dokumentace-tym-07.docx). Místa k doplnění jsou ve Wordu zvýrazněná žlutě (DOPLNIT).
 
+Úvodní studie k samostatnému odevzdání (kapitoly 1 a 2 z hlavního dokumentu): [uvodni-studie-tym-07.docx](uvodni-studie-tym-07.docx), [uvodni-studie-tym-07.pdf](uvodni-studie-tym-07.pdf).
+
 ## 1. Úvodní studie (analýza), do 9. 11.
 - [x] Analýza současného stavu (knihovna ČZU, Správa učeben PEF, FB skupina)
 - [x] Idea, cílová skupina, role a oprávnění
