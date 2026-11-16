@@ -23,7 +23,7 @@ final class ContactTest extends FeatureTestCase
 
     private function messageCount(): int
     {
-        return (int) self::$db->query("SELECT COUNT(*) FROM messages WHERE item_id = {$this->item['id']}")->fetchColumn();
+        return App::messages()->countForItem($this->item['id']);
     }
 
     public function testGuestSeesLoginPromptInsteadOfForm(): void

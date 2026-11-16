@@ -57,8 +57,7 @@ abstract class FeatureTestCase extends DatabaseTestCase
 
     private function registerServices(): void
     {
-        App::reset();
-        App::set('db', self::$db);
+        $this->bindStorage();
         App::set('session', new Session($this->session));
         App::set('photos', new PhotoProcessor($this->publicDir));
         App::set('mailer', $this->mailer);

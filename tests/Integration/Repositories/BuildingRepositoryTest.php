@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Integration\Repositories;
 
+use App\Core\App;
 use App\Repositories\BuildingRepository;
-use App\Repositories\PdoBuildingRepository;
 use Tests\Support\DatabaseTestCase;
 use Tests\Support\Fixtures;
 
@@ -18,7 +18,7 @@ final class BuildingRepositoryTest extends DatabaseTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->buildings = new PdoBuildingRepository(self::$db);
+        $this->buildings = App::buildings();
     }
 
     public function testAllIsSortedByNameAndCoordinatesAreFloats(): void

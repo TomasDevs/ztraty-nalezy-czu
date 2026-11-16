@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Integration;
 
-use App\Core\App;
 use App\Core\Kernel;
 use Tests\Support\DatabaseTestCase;
 use Tests\Support\Fixtures;
@@ -16,8 +15,6 @@ final class KernelRoutingTest extends DatabaseTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        App::reset();
-        App::set('db', self::$db);
         $_GET = $_POST = [];
     }
 

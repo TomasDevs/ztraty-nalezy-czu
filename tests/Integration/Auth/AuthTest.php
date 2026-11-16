@@ -6,8 +6,8 @@ namespace Tests\Integration\Auth;
 
 use App\Auth\Auth;
 use App\Auth\LoginResult;
+use App\Core\App;
 use App\Core\Session;
-use App\Repositories\PdoUserRepository;
 use App\Repositories\UserRepository;
 use Tests\Support\DatabaseTestCase;
 use Tests\Support\Fixtures;
@@ -23,7 +23,7 @@ final class AuthTest extends DatabaseTestCase
     {
         parent::setUp();
         $this->sessionData = [];
-        $this->users = new PdoUserRepository(self::$db);
+        $this->users = App::users();
     }
 
     private function auth(): Auth
@@ -91,7 +91,7 @@ final class AuthTest extends DatabaseTestCase
         $user = $this->createUser();
         $this->auth()->attempt($user['email'], 'password123');
 
-        self::$db->exec("DELETE FROM users WHERE id = {$user['id']}");
+        $this->deleteRow('users', $user['id']);
 
         $this->assertFalse($this->auth()->check());
     }
