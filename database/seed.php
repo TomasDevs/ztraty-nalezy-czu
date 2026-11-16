@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use App\Core\Database;
-use App\Repositories\BuildingRepository;
-use App\Repositories\CategoryRepository;
+use App\Repositories\PdoBuildingRepository;
+use App\Repositories\PdoCategoryRepository;
 use App\Repositories\PdoItemRepository;
 
 require dirname(__DIR__) . '/src/bootstrap.php';
@@ -15,8 +15,8 @@ $load = fn (string $name) => json_decode((string) file_get_contents(__DIR__ . "/
 echo "Recreating tables in " . env('DB_NAME') . "\n";
 Database::runSqlFile($db, __DIR__ . '/schema.sql');
 
-$categories = new CategoryRepository($db);
-$buildings = new BuildingRepository($db);
+$categories = new PdoCategoryRepository($db);
+$buildings = new PdoBuildingRepository($db);
 $items = new PdoItemRepository($db);
 
 $categoryIds = [];

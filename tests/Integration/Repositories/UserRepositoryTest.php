@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Integration\Repositories;
 
+use App\Repositories\PdoUserRepository;
 use App\Repositories\UserRepository;
 use Tests\Support\DatabaseTestCase;
 use Tests\Support\Fixtures;
@@ -17,7 +18,7 @@ final class UserRepositoryTest extends DatabaseTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->users = new UserRepository(self::$db);
+        $this->users = new PdoUserRepository(self::$db);
     }
 
     public function testCreateHashesPasswordAndLowercasesEmail(): void

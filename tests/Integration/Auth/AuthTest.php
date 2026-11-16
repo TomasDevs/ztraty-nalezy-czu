@@ -7,6 +7,7 @@ namespace Tests\Integration\Auth;
 use App\Auth\Auth;
 use App\Auth\LoginResult;
 use App\Core\Session;
+use App\Repositories\PdoUserRepository;
 use App\Repositories\UserRepository;
 use Tests\Support\DatabaseTestCase;
 use Tests\Support\Fixtures;
@@ -22,7 +23,7 @@ final class AuthTest extends DatabaseTestCase
     {
         parent::setUp();
         $this->sessionData = [];
-        $this->users = new UserRepository(self::$db);
+        $this->users = new PdoUserRepository(self::$db);
     }
 
     private function auth(): Auth

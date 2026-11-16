@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Integration\Repositories;
 
-use App\Repositories\MessageRepository;
+use App\Repositories\PdoMessageRepository;
 use Tests\Support\DatabaseTestCase;
 use Tests\Support\Fixtures;
 
@@ -14,7 +14,7 @@ final class MessageRepositoryTest extends DatabaseTestCase
 
     public function testCreateAndCount(): void
     {
-        $messages = new MessageRepository(self::$db);
+        $messages = new PdoMessageRepository(self::$db);
         $item = $this->createItem();
         $sender = $this->createUser();
 

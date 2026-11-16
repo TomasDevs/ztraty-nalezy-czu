@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Integration\Repositories;
 
 use App\Repositories\CategoryRepository;
+use App\Repositories\PdoCategoryRepository;
 use Tests\Support\DatabaseTestCase;
 use Tests\Support\Fixtures;
 
@@ -17,7 +18,7 @@ final class CategoryRepositoryTest extends DatabaseTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->categories = new CategoryRepository(self::$db);
+        $this->categories = new PdoCategoryRepository(self::$db);
     }
 
     public function testAllIsSortedByName(): void

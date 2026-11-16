@@ -12,7 +12,11 @@ use App\Repositories\BuildingRepository;
 use App\Repositories\CategoryRepository;
 use App\Repositories\ItemRepository;
 use App\Repositories\MessageRepository;
+use App\Repositories\PdoBuildingRepository;
+use App\Repositories\PdoCategoryRepository;
 use App\Repositories\PdoItemRepository;
+use App\Repositories\PdoMessageRepository;
+use App\Repositories\PdoUserRepository;
 use App\Repositories\UserRepository;
 use App\Uploads\PhotoProcessor;
 use PDO;
@@ -51,7 +55,7 @@ final class App
 
     public static function users(): UserRepository
     {
-        return self::$services['users'] ??= new UserRepository(self::db());
+        return self::$services['users'] ??= new PdoUserRepository(self::db());
     }
 
     public static function auth(): Auth
@@ -66,7 +70,7 @@ final class App
 
     public static function messages(): MessageRepository
     {
-        return self::$services['messages'] ??= new MessageRepository(self::db());
+        return self::$services['messages'] ??= new PdoMessageRepository(self::db());
     }
 
     public static function mailer(): Mailer
@@ -83,11 +87,11 @@ final class App
 
     public static function categories(): CategoryRepository
     {
-        return self::$services['categories'] ??= new CategoryRepository(self::db());
+        return self::$services['categories'] ??= new PdoCategoryRepository(self::db());
     }
 
     public static function buildings(): BuildingRepository
     {
-        return self::$services['buildings'] ??= new BuildingRepository(self::db());
+        return self::$services['buildings'] ??= new PdoBuildingRepository(self::db());
     }
 }
