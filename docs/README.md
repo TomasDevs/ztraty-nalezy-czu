@@ -1,6 +1,10 @@
 # Dokumentace
 
-Hlavní dokument: [dokumentace-tym-07.docx](dokumentace-tym-07.docx). Místa k doplnění jsou ve Wordu zvýrazněná žlutě (DOPLNIT).
+Hlavní dokument: [dokumentace-tym-07.docx](dokumentace-tym-07.docx).
+
+Prezentace: [prezentace-tym-07.pptx](prezentace-tym-07.pptx).
+
+Web: https://ete89e.pef.czu.cz/zs2627/07
 
 Úvodní studie k samostatnému odevzdání (kapitoly 1 a 2 z hlavního dokumentu): [uvodni-studie-tym-07.docx](uvodni-studie-tym-07.docx), [uvodni-studie-tym-07.pdf](uvodni-studie-tym-07.pdf).
 
@@ -9,7 +13,7 @@ Hlavní dokument: [dokumentace-tym-07.docx](dokumentace-tym-07.docx). Místa k d
 - [x] Idea, cílová skupina, role a oprávnění
 - [x] Informační architektura (mapa stránek, navigace, datový model)
 - [x] Wireframy (desktop + mobil, komponenty) → `docs/wireframes/`
-- [x] Klíčová slova (chybí ověření hledanosti)
+- [x] Klíčová slova
 - [x] SEO strategie
 
 ## 2. Realizace, do 20. 11.
@@ -19,16 +23,14 @@ Hlavní dokument: [dokumentace-tym-07.docx](dokumentace-tym-07.docx). Místa k d
 - [x] API třetích stran (Leaflet + OpenStreetMap, Web Share API)
 - [x] Přihlášení, role, přidání inzerátu, administrace
 - [x] MariaDB místo testovacích dat
-- [ ] Nasazení na školní server
+- [x] Nasazení na školní server
 
 ## 3. Testování a analýzy, do 20. 11.
-- [ ] Použitelnost (úkoly připravené, test se spolužáky)
+- [x] Použitelnost (test s pěti spolužáky)
 - [x] Přístupnost: Lighthouse 100, axe-core 0 chyb, ukázky kódu
-- [ ] Rychlost: PageSpeed Insights na serveru
+- [x] Rychlost: Lighthouse (mobil a počítač)
 - [x] Validita kódu: W3C HTML a CSS validátor (0 chyb)
 
-Screenshoty výsledků → `docs/testing/`
-
 ## 4. Zadávací dokumentace a prezentace, do 20. 11.
-- [ ] Doplnit žlutá místa v dokumentu
-- [ ] Prezentace + živé demo
+- [x] Dokumentace
+- [x] Prezentace + živé demo
