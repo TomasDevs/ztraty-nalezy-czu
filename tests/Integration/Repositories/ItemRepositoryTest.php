@@ -4,22 +4,23 @@ declare(strict_types=1);
 
 namespace Tests\Integration\Repositories;
 
+use App\Core\App;
 use App\Repositories\ItemQuery;
-use App\Repositories\PdoItemRepository;
+use App\Repositories\ItemRepository;
 use Tests\Support\DatabaseTestCase;
 use Tests\Support\Fixtures;
 
-final class PdoItemRepositoryTest extends DatabaseTestCase
+final class ItemRepositoryTest extends DatabaseTestCase
 {
     use Fixtures;
 
-    private PdoItemRepository $items;
+    private ItemRepository $items;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->items = new PdoItemRepository(self::$db);
-        self::$db->exec('DELETE FROM items');
+        $this->items = App::items();
+        $this->clearTables('items');
     }
 
     public function testSearchWithoutFiltersHidesHiddenAndSortsNewestFirst(): void
@@ -173,7 +174,7 @@ final class PdoItemRepositoryTest extends DatabaseTestCase
         $this->assertSame('cerna-penezenka', $item['slug']);
         $this->assertSame(
             'cerna penezenka',
-            substr((string) self::$db->query("SELECT search_text FROM items WHERE id = {$item['id']}")->fetchColumn(), 0, 15)
+            substr($this->findRow('items', $item['id'])['search_text'], 0, 15)
         );
     }
 

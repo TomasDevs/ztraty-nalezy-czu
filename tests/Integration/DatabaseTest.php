@@ -8,6 +8,15 @@ use Tests\Support\DatabaseTestCase;
 
 final class DatabaseTest extends DatabaseTestCase
 {
+    protected function setUp(): void
+    {
+        if (self::usesJson()) {
+            $this->markTestSkipped('MariaDB only');
+        }
+
+        parent::setUp();
+    }
+
     public function testSchemaCreatesAllTables(): void
     {
         $tables = self::$db->query('SHOW TABLES')->fetchAll(\PDO::FETCH_COLUMN);

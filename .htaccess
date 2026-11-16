@@ -1,0 +1,4 @@
+# School server: the whole project sits in the web folder, only public/ is served.
+# Everything else (src, storage with JSON data, .env) is unreachable from the web.
+RewriteEngine On
+RewriteRule ^(.*)$ public/$1 [L]

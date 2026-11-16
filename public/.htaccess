@@ -3,3 +3,9 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.php [QSA,L]
+
+# Phone photos are often bigger than the usual 2 MB limit (the form allows 5 MB)
+<IfModule mod_php.c>
+    php_value upload_max_filesize 6M
+    php_value post_max_size 8M
+</IfModule>

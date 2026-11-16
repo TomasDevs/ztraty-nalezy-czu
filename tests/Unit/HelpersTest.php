@@ -19,6 +19,30 @@ final class HelpersTest extends TestCase
         $this->assertSame('klice zlutoucky', fold('Klíče ŽLUŤOUČKÝ'));
     }
 
+    public function testEnvFallsBackToProcessEnvironment(): void
+    {
+        putenv('HELPERS_TEST_VALUE=from-process');
+
+        try {
+            $this->assertSame('from-process', env('HELPERS_TEST_VALUE'));
+            $_ENV['HELPERS_TEST_VALUE'] = 'from-file';
+            $this->assertSame('from-file', env('HELPERS_TEST_VALUE'));
+        } finally {
+            putenv('HELPERS_TEST_VALUE');
+            unset($_ENV['HELPERS_TEST_VALUE']);
+        }
+
+        $this->assertSame('default', env('HELPERS_TEST_VALUE', 'default'));
+    }
+
+    public function testCzechSortKeyOrdersLikeCzechCollation(): void
+    {
+        $names = ['Žluté', 'Chata', 'čepice', 'Hrnek', 'Cyklo', 'Doklady', 'Řidičák', 'ráno', 'Šála', 'Elektronika', 'Ústí'];
+        usort($names, fn (string $a, string $b) => czech_sort_key($a) <=> czech_sort_key($b));
+
+        $this->assertSame(['Cyklo', 'čepice', 'Doklady', 'Elektronika', 'Hrnek', 'Chata', 'ráno', 'Řidičák', 'Šála', 'Ústí', 'Žluté'], $names);
+    }
+
     public function testSlugify(): void
     {
         $this->assertSame('ztracene-klice-cerna-klicenka', slugify('Ztracené klíče, černá klíčenka!'));

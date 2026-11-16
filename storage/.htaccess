@@ -1,0 +1,2 @@
+# Fallback when the root .htaccess is not applied
+Require all denied

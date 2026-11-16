@@ -2,9 +2,14 @@
 
 declare(strict_types=1);
 
+/**
+ * Values from .env win, the process environment fills the rest (e.g. DATA_DRIVER=json php ...).
+ */
 function env(string $key, mixed $default = null): mixed
 {
-    return $_ENV[$key] ?? $default;
+    $process = getenv($key);
+
+    return $_ENV[$key] ?? ($process !== false ? $process : $default);
 }
 
 function e(?string $value): string
@@ -142,6 +147,17 @@ function fold(string $text): string
         'ó' => 'o', 'ö' => 'o', 'ř' => 'r', 'š' => 's', 'ť' => 't', 'ú' => 'u', 'ů' => 'u', 'ü' => 'u',
         'ý' => 'y', 'ž' => 'z',
     ]);
+}
+
+/**
+ * Sort key matching utf8mb4_czech_ci closely enough for short names:
+ * č, ř, š, ž and ch sort after their base letters, other accents are ignored.
+ */
+function czech_sort_key(string $text): string
+{
+    $text = strtr(mb_strtolower($text), ['ch' => 'h~', 'č' => 'c~', 'ř' => 'r~', 'š' => 's~', 'ž' => 'z~']);
+
+    return fold($text);
 }
 
 function slugify(string $text): string

@@ -193,6 +193,14 @@ final class ItemFormTest extends TestCase
         $this->assertArrayHasKey('photo', $this->errors([], $photo));
     }
 
+    public function testUploadedPhotoIsNotPrefilledAsText(): void
+    {
+        $form = ItemForm::fromArray($this->input(['title' => '']), $this->upload($this->png()));
+        $form->validate(self::CATEGORIES, self::BUILDINGS);
+
+        $this->assertSame('', $form->value('photo'));
+    }
+
     public function testUploadErrorIsReported(): void
     {
         $this->assertArrayHasKey('photo', $this->errors([], ['error' => UPLOAD_ERR_INI_SIZE, 'tmp_name' => '', 'size' => 0]));

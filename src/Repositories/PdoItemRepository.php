@@ -8,8 +8,6 @@ use PDO;
 
 final class PdoItemRepository implements ItemRepository
 {
-    private const WRITABLE = ['category_id', 'building_id', 'type', 'title', 'description', 'location', 'lat', 'lng', 'date'];
-
     public function __construct(private readonly PDO $db)
     {
     }
@@ -30,7 +28,7 @@ final class PdoItemRepository implements ItemRepository
         return [
             'items' => $page,
             'total' => count($markers),
-            'markers' => array_map($this->marker(...), $markers),
+            'markers' => array_map(ItemRows::marker(...), $markers),
         ];
     }
 
@@ -92,8 +90,8 @@ final class PdoItemRepository implements ItemRepository
     public function create(array $data): int
     {
         $row = [
-            ...array_intersect_key($data, array_flip([...self::WRITABLE, 'user_id', 'status', 'id'])),
-            ...$this->derived($data),
+            ...array_intersect_key($data, array_flip([...ItemRows::WRITABLE, 'user_id', 'status', 'id'])),
+            ...ItemRows::derived($data),
         ];
 
         $columns = implode(', ', array_keys($row));
@@ -105,7 +103,7 @@ final class PdoItemRepository implements ItemRepository
 
     public function update(int $id, array $data): void
     {
-        $row = [...array_intersect_key($data, array_flip(self::WRITABLE)), ...$this->derived($data)];
+        $row = [...array_intersect_key($data, array_flip(ItemRows::WRITABLE)), ...ItemRows::derived($data)];
         $assignments = implode(', ', array_map(fn (string $column) => "{$column} = ?", array_keys($row)));
 
         $this->run("UPDATE items SET {$assignments} WHERE id = ?", [...array_values($row), $id]);
@@ -166,15 +164,6 @@ final class PdoItemRepository implements ItemRepository
         return [implode(' AND ', $where), $params];
     }
 
-    private function derived(array $data): array
-    {
-        $slug = trim(substr(slugify($data['title']), 0, 160), '-');
-
-        return [
-            'slug' => $slug !== '' ? $slug : 'inzerat',
-            'search_text' => fold("{$data['title']} {$data['description']} {$data['location']}"),
-        ];
-    }
 
     private function fetchItems(string $sql, array $params = []): array
     {
@@ -214,17 +203,6 @@ final class PdoItemRepository implements ItemRepository
                 'lng' => (float) $row['building_lng'],
             ],
             ...(isset($row['author_email']) ? ['author_email' => $row['author_email']] : []),
-        ];
-    }
-
-    private function marker(array $row): array
-    {
-        return [
-            'lat' => (float) $row['lat'],
-            'lng' => (float) $row['lng'],
-            'title' => $row['title'],
-            'type' => $row['type'],
-            'url' => item_url($row),
         ];
     }
 }

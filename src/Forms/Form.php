@@ -12,8 +12,10 @@ abstract class Form
     public function value(string $field): string
     {
         $property = lcfirst(str_replace('_', '', ucwords($field, '_')));
+        $value = $this->$property ?? '';
 
-        return (string) ($this->$property ?? '');
+        // uploads are arrays and cannot be prefilled
+        return is_scalar($value) ? (string) $value : '';
     }
 
     protected static function string(array $input, string $key): string

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Support;
 
-use App\Repositories\PdoItemRepository;
+use App\Core\App;
 
 trait Fixtures
 {
@@ -22,7 +22,7 @@ trait Fixtures
             ...$overrides,
         ];
 
-        $user['id'] = $this->insert('users', $user);
+        $user['id'] = $this->insertRow('users', $user);
 
         return $user;
     }
@@ -31,7 +31,7 @@ trait Fixtures
     {
         $n = ++self::$fixtureCounter;
         $category = ['slug' => "category-{$n}", 'name' => "Category {$n}", ...$overrides];
-        $category['id'] = $this->insert('categories', $category);
+        $category['id'] = $this->insertRow('categories', $category);
 
         return $category;
     }
@@ -47,7 +47,7 @@ trait Fixtures
             'lng' => 14.373000,
             ...$overrides,
         ];
-        $building['id'] = $this->insert('buildings', $building);
+        $building['id'] = $this->insertRow('buildings', $building);
 
         return $building;
     }
@@ -71,7 +71,7 @@ trait Fixtures
             ...$overrides,
         ];
 
-        $items = new PdoItemRepository(self::$db);
+        $items = App::items();
         $item['id'] = $items->create($item);
 
         if ($item['photo'] !== null) {
@@ -86,16 +86,5 @@ trait Fixtures
         static $hash = null;
 
         return $hash ??= password_hash('password123', PASSWORD_DEFAULT);
-    }
-
-    private function insert(string $table, array $row): int
-    {
-        $columns = implode(', ', array_keys($row));
-        $placeholders = implode(', ', array_fill(0, count($row), '?'));
-
-        $statement = self::$db->prepare("INSERT INTO {$table} ({$columns}) VALUES ({$placeholders})");
-        $statement->execute(array_values($row));
-
-        return (int) self::$db->lastInsertId();
     }
 }

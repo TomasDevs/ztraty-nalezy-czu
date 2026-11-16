@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Integration\Repositories;
 
+use App\Core\App;
 use App\Repositories\UserRepository;
 use Tests\Support\DatabaseTestCase;
 use Tests\Support\Fixtures;
@@ -17,7 +18,7 @@ final class UserRepositoryTest extends DatabaseTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->users = new UserRepository(self::$db);
+        $this->users = App::users();
     }
 
     public function testCreateHashesPasswordAndLowercasesEmail(): void
@@ -45,8 +46,7 @@ final class UserRepositoryTest extends DatabaseTestCase
 
     public function testAllIncludesItemCountsNewestFirst(): void
     {
-        self::$db->exec('DELETE FROM items');
-        self::$db->exec('DELETE FROM users');
+        $this->clearTables('items', 'users');
         $first = $this->createUser();
         $second = $this->createUser();
         $this->createItem(['user_id' => $first['id']]);
