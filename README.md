@@ -45,7 +45,7 @@ composer test:json
 
 ## Data v JSON souborech
 
-Na školním serveru zatím není přístup k databázi, proto aplikace umí ukládat data i do JSON souborů v `storage/data/`. Přepíná se v `.env`:
+Jako záloha pro hosting bez přístupu k databázi umí aplikace ukládat data i do JSON souborů v `storage/data/`. Přepíná se v `.env`:
 
 ```bash
 DATA_DRIVER=json   # mysql (výchozí) = MariaDB
@@ -77,20 +77,25 @@ Na server se nahraje celý projekt kromě `node_modules/`. Document root má mí
 
 ## Nasazení na školní server
 
-Web běží na https://ete89e.pef.czu.cz/zs2627/07 s daty v JSON souborech. Nejdřív otevři spojení a zadej heslo (vydrží 2 hodiny):
+Web běží na https://ete89e.pef.czu.cz/zs2627/07 s daty v MariaDB.
+
+1. Zkopíruj `.env.server.example` na `.env.server` a doplň údaje z `kitlab_db.php` (soubor je v `.gitignore`).
+2. V [Admineru](https://ete89e.pef.czu.cz/adminer.php) se přihlas stejnými údaji a importuj `database/seed.sql`. Vytvoří tabulky s ukázkovými daty (soubor se generuje příkazem `php database/export-sql.php`).
+3. Otevři spojení se serverem a zadej heslo (vydrží 2 hodiny):
 
 ```bash
 ssh -fNM -o ControlPath=~/.ssh/kitlab.sock -o ControlPersist=2h -p 56789 xlogin@ete89e.pef.czu.cz
 ```
 
-Pak nahraj aplikaci:
+4. Nahraj aplikaci:
 
 ```bash
-scripts/deploy.sh xlogin              # jen kód, data na serveru zůstanou
-scripts/deploy.sh xlogin --with-data  # poprvé: i ukázková data (přepíše uživatele a inzeráty!)
+scripts/deploy.sh xlogin
 ```
 
-Skript nahrává commitnutý kód (`git archive`), sestaví assety a vytvoří `.env` pro server.
+Skript nahrává commitnutý kód (`git archive`), sestaví assety a vytvoří `.env` pro server. Data v databázi nemění.
+
+Bez databáze jde nasadit s JSON soubory: `scripts/deploy.sh xlogin --json --with-data` (poprvé, s ukázkovými daty) a dál `scripts/deploy.sh xlogin --json`.
 
 ## Struktura
 

@@ -19,7 +19,7 @@ School project (ITCS, PEF ČZU): lost & found web for the ČZU campus. Roles: gu
 - `npm run dev` + `npm run serve` (two terminals) → http://localhost:8000
 - `npm run build` → production assets in `public/build`
 - `composer test` → PHPUnit (needs the `ztraty_nalezy_test` DB, see README); `composer test:json` runs the same tests on JSON storage
-- `scripts/deploy.sh xlogin [--with-data]` → upload to the school server (see README)
+- `scripts/deploy.sh xlogin [--json [--with-data]]` → upload to the school server (MariaDB by default, see README); `php database/export-sql.php` → `database/seed.sql` for Adminer
 
 ## Conventions
 - Test first: write the failing test, then the code. Forms in `src/Forms/` validate input, controllers stay thin.
