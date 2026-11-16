@@ -2,9 +2,14 @@
 
 declare(strict_types=1);
 
+/**
+ * Values from .env win, the process environment fills the rest (e.g. DATA_DRIVER=json php ...).
+ */
 function env(string $key, mixed $default = null): mixed
 {
-    return $_ENV[$key] ?? $default;
+    $process = getenv($key);
+
+    return $_ENV[$key] ?? ($process !== false ? $process : $default);
 }
 
 function e(?string $value): string

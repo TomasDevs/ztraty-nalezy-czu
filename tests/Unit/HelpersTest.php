@@ -19,6 +19,22 @@ final class HelpersTest extends TestCase
         $this->assertSame('klice zlutoucky', fold('Klíče ŽLUŤOUČKÝ'));
     }
 
+    public function testEnvFallsBackToProcessEnvironment(): void
+    {
+        putenv('HELPERS_TEST_VALUE=from-process');
+
+        try {
+            $this->assertSame('from-process', env('HELPERS_TEST_VALUE'));
+            $_ENV['HELPERS_TEST_VALUE'] = 'from-file';
+            $this->assertSame('from-file', env('HELPERS_TEST_VALUE'));
+        } finally {
+            putenv('HELPERS_TEST_VALUE');
+            unset($_ENV['HELPERS_TEST_VALUE']);
+        }
+
+        $this->assertSame('default', env('HELPERS_TEST_VALUE', 'default'));
+    }
+
     public function testCzechSortKeyOrdersLikeCzechCollation(): void
     {
         $names = ['Žluté', 'Chata', 'čepice', 'Hrnek', 'Cyklo', 'Doklady', 'Řidičák', 'ráno', 'Šála', 'Elektronika', 'Ústí'];
