@@ -19,6 +19,14 @@ final class HelpersTest extends TestCase
         $this->assertSame('klice zlutoucky', fold('Klíče ŽLUŤOUČKÝ'));
     }
 
+    public function testCzechSortKeyOrdersLikeCzechCollation(): void
+    {
+        $names = ['Žluté', 'Chata', 'čepice', 'Hrnek', 'Cyklo', 'Doklady', 'Řidičák', 'ráno', 'Šála', 'Elektronika', 'Ústí'];
+        usort($names, fn (string $a, string $b) => czech_sort_key($a) <=> czech_sort_key($b));
+
+        $this->assertSame(['Cyklo', 'čepice', 'Doklady', 'Elektronika', 'Hrnek', 'Chata', 'ráno', 'Řidičák', 'Šála', 'Ústí', 'Žluté'], $names);
+    }
+
     public function testSlugify(): void
     {
         $this->assertSame('ztracene-klice-cerna-klicenka', slugify('Ztracené klíče, černá klíčenka!'));

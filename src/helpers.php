@@ -144,6 +144,17 @@ function fold(string $text): string
     ]);
 }
 
+/**
+ * Sort key matching utf8mb4_czech_ci closely enough for short names:
+ * č, ř, š, ž and ch sort after their base letters, other accents are ignored.
+ */
+function czech_sort_key(string $text): string
+{
+    $text = strtr(mb_strtolower($text), ['ch' => 'h~', 'č' => 'c~', 'ř' => 'r~', 'š' => 's~', 'ž' => 'z~']);
+
+    return fold($text);
+}
+
 function slugify(string $text): string
 {
     return trim(preg_replace('/[^a-z0-9]+/', '-', fold($text)), '-');
