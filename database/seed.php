@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Core\App;
 use App\Core\Database;
 
-require dirname(__DIR__) . '/src/bootstrap.php';
+require_once dirname(__DIR__) . '/src/bootstrap.php';
 
 $load = fn (string $name) => json_decode((string) file_get_contents(__DIR__ . "/mock/{$name}.json"), true, flags: JSON_THROW_ON_ERROR);
 
