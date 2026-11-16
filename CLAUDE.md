@@ -5,7 +5,7 @@ School project (ITCS, PEF ČZU): lost & found web for the ČZU campus. Roles: gu
 ## Stack
 - PHP 8.1+ without framework or CMS (school server: PHP + MariaDB). Server renders HTML for SEO.
 - Vite bundles only JS/CSS from `assets/`. Leaflet + OpenStreetMap for maps.
-- MariaDB via PDO repositories in `src/Repositories/` (`ItemRepository` interface). `php database/seed.php` recreates the schema and loads `database/mock/*.json`.
+- Repositories in `src/Repositories/` are interfaces with two implementations: `Pdo*` (MariaDB) and `Json/Json*` (files in `storage/data`, for the school server without DB access). `DATA_DRIVER=mysql|json` in `.env` picks one in `App`. `php database/seed.php` recreates the data and loads `database/mock/*.json` for either driver.
 - Services come from `App\Core\App` (db, session, auth, repositories, mailer, photos). `Kernel::handle()` returns a `Response`; `redirect()` and `abort()` throw, never `exit`.
 
 ## Structure
@@ -18,16 +18,18 @@ School project (ITCS, PEF ČZU): lost & found web for the ČZU campus. Roles: gu
 ## Commands
 - `npm run dev` + `npm run serve` (two terminals) → http://localhost:8000
 - `npm run build` → production assets in `public/build`
-- `composer test` → PHPUnit (needs the `ztraty_nalezy_test` DB, see README)
+- `composer test` → PHPUnit (needs the `ztraty_nalezy_test` DB, see README); `composer test:json` runs the same tests on JSON storage
+- `scripts/deploy.sh xlogin [--with-data]` → upload to the school server (see README)
 
 ## Conventions
 - Test first: write the failing test, then the code. Forms in `src/Forms/` validate input, controllers stay thin.
 - Every POST form includes `csrf_field()`; admin and account pages are `noindex`.
 - UI texts and docs in Czech; code, comments and commits in English.
-- Commits: short, imperative, English (e.g. `Add item filter API`).
+- Commits: small steps, Conventional Commits in English (e.g. `feat: add item filter API`, `fix: ...`, `chore: ...`).
 - Comments brief and only where the code isn't self-explanatory. Clean code, DRY.
 - Escape all output with `e()`, build links with `url()` (respects `BASE_PATH`).
 - Pages must work without JS; JS only enhances (AJAX filtering, maps).
-- Keep PHP compatible with 8.1 (server version unknown).
+- Keep PHP compatible with 8.1 (school server runs 8.4 with pdo_mysql and GD, but without pdo_sqlite and intl).
+- Repository changes go to both implementations; tests must pass with `composer test` and `composer test:json`.
 - SEO per page via view data: `title`, `description`, `canonical`, `noindex`, `image`, `breadcrumbs`, `jsonLd` (see `templates/layout.php`). Listing rules live in `App\Seo\ListingMeta`.
 - Search is diacritics-insensitive via `fold()`; the future PDO repository must match it (e.g. a folded search column, `utf8mb4_czech_ci` treats č ≠ c).

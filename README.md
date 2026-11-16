@@ -8,7 +8,7 @@ Webová aplikace pro hlášení ztracených a nalezených věcí na kampusu ČZU
 
 ## Technologie
 
-PHP 8.1+, MariaDB, Vite (JS a CSS), Leaflet + OpenStreetMap. Bez frameworku a CMS.
+PHP 8.1+, MariaDB (nebo JSON soubory, viz níže), Vite (JS a CSS), Leaflet + OpenStreetMap. Bez frameworku a CMS.
 
 ## Spuštění lokálně
 
@@ -37,13 +37,31 @@ composer test
 
 Testovací databáze se při každém běhu maže. Bez ní se integrační a feature testy přeskočí.
 
+Stejné testy jdou pustit i nad JSON soubory, MariaDB k tomu není potřeba:
+
+```bash
+composer test:json
+```
+
+## Data v JSON souborech
+
+Na školním serveru zatím není přístup k databázi, proto aplikace umí ukládat data i do JSON souborů v `storage/data/`. Přepíná se v `.env`:
+
+```bash
+DATA_DRIVER=json   # mysql (výchozí) = MariaDB
+```
+
+Funguje všechno stejně jako s MariaDB, včetně přihlášení a administrace. Ukázková data do JSON souborů nahraje `DATA_DRIVER=json php database/seed.php`.
+
 ## První administrátor
 
-Zaregistruj se přes web a pak v databázi nastav roli:
+Zaregistruj se přes web a pak nastav roli. V MariaDB:
 
 ```bash
 mariadb ztraty_nalezy -e "UPDATE users SET role = 'admin' WHERE email = 'tvuj@email.cz'"
 ```
+
+S JSON soubory přepiš u svého účtu v `storage/data/users.json` hodnotu `"role": "user"` na `"role": "admin"`.
 
 ## E-maily
 
@@ -55,7 +73,24 @@ Zprávy z kontaktního formuláře jdou autorovi inzerátu e-mailem. `MAIL_DRIVE
 npm run build
 ```
 
-Na server se nahraje celý projekt kromě `node_modules/`. Document root má mířit na `public/`.
+Na server se nahraje celý projekt kromě `node_modules/`. Document root má mířit na `public/`. Když to hosting nedovolí (školní server), `.htaccess` v kořeni projektu přesměruje všechny požadavky do `public/`, takže zbytek projektu není z webu dostupný.
+
+## Nasazení na školní server
+
+Web běží na https://ete89e.pef.czu.cz/zs2627/07 s daty v JSON souborech. Nejdřív otevři spojení a zadej heslo (vydrží 2 hodiny):
+
+```bash
+ssh -fNM -o ControlPath=~/.ssh/kitlab.sock -o ControlPersist=2h -p 56789 xlogin@ete89e.pef.czu.cz
+```
+
+Pak nahraj aplikaci:
+
+```bash
+scripts/deploy.sh xlogin              # jen kód, data na serveru zůstanou
+scripts/deploy.sh xlogin --with-data  # poprvé: i ukázková data (přepíše uživatele a inzeráty!)
+```
+
+Skript nahrává commitnutý kód (`git archive`), sestaví assety a vytvoří `.env` pro server.
 
 ## Struktura
 
@@ -64,7 +99,7 @@ docs/        dokumentace projektu (úvodní studie, wireframy, testy)
 public/      document root (index.php, build, uploads)
 src/         PHP: router, controllery, formuláře, repozitáře, helpery
 tests/       PHPUnit testy
-storage/     logy (storage/logs)
+storage/     logy (storage/logs) a JSON data (storage/data)
 templates/   PHP šablony
 assets/      zdrojové JS a CSS pro Vite
 database/    schema.sql a testovací data
