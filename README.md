@@ -12,10 +12,10 @@ PHP 8.1+, MariaDB (nebo JSON soubory, viz níže), Vite (JS a CSS), Leaflet + Op
 
 ## Spuštění lokálně
 
-Potřebuješ PHP 8.1+ (s rozšířeními `pdo_mysql`, `gd` s WebP, `mbstring`, `fileinfo`), MariaDB, Composer a Node.js 20+.
+Je potřeba PHP 8.1+ (s rozšířeními `pdo_mysql`, `gd` s WebP, `mbstring`, `fileinfo`), MariaDB, Composer a Node.js 20+.
 
 ```bash
-cp .env.example .env    # doplň DB_USER a DB_PASS
+cp .env.example .env    # doplnit DB_USER a DB_PASS
 npm install
 composer install        # jen kvůli testům
 mariadb -e "CREATE DATABASE ztraty_nalezy CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci"
@@ -31,7 +31,7 @@ Web běží na http://localhost:8000. Seed smaže všechny tabulky a vytvoří j
 
 ```bash
 mariadb -e "CREATE DATABASE ztraty_nalezy_test CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci"
-cp .env.testing.example .env.testing    # doplň DB_USER a DB_PASS
+cp .env.testing.example .env.testing    # doplnit DB_USER a DB_PASS
 composer test
 ```
 
@@ -55,17 +55,17 @@ Funguje všechno stejně jako s MariaDB, včetně přihlášení a administrace.
 
 ## První administrátor
 
-Zaregistruj se přes web a pak nastav roli. V MariaDB:
+Účet se zaregistruje přes web a pak se mu nastaví role. V MariaDB:
 
 ```bash
-mariadb ztraty_nalezy -e "UPDATE users SET role = 'admin' WHERE email = 'tvuj@email.cz'"
+mariadb ztraty_nalezy -e "UPDATE users SET role = 'admin' WHERE email = 'admin@example.com'"
 ```
 
-S JSON soubory přepiš u svého účtu v `storage/data/users.json` hodnotu `"role": "user"` na `"role": "admin"`.
+S JSON soubory se u daného účtu v `storage/data/users.json` přepíše `"role": "user"` na `"role": "admin"`.
 
 ## E-maily
 
-Zprávy z kontaktního formuláře jdou autorovi inzerátu e-mailem. `MAIL_DRIVER=log` (výchozí) je jen zapisuje do `storage/logs/mail.log`, na serveru nastav `MAIL_DRIVER=mail` a `MAIL_FROM`.
+Zprávy z kontaktního formuláře jdou autorovi inzerátu e-mailem. `MAIL_DRIVER=log` (výchozí) je jen zapisuje do `storage/logs/mail.log`, na serveru je potřeba `MAIL_DRIVER=mail` a `MAIL_FROM`.
 
 ## Produkční build
 
@@ -79,15 +79,15 @@ Na server se nahraje celý projekt kromě `node_modules/`. Document root má mí
 
 Web běží na https://ete89e.pef.czu.cz/zs2627/07 s daty v MariaDB.
 
-1. Zkopíruj `.env.server.example` na `.env.server` a doplň údaje z `kitlab_db.php` (soubor je v `.gitignore`).
-2. V [Admineru](https://ete89e.pef.czu.cz/adminer.php) se přihlas stejnými údaji a importuj `database/seed.sql`. Vytvoří tabulky s ukázkovými daty (soubor se generuje příkazem `php database/export-sql.php`).
-3. Otevři spojení se serverem a zadej heslo (vydrží 2 hodiny):
+1. Zkopírovat `.env.server.example` do `.env.server` a doplnit údaje z `kitlab_db.php` (soubor je v `.gitignore`).
+2. Přihlásit se stejnými údaji do [Admineru](https://ete89e.pef.czu.cz/adminer.php) a importovat `database/seed.sql`. Vytvoří tabulky s ukázkovými daty (soubor se generuje příkazem `php database/export-sql.php`).
+3. Otevřít spojení se serverem a zadat heslo (vydrží 2 hodiny):
 
 ```bash
 ssh -fNM -o ControlPath=~/.ssh/kitlab.sock -o ControlPersist=2h -p 56789 xlogin@ete89e.pef.czu.cz
 ```
 
-4. Nahraj aplikaci:
+4. Nahrát aplikaci:
 
 ```bash
 scripts/deploy.sh xlogin
@@ -112,6 +112,6 @@ database/    schema.sql a testovací data
 
 ## Jak přispět
 
-1. Vezmi si úkol v [GitHub Issues](https://github.com/TomasDevs/ztraty-nalezy-czu/issues).
-2. Vytvoř větev, např. `feature/login`.
-3. Pošli Pull Request do `main`.
+1. Vybrat si úkol v [GitHub Issues](https://github.com/TomasDevs/ztraty-nalezy-czu/issues).
+2. Vytvořit větev, např. `feature/login`.
+3. Poslat Pull Request do `main`.
