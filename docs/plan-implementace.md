@@ -8,14 +8,14 @@ Pokrývá: testy, MariaDB, registraci a přihlášení, role, přidání a úpra
 
 ## Pravidla pro každý krok
 
-1. **Test first.** Nejdřív napiš test, spusť ho a ověř, že padá ze správného důvodu. Pak napiš minimální kód, aby prošel. Pak ukliď. Teprve pak commit.
+1. **Test first.** Nejdřív napsat test, spustit ho a ověřit, že padá ze správného důvodu. Pak napsat minimální kód, aby prošel. Pak uklidit. Teprve pak commit.
 2. Kód, názvy, komentáře a commity anglicky. Texty v UI česky.
 3. Komentáře jen tam, kde kód sám nestačí, jednou větou. Žádné docblocky, které opakují signaturu.
-4. Drž strukturu projektu (`src/` s namespace `App\`, `templates/`, `assets/`, `database/`). Nové složky jen ty, které plán jmenuje.
+4. Držet strukturu projektu (`src/` s namespace `App\`, `templates/`, `assets/`, `database/`). Nové složky jen ty, které plán jmenuje.
 5. PHP 8.1 kompatibilní: žádné `readonly class`, typované konstanty, `json_validate()`, `#[\Override]`.
 6. Každý výstup přes `e()`, každý odkaz přes `url()`, redirect přes `redirect()`.
 7. Stránky musí fungovat bez JS. JS jen vylepšuje.
-8. SQL vždy přes prepared statements s pozičními `?`. S `ATTR_EMULATE_PREPARES = false` nejde stejný pojmenovaný parametr použít dvakrát. Čísla do `LIMIT`/`OFFSET` přetypuj na `int` a vlož přímo do SQL.
+8. SQL vždy přes prepared statements s pozičními `?`. S `ATTR_EMULATE_PREPARES = false` nejde stejný pojmenovaný parametr použít dvakrát. Čísla do `LIMIT`/`OFFSET` přetypovat na `int` a vložit přímo do SQL.
 9. Po každém kroku: `composer test` zelené, ruční kontrola v prohlížeči podle bodu „Ověření“, commit se zprávou uvedenou u kroku.
 10. Nové stránky mimo veřejný obsah (přihlášení, účet, administrace, formuláře) mají ve view datech `'noindex' => true`.
 
@@ -25,7 +25,7 @@ Pokrývá: testy, MariaDB, registraci a přihlášení, role, přidání a úpra
 - Composer, MariaDB 10.6+
 - macOS: `brew install php composer mariadb`, pak `brew services start mariadb`
 
-Lokálně vytvoř dvě databáze: `ztraty_nalezy` (vývoj) a `ztraty_nalezy_test` (testy, při každém běhu se maže).
+Lokálně vytvořit dvě databáze: `ztraty_nalezy` (vývoj) a `ztraty_nalezy_test` (testy, při každém běhu se maže).
 
 ```sql
 CREATE DATABASE ztraty_nalezy CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci;
@@ -78,9 +78,9 @@ Smaže se `src/Repositories/JsonItemRepository.php`. JSON soubory v `database/mo
   - `scripts.test`: `phpunit`
   - Aplikace dál používá vlastní autoloader z `src/bootstrap.php`, Composer je jen pro testy (na server se `vendor/` nenahrává).
 - `phpunit.xml`: bootstrap `tests/bootstrap.php`, testsuites `unit` (`tests/Unit`), `integration` (`tests/Integration`), `feature` (`tests/Feature`), `cacheDirectory=".phpunit.cache"`, `failOnWarning`, `failOnRisky`.
-- `tests/bootstrap.php`: `require vendor/autoload.php`, `require src/bootstrap.php`, pak `App\Core\Env::load(ROOT_PATH . '/.env.testing')` (přepíše hodnoty z `.env`) a nastav `$_ENV['APP_URL'] = 'http://localhost'`, `$_ENV['BASE_PATH'] = ''`, `$_ENV['MAIL_DRIVER'] = 'log'`.
+- `tests/bootstrap.php`: `require vendor/autoload.php`, `require src/bootstrap.php`, pak `App\Core\Env::load(ROOT_PATH . '/.env.testing')` (přepíše hodnoty z `.env`) a nastavit `$_ENV['APP_URL'] = 'http://localhost'`, `$_ENV['BASE_PATH'] = ''`, `$_ENV['MAIL_DRIVER'] = 'log'`.
 - `.env.testing.example` s `DB_NAME=ztraty_nalezy_test` a prázdnými `DB_USER`, `DB_PASS`.
-- `.gitignore`: přidej `.env.testing`, `.phpunit.cache/`, `storage/logs/*`, `!storage/logs/.gitkeep`.
+- `.gitignore`: přidat `.env.testing`, `.phpunit.cache/`, `storage/logs/*`, `!storage/logs/.gitkeep`.
 - `README.md`: sekce „Testy“ (`composer install`, `cp .env.testing.example .env.testing`, `composer test`).
 
 ### 0.2 Charakterizační testy existujícího kódu
@@ -92,7 +92,7 @@ Testy, které popíšou současné chování, než do něj začneme sahat. Mají
 - `slugify('Ztracené klíče, černá klíčenka!')` → `'ztracene-klice-cerna-klicenka'`
 - `plural_form` pro 0, 1, 2, 4, 5 → `many, one, few, few, many`
 - `url('/inzeraty', ['type' => 'lost', 'q' => ''])` → `/inzeraty?type=lost` (prázdné hodnoty se vynechají)
-- `url()` s `$_ENV['BASE_PATH'] = '/~login/ztraty'` → prefix; v `tearDown` vrať `BASE_PATH` na `''`
+- `url()` s `$_ENV['BASE_PATH'] = '/~login/ztraty'` → prefix; v `tearDown` vrátit `BASE_PATH` na `''`
 - `item_photo_path()` vrací `null` pro kategorii `doklady`, jinak `/images/items/2.webp` a `-thumb.webp`
 - `item_code(['id' => 7])` → `#007`
 
@@ -106,7 +106,7 @@ Commit: `Add PHPUnit with tests for helpers and filters`
 
 ### 0.3 Kernel místo `exit`
 
-`redirect()` a `abort()` teď volají `exit`, takže controllery nejdou testovat. Nahraď to výjimkami, které zachytí jedno místo.
+`redirect()` a `abort()` teď volají `exit`, takže controllery nejdou testovat. Nahradit to výjimkami, které zachytí jedno místo.
 
 Nejdřív testy:
 
@@ -160,8 +160,8 @@ Commit: `Handle redirects and errors in a testable kernel`
 
 `database/schema.sql`:
 - na začátek `DROP TABLE IF EXISTS messages, photos, items, buildings, categories, users;`
-- `buildings`: přidej `short VARCHAR(20) NOT NULL` (šablony používají `$item['building']['short']`)
-- `items`: přidej `search_text TEXT NOT NULL`, bez diakritiky a malými písmeny (`fold()` z názvu, popisu a místa). Repozitář ho plní při každém zápisu. Důvod: `utf8mb4_czech_ci` bere č a c jako různé znaky, takže `LIKE` by „klice“ v „Klíče“ nenašel.
+- `buildings`: přidat `short VARCHAR(20) NOT NULL` (šablony používají `$item['building']['short']`)
+- `items`: přidat `search_text TEXT NOT NULL`, bez diakritiky a malými písmeny (`fold()` z názvu, popisu a místa). Repozitář ho plní při každém zápisu. Důvod: `utf8mb4_czech_ci` bere č a c jako různé znaky, takže `LIKE` by „klice“ v „Klíče“ nenašel.
 - `photos`: `UNIQUE KEY uq_photos_item (item_id)`, jedna fotka na inzerát
 - `users.email` ukládat vždy malými písmeny
 
@@ -169,7 +169,7 @@ Commit: `Handle redirects and errors in a testable kernel`
 - `static connect(): PDO` z `DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASS`, DSN s `charset=utf8mb4`, atributy `ERRMODE_EXCEPTION`, `DEFAULT_FETCH_MODE = FETCH_ASSOC`, `EMULATE_PREPARES = false`
 - `static runSqlFile(PDO $db, string $file): void`: rozdělí soubor podle `/;\s*$/m`, prázdné části přeskočí, každou spustí přes `exec()`
 
-`.env.example`: smaž `DATA_SOURCE`, přidej `MAIL_DRIVER=log`, `MAIL_FROM=noreply@example.com`.
+`.env.example`: smazat `DATA_SOURCE`, přidat `MAIL_DRIVER=log`, `MAIL_FROM=noreply@example.com`.
 
 `tests/Support/DatabaseTestCase.php`:
 - `protected static ?PDO $db`
@@ -179,7 +179,7 @@ Commit: `Handle redirects and errors in a testable kernel`
 `tests/Support/Fixtures.php` (trait pro DB testy), každá metoda vloží řádek a vrátí ho jako pole:
 - `createUser(array $overrides = [])`: výchozí jméno, unikátní e-mail (`'user' . uniqid() . '@example.com'`), heslo `password123`, role `user`
 - `createCategory(array $overrides = [])`, `createBuilding(array $overrides = [])`
-- `createItem(array $overrides = [])` přidej až v kroku 1.3: když chybí `user_id`, `category_id` nebo `building_id`, vytvoří je. Vkládá přes `PdoItemRepository::create()`, aby se plnil `search_text`. Podporuje i `status` a `photo`.
+- `createItem(array $overrides = [])` přibude až v kroku 1.3: když chybí `user_id`, `category_id` nebo `building_id`, vytvoří je. Vkládá přes `PdoItemRepository::create()`, aby se plnil `search_text`. Podporuje i `status` a `photo`.
 
 Test `tests/Integration/DatabaseTest.php`: po spuštění schématu existuje všech 6 tabulek.
 
@@ -211,7 +211,7 @@ Veřejné metody (`search`, `all`, `latest`, `related`, `stats`) nikdy nevrací 
 Testy `tests/Integration/Repositories/PdoItemRepositoryTest.php`. Chování se řídí podle `JsonItemRepository` (referenční implementace):
 - `search()` bez filtrů vrátí aktivní i vrácené, ne skryté, od nejnovějšího `date` (při shodě vyšší `id` první)
 - filtry `type`, `category` (slug), `building` (slug) a jejich kombinace
-- `q = 'klice'` najde „Klíče“ v názvu, popisu i místě; `q = '50%'` nenajde všechno (escapuj `%`, `_` a `\` v `LIKE`)
+- `q = 'klice'` najde „Klíče“ v názvu, popisu i místě; `q = '50%'` nenajde všechno (escapovat `%`, `_` a `\` v `LIKE`)
 - stránkování: 10 inzerátů, `page = 2` vrátí 1 položku, `total = 10`, `markers` mají všech 10 s klíči `lat`, `lng`, `title`, `type`, `url`
 - `find()` vrátí i skrytý inzerát, neexistující id → `null`, hodnoty mají správné typy (`assertSame`)
 - `latest(2)` vrátí 2 nejnovější
@@ -244,21 +244,21 @@ final class App
 }
 ```
 
-- `Controller::items()` smaž, controllery volají `App::items()`, `App::categories()`, `App::buildings()`
-- `ListingMeta::for(ItemQuery $query, array $categories, array $buildings)`; dopiš `tests/Unit/Seo/ListingMetaTest.php`: jeden filtr → vlastní nadpis a canonical, kombinace a strana 2 → canonical `/inzeraty`, `q` → `noindex`, neznámý slug → výchozí nadpis
-- uprav volání v `ItemController`, `Api\ItemController`, `SeoController`
-- smaž `JsonItemRepository.php` a TODO v `Controller.php`
+- `Controller::items()` smazat, controllery volají `App::items()`, `App::categories()`, `App::buildings()`
+- `ListingMeta::for(ItemQuery $query, array $categories, array $buildings)`; dopsat `tests/Unit/Seo/ListingMetaTest.php`: jeden filtr → vlastní nadpis a canonical, kombinace a strana 2 → canonical `/inzeraty`, `q` → `noindex`, neznámý slug → výchozí nadpis
+- upravit volání v `ItemController`, `Api\ItemController`, `SeoController`
+- smazat `JsonItemRepository.php` a TODO v `Controller.php`
 
 `database/seed.php` (CLI, `php database/seed.php`):
-- načte `src/bootstrap.php`, spustí `schema.sql` (vývojová DB se tím smaže, vypiš to)
+- načte `src/bootstrap.php`, spustí `schema.sql` (vývojová DB se tím smaže, skript to vypíše)
 - vloží kategorie a budovy z `database/mock/*.json` přes repozitáře
 - vytvoří uživatele „Tým Ztráty a nálezy“ (`tym@ztraty.example`) s `password_hash` nastaveným na `'!'`, přes který se nikdo nepřihlásí
-- vloží inzeráty přes `PdoItemRepository::create()` (zachovej id z JSON kvůli URL: `create()` přijme volitelné `id`), pak `setStatus` a `setPhoto`
+- vloží inzeráty přes `PdoItemRepository::create()` (zachovat id z JSON kvůli URL: `create()` přijme volitelné `id`), pak `setStatus` a `setPhoto`
 - na konci vypíše, jak udělat admina: `UPDATE users SET role = 'admin' WHERE email = '…';`
 
 README: postup `php database/seed.php`.
 
-Ověření: úvod, výpis s filtry a AJAXem, detail, `/sitemap.xml` vypadají stejně jako před změnou (porovnej s `docs/img/`).
+Ověření: úvod, výpis s filtry a AJAXem, detail, `/sitemap.xml` vypadají stejně jako před změnou (porovnat s `docs/img/`).
 
 Commit: `Switch from mock JSON to MariaDB`
 
@@ -294,10 +294,10 @@ Testy `tests/Unit/Core/SessionTest.php` a `CsrfTest.php`:
 Napojení:
 - `App::session()` (`$_SESSION ??= []`), `App::csrf()`
 - `public/index.php`: `Session::start()` před `Kernel::handle()`
-- `Kernel`: u `POST`, když `!App::csrf()->check($_POST['_token'] ?? null)`, vyhoď `HttpError(419)`
+- `Kernel`: u `POST`, když `!App::csrf()->check($_POST['_token'] ?? null)`, vyhodit `HttpError(419)`
 - helper `csrf_field(): string` vrátí `<input type="hidden" name="_token" value="…">`
-- přidej `csrf_field()` do kontaktního formuláře v `items/show.php`
-- `partials/flash.php` vypíše `App::session()->pullFlashes()` jako `alert alert--success|error` s `role="status"`, vlož ho v `layout.php` na začátek `<main>`
+- přidat `csrf_field()` do kontaktního formuláře v `items/show.php`
+- `partials/flash.php` vypíše `App::session()->pullFlashes()` jako `alert alert--success|error` s `role="status"`, vložit ho v `layout.php` na začátek `<main>`
 
 `tests/Support/FeatureTestCase.php` (dědí `DatabaseTestCase`, používá `Fixtures`):
 - `setUp()`: `App::reset()`, `App::set('db', self::$db)`, `App::set('session', new Session($this->session))`, `App::set('mailer', $this->mailer = new FakeMailer())`
@@ -327,7 +327,7 @@ Commit: `Add user repository`
 - `protected function check(array $rules): bool`: rules jsou `field => ?string chyba`, uloží neprázdné do `$errors` a vrátí, jestli je prázdné
 - `protected static function inCampus(float $lat, float $lng): bool` v rozsahu lat 50.125–50.135, lng 14.365–14.380
 
-`ContactForm` přepiš na `Form` (testy z 0.2 musí dál projít).
+`ContactForm` přepsat na `Form` (testy z 0.2 musí dál projít).
 
 `RegisterForm` (`name`, `email`, `password`, `password_confirmation`), `validate(bool $emailTaken): bool`. Testy:
 - prázdné jméno, jméno přes 100 znaků
@@ -381,12 +381,12 @@ Chování:
 - odhlášení → flash „Byli jste odhlášeni.“, redirect `/`
 - `zpet` se předává ve skrytém poli formuláře
 
-Šablony `auth/login.php` a `auth/register.php` přes `partials/form-field` (typ `password` a `autocomplete` `current-password`/`new-password`), odkaz mezi nimi navzájem. Uprav `form-field.php`: typ `password` hodnotu nevypisuje.
+Šablony `auth/login.php` a `auth/register.php` přes `partials/form-field` (typ `password` a `autocomplete` `current-password`/`new-password`), odkaz mezi nimi navzájem. Upravit `form-field.php`: typ `password` hodnotu nevypisuje.
 
 Hlavička (`partials/header.php`):
 - nepřihlášený: odkaz „Přihlásit se“
 - přihlášený: „Můj účet“, pro admina „Administrace“, tlačítko „Odhlásit“ jako malý POST formulář s `csrf_field()`
-- „Nahlásit věc“ zůstává. Styly v `assets/css/layout.css`, ověř šířku 375 px (hlavička se smí zalomit, ale nesmí přetékat).
+- „Nahlásit věc“ zůstává. Styly v `assets/css/layout.css`, ověřit šířku 375 px (hlavička se smí zalomit, ale nesmí přetékat).
 
 Feature testy `tests/Feature/AuthTest.php`:
 - `GET /prihlaseni` → 200, obsahuje formulář
@@ -397,7 +397,7 @@ Feature testy `tests/Feature/AuthTest.php`:
 - odhlášení → `user_id` zmizí
 - přihlášený uživatel vidí v hlavičce „Můj účet“, admin i „Administrace“, běžný uživatel ne
 
-`robots.txt`: přidej `Disallow: /admin/`, `Disallow: /ucet`.
+`robots.txt`: přidat `Disallow: /admin/`, `Disallow: /ucet`.
 
 Commit: `Add registration, login and logout pages`
 
@@ -433,7 +433,7 @@ Pravidla a testy `tests/Unit/Forms/ItemFormTest.php` (každé pravidlo zvlášť
 - `date` přesně `Y-m-d` (`DateTime::createFromFormat('!Y-m-d', …)` a zpětné porovnání s `format()`), ne v budoucnosti
 - `description` 20–5000 znaků
 - `lat`/`lng` obě prázdné, nebo obě číselné a `inCampus()`; jen jedna vyplněná → chyba
-- `photo`: `UPLOAD_ERR_NO_FILE` je v pořádku; jiná chyba, velikost nad 5 MB nebo MIME (`finfo` nad `tmp_name`) mimo `image/jpeg`, `image/png`, `image/webp` → chyba. V testu vytvoř skutečný malý PNG přes GD do `sys_get_temp_dir()` a textový soubor jako špatný typ.
+- `photo`: `UPLOAD_ERR_NO_FILE` je v pořádku; jiná chyba, velikost nad 5 MB nebo MIME (`finfo` nad `tmp_name`) mimo `image/jpeg`, `image/png`, `image/webp` → chyba. V testu vytvořit skutečný malý PNG přes GD do `sys_get_temp_dir()` a textový soubor jako špatný typ.
 - `toData()` bez souřadnic vrátí souřadnice budovy
 - `hasPhoto()` je `false` pro kategorii `doklady`
 
@@ -446,18 +446,18 @@ Commit: `Add item form validation`
 - `delete(?string $basePath): void`: smaže obě velikosti, jen pokud cesta začíná `uploads/` (fotky ze seedu v `images/items/` nemazat)
 - `static newPath(int $itemId): string` → `uploads/items/{id}-{8 hex znaků}`. Nová cesta při každém nahrání, aby prohlížeč nezobrazoval starou fotku z cache.
 
-Testy `tests/Unit/Uploads/PhotoProcessorTest.php` (`markTestSkipped`, když chybí `imagewebp`), pracuj v dočasném adresáři:
+Testy `tests/Unit/Uploads/PhotoProcessorTest.php` (`markTestSkipped`, když chybí `imagewebp`), pracují v dočasném adresáři:
 - PNG 1200×800 → vzniknou dva soubory, `getimagesize` 1000×1000 a 240×240, typ WebP
 - `delete()` je smaže; `delete('images/items/2')` nic nesmaže
 - `newPath(5)` odpovídá `#^uploads/items/5-[0-9a-f]{8}$#`
 
-`App::photos()`. Zkontroluj, že `public/uploads/items/` vznikne (`mkdir` s `recursive`), pokud chybí.
+`App::photos()`. Zkontrolovat, že `public/uploads/items/` vznikne (`mkdir` s `recursive`), pokud chybí.
 
 Commit: `Add photo processing`
 
 ### 3.4 Pole formuláře
 
-Rozšiř `partials/form-field.php`, ať se neopakuje logika labelu, nápovědy a chyb:
+Rozšířit `partials/form-field.php`, ať se neopakuje logika labelu, nápovědy a chyb:
 - `required` jako volba (výchozí `true`)
 - typy `date` (`max` = dnešek), `password`, `file` (`accept`, bez `value`), `select` (`options` jako `[['slug' => …, 'name' => …]]`, první volba „Vyberte…“ s prázdnou hodnotou)
 - volitelné `attributes` (pole) pro `min`, `max`, `accept` a podobně
@@ -490,7 +490,7 @@ Cesty pod `/ucet/…` nekolidují s `/inzerat/{id}/{slug}`.
 
 Šablony:
 - `partials/item-form.php`: společný formulář pro `create` i `edit`, `enctype="multipart/form-data"`, `csrf_field()`, typ jako skryté pole, pole podle 3.2, mapa `<div data-location-picker …>` se skrytými `lat` a `lng`, nápověda u fotky „Fotky dokladů nezveřejňujeme.“
-- `items/create.php`: nahraď TODO
+- `items/create.php`: nahradit TODO
 - `items/edit.php`: nadpis „Upravit inzerát“, drobečková navigace, náhled současné fotky
 
 Feature testy `tests/Feature/ItemManagementTest.php`:
@@ -509,10 +509,10 @@ Commit: `Add creating, editing and deleting items`
 ### 3.6 Výběr místa na mapě
 
 `assets/js/modules/location-picker.js`, registrace v `main.js` pro `[data-location-picker]`:
-- znovu použij nastavení mapy z `map.js`: vytáhni z něj `createMap(el)` (dlaždice, zoom, české popisky) a exportuj ho, ať se kód neopakuje
+- znovu použít nastavení mapy z `map.js`: vytáhnout z něj `createMap(el)` (dlaždice, zoom, české popisky) a exportovat ho, ať se kód neopakuje
 - klik do mapy přesune značku a zapíše `lat`/`lng` (6 desetinných míst) do skrytých polí
 - změna budovy v selectu (`data-buildings` s JSON souřadnicemi) přesune mapu a značku na budovu, pokud uživatel ještě neklikl vlastní místo
-- při úpravě začni na uložených souřadnicích
+- při úpravě začít na uložených souřadnicích
 - bez JS mapa není vidět a uloží se souřadnice budovy (zajišťuje server)
 - přístupnost: `role="region"`, `aria-label="Vyberte místo na mapě"`, pod mapou text „Klikněte do mapy, kde jste věc našli nebo ztratili. Když místo nevyberete, použije se budova.“
 
@@ -533,7 +533,7 @@ Podle tabulky rolí kontaktuje autora jen přihlášený uživatel. Jméno a e-m
 - `src/Mail/MailMessage.php`: `to`, `subject`, `body`, `replyTo` (readonly vlastnosti)
 - `src/Mail/Mailer.php`: rozhraní `send(MailMessage $message): bool`
 - `LogMailer(string $file)`: připíše zprávu do `storage/logs/mail.log` (výchozí lokálně)
-- `NativeMailer(string $from)`: `mail()` s hlavičkami `From`, `Reply-To`, `Content-Type: text/plain; charset=UTF-8`, předmět přes `mb_encode_mimeheader`. Odmítni adresy a předmět s `\r` nebo `\n` (header injection).
+- `NativeMailer(string $from)`: `mail()` s hlavičkami `From`, `Reply-To`, `Content-Type: text/plain; charset=UTF-8`, předmět přes `mb_encode_mimeheader`. Odmítnout adresy a předmět s `\r` nebo `\n` (header injection).
 - `App::mailer()` podle `MAIL_DRIVER` (`log`|`mail`)
 - `ContactMail::create(array $item, array $author, array $sender, string $body): MailMessage`: komu autor, `replyTo` odesílatel, předmět „Zpráva k inzerátu #007: Název“, tělo s textem zprávy, jménem odesílatele a odkazem `absolute_url(item_path($item))`
 - `tests/Support/FakeMailer.php`: ukládá zprávy do pole `$sent`
@@ -548,9 +548,9 @@ Commit: `Add mailer and contact e-mail`
 ### 4.2 Zprávy
 
 - `MessageRepository(PDO)`: `create(int $itemId, int $senderId, string $body): int`, `countForItem(int $itemId): int`; integrační test
-- `ContactForm`: jen pole `message` (20–5000 znaků), uprav testy
+- `ContactForm`: jen pole `message` (20–5000 znaků), upravit testy
 - `ItemController::contact()`: `requireUser()`; když `!canContact` → redirect na detail; validace; uloží zprávu, pošle mail; když `send()` vrátí `false`, flash chyba „Zprávu se nepodařilo odeslat e-mailem, zkuste to později.“; jinak redirect s `?odeslano=1#kontakt` jako dnes
-- `items/show.php`: host uvidí místo formuláře `partials/login-prompt.php`, autor vlastního inzerátu žádný formulář, ostatní jen textové pole Zpráva. Smaž TODO.
+- `items/show.php`: host uvidí místo formuláře `partials/login-prompt.php`, autor vlastního inzerátu žádný formulář, ostatní jen textové pole Zpráva. Smazat TODO.
 
 Feature testy `tests/Feature/ContactTest.php`:
 - host: formulář se nezobrazí, POST → redirect na přihlášení
@@ -590,7 +590,7 @@ Routy:
 - `POST /admin/kategorie/{id:\d+}` → `update`, `POST /admin/kategorie/{id:\d+}/smazat` → `destroy`
 - `/admin/budovy` stejně jako kategorie (`Admin\BuildingController`)
 
-Mazání inzerátu (fotka + záznam) se v `ItemController::destroy` i v administraci opakuje. Přesuň ho do `protected function deleteItem(array $item)` v base `Controller`, která zavolá `App::photos()->delete($item['photo'])` a `App::items()->delete($item['id'])`.
+Mazání inzerátu (fotka + záznam) se v `ItemController::destroy` i v administraci opakuje. Přesunout ho do `protected function deleteItem(array $item)` v base `Controller`, která zavolá `App::photos()->delete($item['photo'])` a `App::items()->delete($item['id'])`.
 
 Formuláře:
 - `CategoryForm` (`name` 2–100, `slug` volitelný → `slugify(name)`, musí odpovídat `^[a-z0-9-]+$`), `validate(array $takenSlugs): bool`
@@ -602,7 +602,7 @@ Pravidla:
 - kategorii nebo budovu s inzeráty nejde smazat (`isUsed`) → „Kategorii nejde smazat, používá ji X inzerátů.“
 - chyba validace → flash s první chybou, redirect zpět
 
-Šablony `admin/items.php` (tabulka: číslo, název, autor, typ, stav, datum, akce), `admin/users.php` (jméno, e-mail, role, počet inzerátů, blokace, akce), `admin/categories.php` a `admin/buildings.php` (každý řádek je vlastní formulář na úpravu, pod tabulkou formulář pro přidání). Tabulky na mobilu zabal do `overflow-x: auto` s `tabindex="0"` a `aria-label`.
+Šablony `admin/items.php` (tabulka: číslo, název, autor, typ, stav, datum, akce), `admin/users.php` (jméno, e-mail, role, počet inzerátů, blokace, akce), `admin/categories.php` a `admin/buildings.php` (každý řádek je vlastní formulář na úpravu, pod tabulkou formulář pro přidání). Tabulky na mobilu zabalit do `overflow-x: auto` s `tabindex="0"` a `aria-label`.
 
 Feature testy `tests/Feature/AdminTest.php`:
 - host → redirect na přihlášení, běžný uživatel → 403 na všech `GET` i `POST` adresách administrace (data provider přes seznam rout)
@@ -628,20 +628,20 @@ Commity po částech: `Add admin item moderation`, `Add admin user management`, 
 
 ### 7.2 Dokumentace
 
-- `CLAUDE.md`: řádek o datech změň na „Data in MariaDB via PDO repositories, `database/seed.php` loads mock data from `database/mock/`.“, přidej `composer test` do Commands a krátkou poznámku o `App`, `Kernel` a testech (`tests/Unit`, `tests/Integration`, `tests/Feature`)
+- `CLAUDE.md`: řádek o datech změnit na „Data in MariaDB via PDO repositories, `database/seed.php` loads mock data from `database/mock/`.“, přidat `composer test` do Commands a krátkou poznámku o `App`, `Kernel` a testech (`tests/Unit`, `tests/Integration`, `tests/Feature`)
 - `README.md`: spuštění s DB, seed, testy, jak udělat admina, `MAIL_DRIVER`
-- `docs/README.md`: odškrtni hotové položky
+- `docs/README.md`: odškrtnout hotové položky
 - Word dokument (ručně): v kapitole Serverová část doplnit přihlášení, role, CSRF, hashování hesel přes `password_hash`, prepared statements a nahrávání fotek s převodem do WebP; aktualizovat „Co zbývá dokončit“
 
 Commit: `Update docs for database, auth and admin`
 
 ### 7.3 Nasazení na školní server (ručně, podle README)
 
-1. Ověř na serveru `phpinfo()`: verze PHP, `pdo_mysql`, `gd` s WebP, `fileinfo`, jestli funguje `mail()`. Když GD neumí WebP, je potřeba to vyřešit, než se nasazuje.
+1. Ověřit na serveru `phpinfo()`: verze PHP, `pdo_mysql`, `gd` s WebP, `fileinfo`, jestli funguje `mail()`. Když GD neumí WebP, je potřeba to vyřešit, než se nasazuje.
 2. `.env` na serveru: `APP_ENV=prod`, `APP_DEBUG=0`, `APP_URL`, `BASE_PATH`, DB údaje, `MAIL_DRIVER=mail`, `MAIL_FROM`.
 3. `npm run build` lokálně s produkčním `BASE_PATH`.
-4. Nahraj projekt bez `node_modules/`, `vendor/`, `tests/`, `.env.testing`. Document root na `public/`, `storage/logs/` a `public/uploads/` zapisovatelné.
-5. Databáze: lokálně `php database/seed.php`, pak `mysqldump ztraty_nalezy > dump.sql` a import přes phpMyAdmin. Admina nastav SQL příkazem z výstupu seedu.
+4. Nahrát projekt bez `node_modules/`, `vendor/`, `tests/`, `.env.testing`. Document root na `public/`, `storage/logs/` a `public/uploads/` zapisovatelné.
+5. Databáze: lokálně `php database/seed.php`, pak `mysqldump ztraty_nalezy > dump.sql` a import přes phpMyAdmin. Admina nastavit SQL příkazem z výstupu seedu.
 6. Smoke test: registrace, přihlášení, přidání s fotkou, kontakt (dorazí e-mail?), administrace, `sitemap.xml`, `robots.txt`.
 7. PageSpeed Insights a validátory na serveru, screenshoty do `docs/testing/`.
 
