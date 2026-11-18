@@ -48,6 +48,12 @@ if [[ "$DRIVER" == mysql && "$WITH_DATA" == true ]]; then
     exit 1
 fi
 
+if ! ssh -O check -o ControlPath="$SOCKET" x 2>/dev/null; then
+    echo "No open SSH connection, open it first (in Warp prefix it with 'command'):" >&2
+    echo "  ssh -fNM -o ControlPath=$SOCKET -o ControlPersist=2h -p $PORT $LOGIN@$HOST" >&2
+    exit 1
+fi
+
 sftp_batch() {
     sftp -q -o ControlPath="$SOCKET" -P "$PORT" -b - "$LOGIN@$HOST"
 }
