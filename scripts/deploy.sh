@@ -59,7 +59,8 @@ sftp_batch() {
 }
 
 echo "Building assets"
-npm --prefix "$ROOT" run build >/dev/null
+# Vite needs the base path for lazy-loaded chunks and fonts
+BASE_PATH=$BASE_PATH npm --prefix "$ROOT" run build >/dev/null
 
 echo "Preparing files"
 git -C "$ROOT" archive HEAD | tar -x -C "$STAGE"
