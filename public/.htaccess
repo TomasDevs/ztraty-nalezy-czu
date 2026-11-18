@@ -1,3 +1,6 @@
+# No directory listings for uploads, build and images
+Options -Indexes
+
 RewriteEngine On
 
 RewriteCond %{REQUEST_FILENAME} !-f
