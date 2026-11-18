@@ -28,7 +28,9 @@ done
 HOST=ete89e.pef.czu.cz
 PORT=56789
 REMOTE=/var/www/html/zs2627/07
-APP_URL=https://$HOST/zs2627/07
+BASE_PATH=/zs2627/07
+# Origin only, the app adds BASE_PATH to every link
+APP_URL=https://$HOST
 SOCKET=~/.ssh/kitlab.sock
 
 ROOT=$(cd "$(dirname "$0")/.." && pwd)
@@ -64,7 +66,7 @@ APP_ENV=prod
 APP_DEBUG=0
 APP_URL=$APP_URL
 APP_TIMEZONE=Europe/Prague
-BASE_PATH=/zs2627/07
+BASE_PATH=$BASE_PATH
 DATA_DRIVER=$DRIVER
 MAIL_DRIVER=mail
 MAIL_FROM=noreply@$HOST
@@ -100,4 +102,4 @@ echo "Uploading to $REMOTE"
     fi
 } | sftp_batch
 
-echo "Done: $APP_URL"
+echo "Done: $APP_URL$BASE_PATH"
