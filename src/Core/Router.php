@@ -21,6 +21,9 @@ final class Router
 
     public function dispatch(string $method, string $path): void
     {
+        // HEAD gets the GET response, the web server drops the body
+        $method = $method === 'HEAD' ? 'GET' : $method;
+
         foreach ($this->routes[$method] ?? [] as $pattern => $handler) {
             if (!preg_match($pattern, $path, $matches)) {
                 continue;

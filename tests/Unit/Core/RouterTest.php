@@ -23,6 +23,19 @@ final class RouterTest extends TestCase
         $this->assertSame(['12', 'klice'], $received);
     }
 
+    public function testHeadRequestUsesGetRoute(): void
+    {
+        $router = new Router();
+        $called = false;
+        $router->get('/inzeraty', function () use (&$called) {
+            $called = true;
+        });
+
+        $router->dispatch('HEAD', '/inzeraty');
+
+        $this->assertTrue($called);
+    }
+
     public function testUnknownPathIsNotFound(): void
     {
         $router = new Router();
