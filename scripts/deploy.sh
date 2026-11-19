@@ -3,23 +3,26 @@
 #
 # First open one SSH connection and type the password (it stays open for 2 hours):
 #   ssh -fNM -o ControlPath=~/.ssh/kitlab.sock -o ControlPersist=2h -p 56789 LOGIN@ete89e.pef.czu.cz
+# (in the Warp terminal prefix it with "command", Warp rewrites ssh otherwise)
 #
-# MariaDB (default): copy .env.server.example to .env.server and fill in the values from kitlab_db.php.
-# Import database/seed.sql in Adminer once to create the tables with demo data.
+# The server has no database access yet, so the data lives in JSON files in storage/data.
+# MariaDB (--mysql): copy .env.server.example to .env.server and fill in the values from kitlab_db.php,
+# then import database/seed.sql in Adminer once to create the tables with demo data.
 #
 # Usage:
-#   scripts/deploy.sh LOGIN                     MariaDB, code only
-#   scripts/deploy.sh LOGIN --json              JSON files instead of MariaDB, live data stays untouched
-#   scripts/deploy.sh LOGIN --json --with-data  JSON files with fresh demo data (overwrites users and items!)
+#   scripts/deploy.sh LOGIN              JSON files, code only, live data stays untouched
+#   scripts/deploy.sh LOGIN --with-data  JSON files with fresh demo data (deletes all users and items on the server!)
+#   scripts/deploy.sh LOGIN --mysql      MariaDB, code only
 set -euo pipefail
 
-LOGIN=${1:?Usage: scripts/deploy.sh LOGIN [--json [--with-data]]}
+LOGIN=${1:?Usage: scripts/deploy.sh LOGIN [--with-data | --mysql]}
 shift
-DRIVER=mysql
+DRIVER=json
 WITH_DATA=false
 for option in "$@"; do
     case "$option" in
         --json) DRIVER=json ;;
+        --mysql) DRIVER=mysql ;;
         --with-data) WITH_DATA=true ;;
         *) echo "Unknown option $option" >&2; exit 1 ;;
     esac
