@@ -1,6 +1,6 @@
 # Plán implementace
 
-**Stav:** fáze 0 až 7.2 jsou hotové, zbývá ruční nasazení (7.3), validátory a Lighthouse na serveru a doplnění Wordu.
+**Stav:** všechny fáze jsou hotové. Web běží na školním serveru, kvůli chybějícímu přístupu k databázi s daty v JSON souborech (viz README).
 
 Pracovní plán pro dokončení realizační části (viz „Co zbývá dokončit“ v `dokumentace-tym-07.docx` a checklist v [README.md](README.md)). Je psaný pro postupné zpracování krok za krokem, klidně jiným modelem nebo dalším členem týmu.
 
