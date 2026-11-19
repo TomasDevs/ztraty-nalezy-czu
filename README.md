@@ -77,25 +77,31 @@ Na server se nahraje celý projekt kromě `node_modules/`. Document root má mí
 
 ## Nasazení na školní server
 
-Web běží na https://ete89e.pef.czu.cz/zs2627/07 s daty v MariaDB.
+Web běží na https://ete89e.pef.czu.cz/zs2627/07. Přístup k databázi na školním serveru zatím nemáme, proto jsou data v JSON souborech ve složce `storage/data`, která z webu přístupná není.
 
-1. Zkopírovat `.env.server.example` do `.env.server` a doplnit údaje z `kitlab_db.php` (soubor je v `.gitignore`).
-2. Přihlásit se stejnými údaji do [Admineru](https://ete89e.pef.czu.cz/adminer.php) a importovat `database/seed.sql`. Vytvoří tabulky s ukázkovými daty (soubor se generuje příkazem `php database/export-sql.php`).
-3. Otevřít spojení se serverem a zadat heslo (vydrží 2 hodiny):
+1. Otevřít spojení se serverem a zadat heslo (vydrží 2 hodiny). V terminálu Warp je potřeba napsat před příkaz `command`, jinak Warp `ssh` přepíše:
 
 ```bash
 ssh -fNM -o ControlPath=~/.ssh/kitlab.sock -o ControlPersist=2h -p 56789 xlogin@ete89e.pef.czu.cz
 ```
 
-4. Nahrát aplikaci:
+2. Nahrát aplikaci:
 
 ```bash
 scripts/deploy.sh xlogin
 ```
 
-Skript nahrává commitnutý kód (`git archive`), sestaví assety a vytvoří `.env` pro server. Data v databázi nemění.
+Skript nahrává commitnutý kód (`git archive`), sestaví assety s cestou `/zs2627/07` a vytvoří `.env` pro server. Data na serveru nemění.
 
-Bez databáze jde nasadit s JSON soubory: `scripts/deploy.sh xlogin --json --with-data` (poprvé, s ukázkovými daty) a dál `scripts/deploy.sh xlogin --json`.
+Při úplně prvním nasazení se ukázková data nahrají přepínačem `--with-data`. Později ho nepoužívat, smaže na serveru všechny uživatele a inzeráty.
+
+### S MariaDB
+
+Až budou údaje k databázi (`kitlab_db.php`):
+
+1. Zkopírovat `.env.server.example` do `.env.server` a doplnit údaje z `kitlab_db.php` (soubor je v `.gitignore`).
+2. Přihlásit se stejnými údaji do [Admineru](https://ete89e.pef.czu.cz/adminer.php) a importovat `database/seed.sql`. Vytvoří tabulky s ukázkovými daty (soubor se generuje příkazem `php database/export-sql.php`).
+3. Nahrát aplikaci příkazem `scripts/deploy.sh xlogin --mysql`.
 
 ## Struktura
 
