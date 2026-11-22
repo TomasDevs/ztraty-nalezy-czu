@@ -1,6 +1,6 @@
 # Plán implementace
 
-**Stav:** všechny fáze jsou hotové. Web běží na školním serveru, kvůli chybějícímu přístupu k databázi s daty v JSON souborech (viz README).
+**Stav:** všechny fáze jsou hotové. Web běží na školním serveru s databází MariaDB (viz README).
 
 Pracovní plán pro dokončení realizační části (viz „Co zbývá dokončit“ v `dokumentace-tym-07.docx` a checklist v [README.md](README.md)). Je psaný pro postupné zpracování krok za krokem, klidně jiným modelem nebo dalším členem týmu.
 

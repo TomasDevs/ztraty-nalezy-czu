@@ -22,7 +22,7 @@ Web: https://ete89e.pef.czu.cz/zs2627/07
 - [x] AJAX (filtrování, načítání dalších inzerátů)
 - [x] API třetích stran (Leaflet + OpenStreetMap, Web Share API)
 - [x] Přihlášení, role, přidání inzerátu, administrace
-- [x] Databáze místo testovacích dat (MariaDB, na školním serveru JSON soubory)
+- [x] Databáze místo testovacích dat (MariaDB, záložně JSON soubory)
 - [x] Nasazení na školní server
 
 ## 3. Testování a analýzy, do 20. 11.

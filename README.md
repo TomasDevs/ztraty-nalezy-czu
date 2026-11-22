@@ -8,7 +8,7 @@ Webová aplikace pro hlášení ztracených a nalezených věcí na kampusu ČZU
 
 ## Technologie
 
-PHP 8.1+, MariaDB (nebo JSON soubory, viz níže), Vite (JS a CSS), Leaflet + OpenStreetMap. Bez frameworku a CMS.
+PHP 8.1+, MariaDB (záložně JSON soubory, viz níže), Vite (JS a CSS), Leaflet + OpenStreetMap. Bez frameworku a CMS.
 
 ## Spuštění lokálně
 
@@ -77,7 +77,7 @@ Na server se nahraje celý projekt kromě `node_modules/`. Document root má mí
 
 ## Nasazení na školní server
 
-Web běží na https://ete89e.pef.czu.cz/zs2627/07. Přístup k databázi na školním serveru zatím nemáme, proto jsou data v JSON souborech ve složce `storage/data`, která z webu přístupná není.
+Web běží na https://ete89e.pef.czu.cz/zs2627/07 s databází MariaDB. Údaje k databázi jsou na serveru v souboru `kitlab_db.php` ve složce skupiny (z webu není dostupný).
 
 1. Otevřít spojení se serverem a zadat heslo (vydrží 2 hodiny). V terminálu Warp je potřeba napsat před příkaz `command`, jinak Warp `ssh` přepíše:
 
@@ -85,23 +85,20 @@ Web běží na https://ete89e.pef.czu.cz/zs2627/07. Přístup k databázi na šk
 ssh -fNM -o ControlPath=~/.ssh/kitlab.sock -o ControlPersist=2h -p 56789 xlogin@ete89e.pef.czu.cz
 ```
 
-2. Nahrát aplikaci:
+2. Zkopírovat `.env.server.example` do `.env.server` a doplnit údaje z `kitlab_db.php` (soubor je v `.gitignore`).
+3. Nahrát aplikaci:
 
 ```bash
 scripts/deploy.sh xlogin
 ```
 
-Skript nahrává commitnutý kód (`git archive`), sestaví assety s cestou `/zs2627/07` a vytvoří `.env` pro server. Data na serveru nemění.
+Skript nahrává commitnutý kód (`git archive`), sestaví assety s cestou `/zs2627/07` a vytvoří `.env` pro server. Data v databázi nemění.
 
-Při úplně prvním nasazení se ukázková data nahrají přepínačem `--with-data`. Později ho nepoužívat, smaže na serveru všechny uživatele a inzeráty.
+Prázdnou databázi naplní import `database/seed.sql` (tabulky s ukázkovými daty, generuje ho `php database/export-sql.php`), třeba v [Admineru](https://ete89e.pef.czu.cz/adminer.php) s údaji z `kitlab_db.php`. Import smaže všechny tabulky i s daty. Data z JSON souborů převede do SQL příkaz `php database/export-sql.php slozka-s-daty vystup.sql`.
 
-### S MariaDB
+### Bez databáze
 
-Až budou údaje k databázi (`kitlab_db.php`):
-
-1. Zkopírovat `.env.server.example` do `.env.server` a doplnit údaje z `kitlab_db.php` (soubor je v `.gitignore`).
-2. Přihlásit se stejnými údaji do [Admineru](https://ete89e.pef.czu.cz/adminer.php) a importovat `database/seed.sql`. Vytvoří tabulky s ukázkovými daty (soubor se generuje příkazem `php database/export-sql.php`).
-3. Nahrát aplikaci příkazem `scripts/deploy.sh xlogin --mysql`.
+Jako záloha jde web nasadit s daty v JSON souborech ve složce `storage/data`: `scripts/deploy.sh xlogin --json`. Přepínač `--with-data` k tomu nahraje ukázková data a smaže na serveru všechny uživatele a inzeráty v JSON souborech.
 
 ## Struktura
 
