@@ -5,7 +5,7 @@ School project (ITCS, PEF ČZU): lost & found web for the ČZU campus. Roles: gu
 ## Stack
 - PHP 8.1+ without framework or CMS (school server: PHP + MariaDB). Server renders HTML for SEO.
 - Vite bundles only JS/CSS from `assets/`. Leaflet + OpenStreetMap for maps.
-- Repositories in `src/Repositories/` are interfaces with two implementations: `Pdo*` (MariaDB) and `Json/Json*` (files in `storage/data`, for the school server without DB access). `DATA_DRIVER=mysql|json` in `.env` picks one in `App`. `php database/seed.php` recreates the data and loads `database/mock/*.json` for either driver.
+- Repositories in `src/Repositories/` are interfaces with two implementations: `Pdo*` (MariaDB) and `Json/Json*` (files in `storage/data`, a fallback for hosting without DB access). `DATA_DRIVER=mysql|json` in `.env` picks one in `App`. `php database/seed.php` recreates the data and loads `database/mock/*.json` for either driver.
 - Services come from `App\Core\App` (db, session, auth, repositories, mailer, photos). `Kernel::handle()` returns a `Response`; `redirect()` and `abort()` throw, never `exit`.
 
 ## Structure
@@ -19,7 +19,7 @@ School project (ITCS, PEF ČZU): lost & found web for the ČZU campus. Roles: gu
 - `npm run dev` + `npm run serve` (two terminals) → http://localhost:8000
 - `npm run build` → production assets in `public/build`
 - `composer test` → PHPUnit (needs the `ztraty_nalezy_test` DB, see README); `composer test:json` runs the same tests on JSON storage
-- `scripts/deploy.sh xlogin [--with-data | --mysql]` → upload to the school server (JSON storage by default, the server has no DB access yet; `--with-data` wipes live data); `php database/export-sql.php` → `database/seed.sql` for Adminer
+- `scripts/deploy.sh xlogin [--json [--with-data]]` → upload to the school server (MariaDB with the login from `.env.server`; `--json` switches to JSON storage, `--with-data` wipes its live data); `php database/export-sql.php [DATA_DIR OUT]` → `database/seed.sql` for Adminer, or SQL from an existing JSON data folder
 
 ## Conventions
 - Test first: write the failing test, then the code. Forms in `src/Forms/` validate input, controllers stay thin.

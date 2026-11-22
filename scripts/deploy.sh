@@ -5,19 +5,18 @@
 #   ssh -fNM -o ControlPath=~/.ssh/kitlab.sock -o ControlPersist=2h -p 56789 LOGIN@ete89e.pef.czu.cz
 # (in the Warp terminal prefix it with "command", Warp rewrites ssh otherwise)
 #
-# The server has no database access yet, so the data lives in JSON files in storage/data.
-# MariaDB (--mysql): copy .env.server.example to .env.server and fill in the values from kitlab_db.php,
-# then import database/seed.sql in Adminer once to create the tables with demo data.
+# MariaDB: copy .env.server.example to .env.server and fill in the values from kitlab_db.php
+# (it sits in the group folder on the server). An empty database gets its tables from database/seed.sql.
 #
 # Usage:
-#   scripts/deploy.sh LOGIN              JSON files, code only, live data stays untouched
-#   scripts/deploy.sh LOGIN --with-data  JSON files with fresh demo data (deletes all users and items on the server!)
-#   scripts/deploy.sh LOGIN --mysql      MariaDB, code only
+#   scripts/deploy.sh LOGIN                     MariaDB, code only
+#   scripts/deploy.sh LOGIN --json              JSON files in storage/data, code only, live data stays untouched
+#   scripts/deploy.sh LOGIN --json --with-data  JSON files with fresh demo data (deletes all users and items in them!)
 set -euo pipefail
 
-LOGIN=${1:?Usage: scripts/deploy.sh LOGIN [--with-data | --mysql]}
+LOGIN=${1:?Usage: scripts/deploy.sh LOGIN [--json [--with-data]]}
 shift
-DRIVER=json
+DRIVER=mysql
 WITH_DATA=false
 for option in "$@"; do
     case "$option" in
@@ -47,7 +46,7 @@ if [[ "$DRIVER" == mysql && ! -f "$SERVER_ENV" ]]; then
 fi
 
 if [[ "$DRIVER" == mysql && "$WITH_DATA" == true ]]; then
-    echo "With MariaDB, import database/seed.sql in Adminer instead of --with-data" >&2
+    echo "--with-data only works with --json, MariaDB gets its data from database/seed.sql" >&2
     exit 1
 fi
 
